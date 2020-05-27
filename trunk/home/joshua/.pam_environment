@@ -1,0 +1,5 @@
+# PAM environment overrides/additions based on comments from the internets
+
+EDITOR=nvim
+VISUAL=nvim
+BROWSER=firefox
