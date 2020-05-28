@@ -1,0 +1,17 @@
+sys-kernel/linux-firmware linux-fw-redistributable no-source-code
+media-fonts/corefonts MSttfEULA
+dev-db/mongodb SSPL-1
+#sci-libs/mkl Intel-SDP
+media-libs/fdk-aac FraunhoferFDK
+sci-libs/metis all-rights-reserved
+media-libs/faac MPEG-4
+media-libs/urt free-noncomm
+media-fonts/kochi-substitute free-noncomm
+www-plugins/adobe-flash AdobeFlash-11.x #Remove later
+games-fps/gzdoom Activision ChexQuest3 DOOM-COLLECTORS-EDITION freedist
+dev-java/json JSON
+app-arch/lha lha
+app-arch/p7zip unRAR
+media-fonts/ipamonafont grass-ipafonts
+dev-util/idea-community codehaus-classworlds
+sci-physics/root MSttfEULA freedist

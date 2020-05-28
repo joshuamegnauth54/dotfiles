@@ -1,0 +1,9 @@
+=dev-lang/python-3.6*
+=dev-lang/python-3.7*
+<dev-lang/ruby-2.7
+dev-java/icedtea-bin
+dev-java/openjdk-jre-bin
+dev-lang/scala-bin
+dev-lang/rust-bin
+dev-lang/julia-bin
+dev-python/mysql-python # Outdated and unmaintained

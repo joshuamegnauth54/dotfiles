@@ -1,0 +1,16 @@
+gnome-base/libglade python_single_target_python2_7
+media-libs/libcaca python_single_target_python2_7
+net-print/cups python_single_target_python2_7
+dev-libs/boost -python_targets_python2_7
+dev-libs/libnatspec python_single_target_python2_7
+sci-libs/xdmf2 python_single_target_python2_7
+dev-util/glade python_single_target_python2_7
+net-wireless/bluez python_single_target_python2_7
+media-libs/libkate python_single_target_python2_7
+dev-python/pywavelets -python_targets_python2_7
+media-gfx/gimp python_single_target2_7
+media-gfx/gimp python_single_target_python2_7
+app-editors/pluma python_single_targer_python2_7
+app-editors/pluma python_single_target_python2_7
+<dev-util/systemtap-4 python_single_target_python2_7
+app-arch/brotli -python
