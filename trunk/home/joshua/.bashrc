@@ -61,8 +61,10 @@ alias ll="ls -la"
 
 alias df='df -kTh'
 alias sudo='sudo '
-alias diff='colordiff'
+alias diff='diff --color=auto'
 alias less='less --mouse'
+alias grep='grep --color=auto'
+alias ip='ip --color=auto'
 
 emergeupd () {
 	emerge --update --newuse --deep --fetchonly --with-bdeps=y --ask --backtrack=30 "$@" @world &&

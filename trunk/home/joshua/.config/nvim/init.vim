@@ -45,6 +45,8 @@ set wildoptions=pum
 
 " Misc
 set secure
+let c_space_error=1
+set colorcolumn=80
 
 " Options required for plugins - notably coc.nvim
 set hidden
@@ -52,13 +54,6 @@ set cmdheight=2
 set updatetime=300
 set shortmess+=c
 set signcolumn=yes
-" let g:tmux_navigator_no_mappings = 1
-" nnoremap <silent> <c-k> :TmuxNavigateUp<cr>
-" nnoremap <silent> <c-j> :TmuxNavigateDown<cr>
-" nnoremap <silent> <c-h> :TmuxNavigateLeft<cr>
-" nnoremap <silent> <c-l> :TmuxNavigateRight<cr>
-" Disable tmux navigator when zooming the Vim pane
-" let g:tmux_navigator_disable_when_zoomed = 1
 
 " Plugins
 call plug#begin('~/.config/nvim/vimplugins')
@@ -68,10 +63,10 @@ Plug 'tpope/vim-sensible'
 Plug 'vim-airline/vim-airline'
 Plug 'jiangmiao/auto-pairs'
 Plug 'tpope/vim-sleuth'
-Plug 'tpope/vim-fugitive'
 Plug 'scrooloose/nerdtree'
-" Plug 'christoomey/vim-tmux-navigator'
 Plug 'sheerun/vim-polyglot'
+" Replace coc.nvim later
+" Plug 'neovim/nvim-lsp'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'clangd/coc-clangd', {'do': 'yarn install --frozen-lockfile'}
 Plug 'voldikss/coc-cmake', {'do': 'yarn install --frozen-lockfile'}
@@ -81,13 +76,15 @@ Plug 'bash-lsp/bash-language-server', {'do': 'yarn install --frozen-lockfile'}
 " Plug 'neoclide/coc-rls'
 Plug 'fannheyward/coc-rust-analyzer', {'do': 'yarn install --frozen-lockfile'}
 Plug 'frazrepo/vim-rainbow'
-Plug 'nanotech/jellybeans.vim'
-Plug 'junegunn/seoul256.vim'
-Plug 'joshdick/onedark.vim'
+
+" PLUGINS: Colorschemes
+"Plug 'nanotech/jellybeans.vim'
+"Plug 'junegunn/seoul256.vim'
+"Plug 'joshdick/onedark.vim'
 Plug 'morhetz/gruvbox'
-Plug 'cocopon/iceberg.vim'
-Plug 'altercation/vim-colors-solarized'
-Plug 'sickill/vim-monokai'
+"Plug 'cocopon/iceberg.vim'
+"Plug 'altercation/vim-colors-solarized'
+"Plug 'sickill/vim-monokai'
 Plug 'dracula/vim'
 
 " List ends here. Plugins become visible to Vim after this call.
@@ -97,8 +94,9 @@ call plug#end()
 let g:gruvbox_improved_strings = '1'
 let g:gruvbox_improved_warnings = '1'
 let g:LanguageClient_autoStart = '1'
-" colorscheme gruvbox
-colorscheme gruvbox
+" colorscheme dracula
+colorscheme dracula
+let g:airline_theme = 'dracula'
 
 " coc.nvim completion options
 " use <tab> for trigger completion and navigate to the next complete item
