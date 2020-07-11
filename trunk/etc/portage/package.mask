@@ -7,3 +7,5 @@ dev-lang/scala-bin
 dev-lang/rust-bin
 dev-lang/julia-bin
 dev-python/mysql-python # Outdated and unmaintained
+net-nds/openldap
+dev-libs/cyrus-sasl # Nothing wrong with this; just don't want it

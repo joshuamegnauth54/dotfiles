@@ -14,3 +14,4 @@ app-editors/pluma python_single_targer_python2_7
 app-editors/pluma python_single_target_python2_7
 <dev-util/systemtap-4 python_single_target_python2_7
 app-arch/brotli -python
+dev-lang/yasm python_single_target_python2_7
