@@ -29,6 +29,10 @@ export VISUAL="nvim"
 export PAGER="less" # I think nvimpager doesn't work with ANSI escape sequences for colors
 export BROWSER="firefox"
 
+# Rustlang
+export RUST_BACKTRACE=1
+export CARGO_NAME=Joshua
+
 # SDL
 export SDL_AUDIODRIVER="pulseaudio"
 export SDL_VIDEODRIVER="x11"
@@ -46,19 +50,22 @@ export HISTCONTROL="$HISTCONTROL erasedups:ignoreboth"
 set -o noclobber
 
 # Qt environmental variables
-QT_AUTO_SCREEN_SCALE_FACTOR=1
+export QT_AUTO_SCREEN_SCALE_FACTOR=1
+export QT_QPA_PLATFORMTHEME=gtk2
+
+# SciPy
+export SCIPY_PIL_IMAGE_VIEWER=nomacs
 
 # wrap these commands for interactive use to avoid accidental overwrites.
 rm() { command rm -i "$@"; }
 cp() { command cp -i "$@"; }
 mv() { command mv -i "$@"; }
 ln() { command ln -i "$@"; }
-export SCIPY_PIL_IMAGE_VIEWER=nomacs
 
 # Aliases
 alias ls='ls -Fh --color=auto'
 alias ll="ls -la"
-
+alias vim='nvim'
 alias df='df -kTh'
 alias sudo='sudo '
 alias diff='diff --color=auto'

@@ -9,10 +9,14 @@ set rtp^=/usr/share/vim/vimfiles/
 set autoindent
 set smartindent
 set smartcase
-set smarttab
 filetype plugin on
 filetype indent on
 syntax on
+set tabstop=4
+set softtabstop=4
+set shiftwidth=4
+set expandtab
+set smarttab
 
 " Turn on line numbers
 set number
@@ -29,6 +33,12 @@ scriptencoding utf-8
 set encoding=utf-8
 set emoji
 
+" Case insensitive searching
+set ignorecase
+
+" Set spelling correction stuff
+set spelllang=en_us
+
 " Temporary files/backup
 set backup
 set backupdir=/tmp/
@@ -40,13 +50,26 @@ set clipboard+=unnamedplus
 
 " Wildmenu
 set wildmenu
+set wildignorecase
 set wildmode=longest,full
 set wildoptions=pum
+set pumblend=20
+
+" Wrapping options
+set colorcolumn=80
+set wrap
+set linebreak
 
 " Misc
 set secure
 let c_space_error=1
-set colorcolumn=80
+set backspace=2
+set nojoinspace
+
+" Settings for specific file types
+
+" Keybindings
+
 
 " Options required for plugins - notably coc.nvim
 set hidden
