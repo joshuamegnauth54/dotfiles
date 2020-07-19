@@ -55,6 +55,9 @@ set wildmode=longest,full
 set wildoptions=pum
 set pumblend=20
 
+" Allow moving to the next line using arrows
+set whichwrap+=<,>,h,l
+
 " Wrapping options
 set colorcolumn=80
 set wrap
@@ -64,7 +67,7 @@ set linebreak
 set secure
 let c_space_error=1
 set backspace=2
-set nojoinspace
+set nojoinspaces
 
 " Settings for specific file types
 
@@ -120,6 +123,7 @@ let g:LanguageClient_autoStart = '1'
 " colorscheme dracula
 colorscheme dracula
 let g:airline_theme = 'dracula'
+let g:rustfmt_autosave = 1
 
 " coc.nvim completion options
 " use <tab> for trigger completion and navigate to the next complete item
