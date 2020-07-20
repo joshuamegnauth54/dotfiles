@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<opml version="2.0">
+    <head>
+        <title>QuiteRSS</title>
+        <dateModified>Sun Jul 19 08:53:06 2020</dateModified>
+    </head>
+    <body>
+        <outline text="News/Literature">
+            <outline text="New York Times" type="rss" htmlUrl="https://www.nytimes.com" xmlUrl="https://rss.nytimes.com/services/xml/rss/nyt/HomePage.xml"/>
+            <outline text="New Yorker" type="rss" htmlUrl="https://www.newyorker.com/everything" xmlUrl="http://www.newyorker.com/feed/everything"/>
+            <outline text="The Paris Review" type="rss" htmlUrl="https://www.theparisreview.org/blog" xmlUrl="https://www.theparisreview.org/blog/feed/"/>
+            <outline text="The New York Review of Books" type="rss" htmlUrl="https://www.nybooks.com" xmlUrl="http://feeds.feedburner.com/nybooks"/>
+            <outline text="The Atlantic" type="rss" htmlUrl="https://www.theatlantic.com/" xmlUrl="https://www.theatlantic.com/feed/all/"/>
+            <outline text="Ars Technica" type="rss" htmlUrl="https://arstechnica.com" xmlUrl="http://feeds.arstechnica.com/arstechnica/index"/>
+            <outline text="Wccftech" type="rss" htmlUrl="https://wccftech.com" xmlUrl="https://wccftech.com/feed/"/>
+        </outline>
+        <outline text="Video Games">
+            <outline text="Engines">
+                <outline text="Godot Engine Official" type="rss" htmlUrl="https://godotengine.org" xmlUrl="https://godotengine.org/rss.xml"/>
+                <outline text="Unreal Engine - News, Developer Interviews, Spotlights, Tech Blogs" type="rss" htmlUrl="https://www.unrealengine.com/rss" xmlUrl="https://www.unrealengine.com/rss"/>
+            </outline>
+            <outline text="News">
+                <outline text="Gamasutra News" type="rss" htmlUrl="http://www.gamasutra.com/newswire" xmlUrl="http://feeds.feedburner.com/GamasutraNews"/>
+                <outline text="Destructoid" type="rss" htmlUrl="https://www.destructoid.com/?mode=atom" xmlUrl="http://feeds.feedburner.com/Destructoid"/>
+                <outline text="Rock, Paper, Shotgun" type="rss" htmlUrl="https://www.rockpapershotgun.com" xmlUrl="http://feeds.feedburner.com/RockPaperShotgun"/>
+                <outline text="GameSpot - All News" type="rss" htmlUrl="https://www.gamespot.com/feeds/news/" xmlUrl="https://www.gamespot.com/feeds/news"/>
+                <outline text="IGN All" type="rss" htmlUrl="https://www.ign.com/articles" xmlUrl="http://feeds.feedburner.com/ign/all"/>
+                <outline text="Gematsu" type="rss" htmlUrl="https://www.gematsu.com" xmlUrl="https://www.gematsu.com/feed"/>
+                <outline text="Co-Optimus" type="rss" htmlUrl="https://www.co-optimus.com" xmlUrl="http://feeds.feedburner.com/Co-Optimus"/>
+                <outline text="Nintendo Life | Latest Updates" type="rss" htmlUrl="https://www.nintendolife.com/feeds/latest" xmlUrl="http://www.nintendolife.com/feeds/latest"/>
+                <outline text="Polygon - All" type="rss" htmlUrl="https://www.polygon.com/" xmlUrl="http://www.polygon.com/rss/index.xml"/>
+                <outline text="Eurogamer.net" type="rss" htmlUrl="https://www.eurogamer.net/" xmlUrl="http://www.eurogamer.net/?format=rss"/>
+                <outline text="PCGamer latest" type="rss" htmlUrl="https://www.pcgamer.com" xmlUrl="https://www.pcgamer.com/rss/"/>
+                <outline text="Kotaku" type="rss" htmlUrl="https://kotaku.com" xmlUrl="https://kotaku.com/rss"/>
+                <outline text="Siliconera" type="rss" htmlUrl="https://www.siliconera.com" xmlUrl="https://www.siliconera.com/feed/"/>
+                <outline text="GamingOnLinux Latest Articles" type="rss" htmlUrl="https://www.gamingonlinux.com/" xmlUrl="https://www.gamingonlinux.com/article_rss.php"/>
+            </outline>
+        </outline>
+        <outline text="Programming/FOSS">
+            <outline text="Rust">
+                <outline text="Rust Blog" type="rss" htmlUrl="https://blog.rust-lang.org/" xmlUrl="http://blog.rust-lang.org/feed.xml"/>
+                <outline text="Inside Rust Blog" type="rss" htmlUrl="https://blog.rust-lang.org/inside-rust/" xmlUrl="https://blog.rust-lang.org/inside-rust/feed.xml"/>
+                <outline text="matklad" type="rss" htmlUrl="https://matklad.github.io//" xmlUrl="https://matklad.github.io/feed.xml"/>
+                <outline text="Rust Game Development Working Group" type="rss" htmlUrl="https://rust-gamedev.github.io/" xmlUrl="https://rust-gamedev.github.io/rss.xml"/>
+            </outline>
+            <outline text="Python">
+                <outline text="Python Insider" type="rss" htmlUrl="https://pythoninsider.blogspot.com/" xmlUrl="http://feeds.feedburner.com/PythonInsider"/>
+                <outline text="Newest Python PEPs" type="rss" htmlUrl="http://www.python.org/dev/peps" xmlUrl="https://www.python.org/dev/peps/peps.rss"/>
+                <outline text="Planet Python" type="rss" htmlUrl="http://planetpython.org/" xmlUrl="https://planetpython.org/rss20.xml"/>
+            </outline>
+            <outline text="News">
+                <outline text="O'Reilly Radar" type="rss" htmlUrl="https://www.oreilly.com/radar" xmlUrl="https://feeds.feedburner.com/oreilly/radar/atom"/>
+                <outline text="O'Reilly Media, Inc. New Titles" type="rss" htmlUrl="http://shop.oreilly.com/" xmlUrl="https://feeds.feedburner.com/oreilly/newbooks"/>
+                <outline text="FSF News" type="rss" htmlUrl="http://www.fsf.org/news/aggregator" xmlUrl="http://www.fsf.org/static/fsforg/rss/news.xml"/>
+                <outline text="FSF blogs" type="rss" htmlUrl="http://www.fsf.org/blogs/recent-blog-posts" xmlUrl="http://static.fsf.org/fsforg/rss/blogs.xml"/>
+            </outline>
+        </outline>
+        <outline text="Science">
+            <outline text="Planet SciPy" type="rss" htmlUrl="https://planet.scipy.org/" xmlUrl="https://planet.scipy.org/feed.xml"/>
+            <outline text="Scientific American Content: Global" type="rss" htmlUrl="http://www.scientificamerican.com" xmlUrl="http://rss.sciam.com/ScientificAmerican-Global"/>
+            <outline text="Statistical Modeling, Causal Inference, and Social Science" type="rss" htmlUrl="https://statmodeling.stat.columbia.edu" xmlUrl="http://statmodeling.stat.columbia.edu/feed/"/>
+            <outline text="Simply Statistics" type="rss" htmlUrl="https://simplystatistics.org/index.xml" xmlUrl="http://simplystatistics.org/feed/"/>
+            <outline text="Freakonometrics" type="rss" htmlUrl="https://freakonometrics.hypotheses.org" xmlUrl="https://freakonometrics.hypotheses.org/feed"/>
+            <outline text="John D. Cook" type="rss" htmlUrl="https://www.johndcook.com/blog" xmlUrl="https://www.johndcook.com/blog/feed"/>
+        </outline>
+        <outline text="Programs">
+            <outline text="Neovim Newsletter" type="rss" htmlUrl="https://neovim.io/news" xmlUrl="https://neovim.io/news.xml"/>
+            <outline text="nomacs | Image Lounge" type="rss" htmlUrl="https://nomacs.org" xmlUrl="http://www.nomacs.org/feed/"/>
+            <outline text="GIMP" type="rss" htmlUrl="https://www.gimp.org/" xmlUrl="https://www.gimp.org/feeds/atom.xml"/>
+        </outline>
+        <outline text="Linux/FreeBSD/Unix">
+            <outline text="Arch Linux: Recent news updates" type="rss" htmlUrl="https://www.archlinux.org/news/" xmlUrl="https://www.archlinux.org/feeds/news/"/>
+            <outline text="Phoronix" type="rss" htmlUrl="https://www.phoronix.com/" xmlUrl="https://www.phoronix.com/rss.php"/>
+            <outline text="LWN.net" type="rss" htmlUrl="https://lwn.net" xmlUrl="https://lwn.net/headlines/rss"/>
+            <outline text="OMG! Ubuntu!" type="rss" htmlUrl="https://www.omgubuntu.co.uk" xmlUrl="https://feeds.feedburner.com/d0od"/>
+            <outline text="DistroWatch.com: News" type="rss" htmlUrl="http://distrowatch.com/" xmlUrl="https://distrowatch.com/news/dw.xml"/>
+            <outline text="FreeBSD News Flash" type="rss" htmlUrl="https://www.freebsd.org/news/" xmlUrl="https://www.freebsd.org/news/rss.xml"/>
+            <outline text="Linuxtoday.com" type="rss" htmlUrl="https://www.linuxtoday.com/" xmlUrl="https://feedproxy.google.com/linuxtoday/linux"/>
+            <outline text="Redhat" type="rss" htmlUrl="https://www.redhat.com/sysadmin/" xmlUrl="https://www.redhat.com/sysadmin/rss.xml"/>
+            <outline text="LXer Linux News" type="rss" htmlUrl="http://lxer.com/" xmlUrl="http://lxer.com/module/newswire/headlines.rss"/>
+            <outline text="The Linux Kernel Archives" type="rss" htmlUrl="https://www.kernel.org/" xmlUrl="https://www.kernel.org/feeds/all.atom.xml"/>
+            <outline text="planet.freedesktop.org" type="rss" htmlUrl="http://planet.freedesktop.org" xmlUrl="https://planet.freedesktop.org/rss20.xml"/>
+            <outline text="Fedora Magazine" type="rss" htmlUrl="https://fedoramagazine.org" xmlUrl="https://fedoramagazine.org/feed/"/>
+        </outline>
+        <outline text="Privacy/Security">
+            <outline text="Gentoo Linux security advisories" type="rss" htmlUrl="https://security.gentoo.org/glsa" xmlUrl="https://security.gentoo.org/glsa/feed.rss"/>
+            <outline text="Bugtraq" type="rss" htmlUrl="http://seclists.org/#bugtraq" xmlUrl="https://seclists.org/rss/bugtraq.rss"/>
+            <outline text="Open Source Security" type="rss" htmlUrl="http://seclists.org/#oss-sec" xmlUrl="https://seclists.org/rss/oss-sec.rss"/>
+            <outline text="Web App Security" type="rss" htmlUrl="http://seclists.org/#webappsec" xmlUrl="https://seclists.org/rss/webappsec.rss"/>
+            <outline text="Wireshark" type="rss" htmlUrl="http://seclists.org/#wireshark" xmlUrl="https://seclists.org/rss/wireshark.rss"/>
+            <outline text="Nmap Announce" type="rss" htmlUrl="http://seclists.org/#nmap-announce" xmlUrl="https://seclists.org/rss/nmap-announce.rss"/>
+        </outline>
+        <outline text="Music"/>
+    </body>
+</opml>
