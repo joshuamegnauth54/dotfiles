@@ -1,0 +1,12 @@
+polkit.addRule(function(action, subject) {
+    if (action.id == "org.freedesktop.NetworkManager.enable-disable-connectivity-check" ||
+    	action.id == "org.freedesktop.NetworkManager.enable-disable-network" ||
+    	action.id == "org.freedesktop.NetworkManager.enable-disable-wifi" ||
+    	action.id == "org.freedesktop.NetworkManager.network-control" ||
+    	action.id == "org.freedesktop.NetworkManager.reload" ||
+    	action.id == "org.freedesktop.NetworkManager.sleep-wake" ||
+    	action.id == "org.freedesktop.NetworkManager.wifi.scan" &&
+        subject.isInGroup("wheel")) {
+        return polkit.Result.YES;
+    }
+});

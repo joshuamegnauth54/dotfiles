@@ -1,0 +1,14 @@
+polkit.addRule(function (action, subject) {
+  if (action.id == "org.freedesktop.upower.hibernate" ||
+      action.id == "org.freedesktop.upower.suspend" ||
+      action.id == "org.freedesktop.consolekit.system.stop" ||
+      action.id == "org.freedesktop.consolekit.system.restart" ||
+      action.id == "org.freedesktop.login1.power-off" ||
+      action.id == "org.freedesktop.login1.halt" ||
+      action.id == "org.freedesktop.login1.hibernate" ||
+      action.id == "org.freedesktop.login1.suspend" &&
+      subject.isInGroup ("wheel"))
+      {
+        return polkit.Result.YES;
+      }
+});
