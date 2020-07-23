@@ -2,7 +2,7 @@
 <opml version="2.0">
     <head>
         <title>QuiteRSS</title>
-        <dateModified>Sun Jul 19 08:53:06 2020</dateModified>
+        <dateModified>Wed Jul 22 10:16:51 2020</dateModified>
     </head>
     <body>
         <outline text="News/Literature">
@@ -34,6 +34,7 @@
                 <outline text="Kotaku" type="rss" htmlUrl="https://kotaku.com" xmlUrl="https://kotaku.com/rss"/>
                 <outline text="Siliconera" type="rss" htmlUrl="https://www.siliconera.com" xmlUrl="https://www.siliconera.com/feed/"/>
                 <outline text="GamingOnLinux Latest Articles" type="rss" htmlUrl="https://www.gamingonlinux.com/" xmlUrl="https://www.gamingonlinux.com/article_rss.php"/>
+                <outline text="Giant Bomb's Site Mashup" type="rss" htmlUrl="https://www.giantbomb.com/feeds/mashup/" xmlUrl="https://www.giantbomb.com/feeds/mashup"/>
             </outline>
         </outline>
         <outline text="Programming/FOSS">
@@ -90,6 +91,12 @@
             <outline text="Wireshark" type="rss" htmlUrl="http://seclists.org/#wireshark" xmlUrl="https://seclists.org/rss/wireshark.rss"/>
             <outline text="Nmap Announce" type="rss" htmlUrl="http://seclists.org/#nmap-announce" xmlUrl="https://seclists.org/rss/nmap-announce.rss"/>
         </outline>
-        <outline text="Music"/>
+        <outline text="Music">
+            <outline text="Pitchfork: News" type="rss" htmlUrl="https://pitchfork.com/feed-news" xmlUrl="https://pitchfork.com/rss/news/"/>
+            <outline text="Pitchfork: Album Reviews" type="rss" htmlUrl="https://pitchfork.com/feed-album-reviews" xmlUrl="https://pitchfork.com/rss/reviews/albums/"/>
+            <outline text="Stereogum" type="rss" htmlUrl="https://www.stereogum.com" xmlUrl="https://www.stereogum.com/feed/"/>
+            <outline text="BrooklynVegan" type="rss" htmlUrl="https://www.brooklynvegan.com" xmlUrl="http://www.brooklynvegan.com/feed/"/>
+            <outline text="Alternative Press" type="rss" htmlUrl="https://www.altpress.com" xmlUrl="https://www.altpress.com/feed/"/>
+        </outline>
     </body>
 </opml>
