@@ -2,7 +2,7 @@
 <opml version="2.0">
     <head>
         <title>QuiteRSS</title>
-        <dateModified>Wed Jul 22 10:16:51 2020</dateModified>
+        <dateModified>Sun Jul 26 11:03:23 2020</dateModified>
     </head>
     <body>
         <outline text="News/Literature">
@@ -97,6 +97,7 @@
             <outline text="Stereogum" type="rss" htmlUrl="https://www.stereogum.com" xmlUrl="https://www.stereogum.com/feed/"/>
             <outline text="BrooklynVegan" type="rss" htmlUrl="https://www.brooklynvegan.com" xmlUrl="http://www.brooklynvegan.com/feed/"/>
             <outline text="Alternative Press" type="rss" htmlUrl="https://www.altpress.com" xmlUrl="https://www.altpress.com/feed/"/>
+            <outline text="MetalSucks" type="rss" htmlUrl="https://www.metalsucks.net" xmlUrl="http://feeds.feedburner.com/Metalsucks"/>
         </outline>
     </body>
 </opml>
