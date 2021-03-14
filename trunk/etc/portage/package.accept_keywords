@@ -39,7 +39,6 @@ sci-libs/armadillo ~amd64
 dev-java/icedtea ~amd64
 sci-libs/proj ~amd64
 sci-libs/scipy ~amd64
-app-crypt/mit-krb5 ~amd64
 app-editors/neovim ~amd64
 sys-devel/gdb ~amd64
 sys-cluster/openmpi ~amd64
@@ -58,7 +57,7 @@ sys-devel/llvmgold ~amd64
 =games-emulation/higan-9999 **
 dev-util/pycharm-community ~amd64
 dev-util/idea-community ~amd64
-sys-cluster/minikube ~amd64
+dev-java/openjdk ~amd64
 sys-devel/gcc ~amd64
 sci-mathematics/pymc3 ~amd64
 www-client/firefox ~amd64
@@ -69,17 +68,10 @@ sci-mathematics/flint ~amd64
 sci-mathematics/gmp-ecm ~amd64
 gnome-extra/* ~amd64
 gnome-base/* ~amd64
-dev-libs/libbytesize ~amd64
-media-libs/gexiv2 ~amd64
 net-misc/streamlink ~amd64
 =net-misc/streamlink-9999 **
 sys-cluster/spark-bin ~amd64
 games-fps/yamagi-quake2 ~amd64
-sci-libs/scikits ~amd64
-sci-libs/scikits_image ~amd64
-sci-libs/scikits_learn ~amd64
-sci-libs/scikits_optimization ~amd64
-#sci-libs/scikits_timeseries ~amd64
 net-misc/wireguard ~amd64
 net-vpn/wireguard-tools ~amd64
 net-vpn/wireguard-modules ~amd64
@@ -115,7 +107,6 @@ sci-libs/pytorch ~amd64
 dev-python/* ~amd64
 xfce-base/* ~amd64
 xfce-extra/* ~amd64
-sys-apps/yarn ~amd64
 x11-terms/kitty-terminfo ~amd64
 */*::sakaki-tools ~amd64
 net-libs/quiche ~amd64

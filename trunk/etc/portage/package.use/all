@@ -2,23 +2,25 @@
 */* PYTHON_SINGLE_TARGET: -* python3_8 
 #*/* python_targets_python3_8
 dev-lang/rust clippy doc nightly miri parallel-compiler rls rust-analyzer rustfmt system-bootstrap system-llvm wasm
+app-editors/neovim nvimpager tui
 app-editors/vim cscope terminal vim-pager
 app-editors/gvim acp cscope 
 dev-lang/python tk
-sys-apps/systemd cryptsetup dns-over-tls elfutils gcrypt gnuefi homed idn kmod lz4 lzma pcre pwquality -resolvconf seccomp xkb split-usr
+sys-apps/systemd -curl cryptsetup gcrypt gnuefi homed kmod pwquality seccomp
 net-dns/knot dnstap
 net-dns/unbound dnscrypt dnstap ecs gost
-sys-auth/policykit systemd
 net-firewall/firewalld -iptables nftables
-sys-fs/udisks introspection lvm systemd 
+sys-fs/udisks lvm 
 sys-kernel/linux-firmware redistributable initramfs experimental
-sys-fs/e2fsprogs cron fuse
-net-misc/networkmanager -dhclient -wext -bluetooth -connection_sharing -dhcpd introspection json -modemmanager ncurses nss -ofono -ovs policykit -ppp -resolvconf -teamd -wifi
+sys-fs/e2fsprogs cron fuse lto
+app-admin/doas persist
+net-misc/networkmanager -dhclient -wext -bluetooth -connection_sharing -dhcpd -modemmanager nss -ofono -ovs -ppp -resolvconf -teamd -wifi
 gnome-extra/nm-applet -modemmanager -teamd
+# Replace with systemd-boot
 sys-boot/grub mount fonts device-mapper libzfs themes truetype
 sys-kernel/gentoo-sources symlink experimental
 sys-devel/gcc graphite jit libssp lto nptl pgo sanitize ssp vtv
-sys-devel/llvm exegesis gold libedit ncurses xar z3
+sys-devel/llvm exegesis gold libedit xar z3
 dev-util/lldb libedit
 sys-devel/clang default-compiler-rt default-libcxx default-lld static-analyzer
 sys-devel/clang-runtime libcxx
@@ -26,51 +28,46 @@ sys-libs/libcxx libcxxabi libunwind
 sys-libs/libunwind debug-frame
 x11-libs/wxGTK gstreamer sdl
 dev-libs/openssl asm -bindist rfc3779
-net-libs/libproxy gnome networkmanager perl spidermonkey -webkit
-app-portage/gemato gpg 
+net-libs/libproxy gnome spidermonkey -webkit # gnome for GTK, I think?
 sys-apps/file zlib
 sys-apps/portage gentoo-dev native-extensions rsync-verify xattr
 net-misc/rsync stunnel system-zlib xxhash
-app-editors/neovim nvimpager tui
-net-misc/curl alt-svc brotli gopher http2 hsts metalink progress-meter rtmp ssh telnet quiche samba
+net-misc/curl alt-svc brotli gopher http2 hsts imap metalink progress-meter rtmp ssh telnet quiche samba
 app-arch/zip bzip2 crypt unicode natspec
 sys-apps/coreutils hostname 
 dev-libs/libverto -libev libevent threads
 sys-apps/util-linux static-libs -suid 
-dev-libs/m17n-lib fontconfig spell xft libotf libxml2 
 media-libs/gd webp
 dev-java/icedtea cups jbootstrap kerberos pch sctp shenandoah system-lcms 
 sys-apps/hwloc cairo gl libudev nvml pci svg xml plugins cuda
-app-editors/emacs dbus dynamic-loading gif gmp gpm gsettings gtk gzip-el imagemagick inotify jpeg kerberos lcms libxml2 png ssl svg systemd threads tiff toolkit-scroll-bars xft xpm zlib
-app-crypt/gnupg bzip2 readline ssl tofu tools user-socket
+app-editors/emacs dbus dynamic-loading gif gpm gsettings gtk gzip-el imagemagick inotify jpeg kerberos lcms libxml2 png ssl svg systemd threads tiff toolkit-scroll-bars xft xpm zlib
+app-crypt/gnupg bzip2 ssl tofu tools user-socket
 app-arch/libarchive blake2 bzip2 zlib
-dev-db/sqlite icu readline secure-delete tools
+dev-db/sqlite secure-delete tools
 dev-db/mariadb backup extraengine innodb-lz4 innodb-lzo innodb-snappy jdbc mroonga odbc oqgraph pam profiling rocksdb server sphinx sst-mariabackup sst-xtrabackup sst-rsync tokudb
 sys-process/procps kill modern-top ncurses
-app-text/asciidoc graphviz highlight
 dev-libs/libpcre pcre32
 dev-libs/libpcre2 pcre32
 dev-libs/gf2x custom-tune fft
 app-misc/tmux utempter 
-dev-db/postgresql icu kerberos llvm pam perl readline server ssl systemd uuid xml zlib 
+dev-db/postgresql icu kerberos llvm pam server ssl uuid xml zlib 
 net-libs/libssh gssapi
 dev-lang/ruby gdbm ipv6 jemalloc rdoc rubytests socks5 ssl tk 
 dev-libs/jemalloc lazy-lock xmalloc
-media-gfx/graphviz cairo devil gdk-pixbuf gts lasi pdf postscript svg -qt5
-media-libs/devil allegro nvtt
-media-gfx/nvidia-texture-tools glew
+media-gfx/graphviz devil gdk-pixbuf gts lasi pdf postscript svg -qt5
+media-libs/devil nvtt
 media-gfx/imagemagick bzip2 corefonts djvu fftw fontconfig fpx graphviz hdri heif jbig jpeg jpeg2k lcms lqr lzma opencl openexr pango perl png postscript raw svg tiff truetype webp wmf xml zlib
 media-libs/libheif -aom gdk-pixbuf libde265 rav1e x265
 sys-kernel/genkernel-next cryptsetup gpg 
 net-mail/mailutils clients gdbm ipv6 kerberos -mysql pam ssl threads
 x11-libs/libdrm libkms 
 sys-libs/gdbm berkdb exporter
-sys-apps/busybox ipv6 math systemd static
+sys-apps/busybox ipv6 math static
 sys-apps/net-tools -hostname 
 media-gfx/ufraw contrast fits -gnome timezone
 x11-libs/libva drm opengl utils vdpau
 x11-libs/libva-compat egl
-dev-libs/gobject-introspection cairo doctool
+dev-libs/gobject-introspection doctool
 media-libs/mesa d3d9 dri3 egl gbm gles2 llvm lm-sensors opencl osmesa unwind vaapi vdpau vulkan vulkan-overlay xa xvmc
 x11-libs/gtk+ broadway cloudprint colord introspection
 dev-libs/nss cacert
@@ -78,14 +75,14 @@ app-text/poppler cairo jpeg2k nss png tiff utils
 sys-libs/glibc static-pie ssp
 net-libs/glib-networking -gnome
 sys-devel/binutils multitarget
-media-libs/libsdl aalib fbcon opengl pulseaudio sound video 
+media-libs/libsdl video 
 dev-python/numpy lapack
 dev-python/pandas full-support test
 # dev-python/pandas-datareader doc
 dev-python/matplotlib cairo excel gtk3 latex qt5 tk webagg
 dev-python/ipython matplotlib nbconvert notebook qt5 smp
 dev-lang/perl gdbm ithreads
-dev-lang/R cairo doc icu java jpeg lapack perl profile png readline tiff tk
+dev-lang/R doc icu java jpeg lapack perl profile png tiff tk
 dev-libs/boost bzip2 context icu lzma mpi numpy python threads tools zlib zstd
 sys-apps/kmod lzma pkcs7 python tools zlib
 sys-libs/pam berkdb cracklib filecaps pie
@@ -159,14 +156,14 @@ media-video/mpv archive cplugins cuda drm gbm libmpv rubberband samba tools vulk
 media-libs/libplacebo glslang
 app-text/ghostscript-gpl cups
 net-print/cups-filters ipp_autosetup pclm
-net-dns/dnsmasq auth-dns conntrack dhcp-tools dnssec libidn2 lua script
+net-dns/dnsmasq auth-dns conntrack dhcp-tools dnssec libidn2 script
 media-libs/speex utils
 media-libs/freetype harfbuzz
 dev-qt/qtnetwork gssapi libproxy
 dev-qt/designer declarative
 dev-qt/qtwebkit -multimedia nsplugin gstreamer 
 dev-qt/* qml
-net-analyzer/wireshark androiddump bcg729 brotli ciscodump dpauxmon http2 libxml2 lua maxminddb sbc smi spandsp sshdump tfshark
+net-analyzer/wireshark androiddump bcg729 brotli ciscodump dpauxmon http2 libxml2 maxminddb sbc smi spandsp sshdump tfshark
 net-libs/nghttp2 hpack-tools utils
 net-libs/libpcap netlink
 media-libs/libcanberra -alsa -udev -gnome -gstreamer tdb
@@ -218,7 +215,7 @@ app-i18n/ibus -gtk2
 dev-libs/ell glib
 net-libs/mbedtls havege programs
 net-wireless/bluez midi test-programs
-app-text/texlive context detex dvi2tty epspdf extra games graphics humanities jadetex luatex metapost music pdfannotextractor pstricks publishers science tex4ht texi2html xetex xindy
+app-text/texlive context detex dvi2tty epspdf extra games graphics humanities jadetex luatex metapost music pdfannotextractor pstricks publishers science tex4ht texi2html xetex 
 dev-qt/qt-creator beautifier cmake cppcheck ctfvisualizer glsl lsp modeling perfprofiler qmlprofiler scxml silversearcher valgrind webassembly winrt
 app-office/libreoffice coinmp -eds libreoffice_extensions_nlpsolver libreoffice_extensions_wiki-publisher java pdfimport mariadb 
 dev-lang/go system-bootstrap
@@ -285,8 +282,6 @@ net-analyzer/nmap libssh2 ncat ndiff nmap-update nping system-lua zenmap
 net-misc/openssh X509 ldns -sctp
 net-libs/ldns ed25519 ed448 gost
 net-fs/libnfs utils
-app-admin/sudo -skey -sasl system-digest -sendmail
-app-editors/gedit-plugins charmap terminal
 app-shells/bash plugins
 net-dns/bind-tools gssapi
 net-analyzer/tcpdump samba smi
@@ -300,6 +295,7 @@ sci-libs/pytorch asan cuda gflags glog lmdb mkldnn namedtensor opencl opencv red
 app-crypt/mit-krb5 lmdb 
 net-libs/liboauth -nss 
 media-libs/raptor json
+dev-libs/redland postgres
 net-libs/neon libproxy
 virtual/notification-daemon -gnome # Enable for Cinnamon/Gnome
 x11-libs/libwnck tools
