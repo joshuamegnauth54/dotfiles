@@ -1,10 +1,7 @@
-*/* PYTHON_TARGETS: -* python3_8
-*/* PYTHON_SINGLE_TARGET: -* python3_8 
-#*/* python_targets_python3_8
+*/* PYTHON_TARGETS: -* python3_9
+*/* PYTHON_SINGLE_TARGET: -* python3_9
 dev-lang/rust clippy doc nightly miri parallel-compiler rls rust-analyzer rustfmt system-bootstrap system-llvm wasm
 app-editors/neovim nvimpager tui
-app-editors/vim cscope terminal vim-pager
-app-editors/gvim acp cscope 
 dev-lang/python tk
 sys-apps/systemd -curl cryptsetup gcrypt gnuefi homed kmod pwquality seccomp
 net-dns/knot dnstap
@@ -22,72 +19,65 @@ sys-kernel/gentoo-sources symlink experimental
 sys-devel/gcc graphite jit libssp lto nptl pgo sanitize ssp vtv
 sys-devel/llvm exegesis gold libedit xar z3
 dev-util/lldb libedit
-sys-devel/clang default-compiler-rt default-libcxx default-lld static-analyzer
+sys-devel/clang default-compiler-rt default-libcxx default-lld llvm-libunwind static-analyzer
 sys-devel/clang-runtime libcxx
-sys-libs/libcxx libcxxabi libunwind
+sys-libs/libcxx libunwind
 sys-libs/libunwind debug-frame
-x11-libs/wxGTK gstreamer sdl
-dev-libs/openssl asm -bindist rfc3779
-net-libs/libproxy gnome spidermonkey -webkit # gnome for GTK, I think?
-sys-apps/file zlib
-sys-apps/portage gentoo-dev native-extensions rsync-verify xattr
+x11-libs/wxGTK gstreamer 
+dev-libs/openssl asm -bindist
+net-libs/libproxy -webkit
+sys-apps/portage gentoo-dev native-extensions rsync-verify
+sys-apps/coreutils hostname 
+sys-apps/util-linux static-libs -suid 
+sys-apps/hwloc plugins
 net-misc/rsync stunnel system-zlib xxhash
 net-misc/curl alt-svc brotli gopher http2 hsts imap metalink progress-meter rtmp ssh telnet quiche samba
 app-arch/zip bzip2 crypt unicode natspec
-sys-apps/coreutils hostname 
 dev-libs/libverto -libev libevent threads
-sys-apps/util-linux static-libs -suid 
-media-libs/gd webp
-dev-java/icedtea cups jbootstrap kerberos pch sctp shenandoah system-lcms 
-sys-apps/hwloc cairo gl libudev nvml pci svg xml plugins cuda
-app-editors/emacs dbus dynamic-loading gif gpm gsettings gtk gzip-el imagemagick inotify jpeg kerberos lcms libxml2 png ssl svg systemd threads tiff toolkit-scroll-bars xft xpm zlib
-app-crypt/gnupg bzip2 ssl tofu tools user-socket
+dev-java/icedtea jbootstrap shenandoah system-lcms 
+app-editors/emacs dynamic-loading gsettings gzip-el libxml2 toolkit-scroll-bars 
+app-crypt/gnupg bzip2 tofu tools user-socket
 app-arch/libarchive blake2 bzip2 zlib
 dev-db/sqlite secure-delete tools
-dev-db/mariadb backup extraengine innodb-lz4 innodb-lzo innodb-snappy jdbc mroonga odbc oqgraph pam profiling rocksdb server sphinx sst-mariabackup sst-xtrabackup sst-rsync tokudb
-sys-process/procps kill modern-top ncurses
+dev-db/mariadb backup extraengine innodb-lz4 innodb-lzo innodb-snappy odbc oqgraph pam profiling server sst-mariabackup sst-rsync 
+sys-process/procps kill modern-top 
 dev-libs/libpcre pcre32
 dev-libs/libpcre2 pcre32
 dev-libs/gf2x custom-tune fft
 app-misc/tmux utempter 
-dev-db/postgresql icu kerberos llvm pam server ssl uuid xml zlib 
-net-libs/libssh gssapi
-dev-lang/ruby gdbm ipv6 jemalloc rdoc rubytests socks5 ssl tk 
+dev-db/postgresql icu llvm pam server uuid xml zlib 
+# net-libs/libssh gssapi
+dev-lang/ruby rdoc rubytests socks5 tk 
 dev-libs/jemalloc lazy-lock xmalloc
-media-gfx/graphviz devil gdk-pixbuf gts lasi pdf postscript svg -qt5
-media-libs/devil nvtt
-media-gfx/imagemagick bzip2 corefonts djvu fftw fontconfig fpx graphviz hdri heif jbig jpeg jpeg2k lcms lqr lzma opencl openexr pango perl png postscript raw svg tiff truetype webp wmf xml zlib
+media-gfx/graphviz gts lasi pdf svg -qt5
+media-gfx/graphicsmagick fpx
 media-libs/libheif -aom gdk-pixbuf libde265 rav1e x265
 sys-kernel/genkernel-next cryptsetup gpg 
-net-mail/mailutils clients gdbm ipv6 kerberos -mysql pam ssl threads
+net-mail/mailutils clients -mysql pam 
 x11-libs/libdrm libkms 
 sys-libs/gdbm berkdb exporter
 sys-apps/busybox ipv6 math static
 sys-apps/net-tools -hostname 
-media-gfx/ufraw contrast fits -gnome timezone
-x11-libs/libva drm opengl utils vdpau
+media-gfx/ufraw contrast fits timezone
+x11-libs/libva drm opengl utils
 x11-libs/libva-compat egl
-dev-libs/gobject-introspection doctool
-media-libs/mesa d3d9 dri3 egl gbm gles2 llvm lm-sensors opencl osmesa unwind vaapi vdpau vulkan vulkan-overlay xa xvmc
+media-libs/mesa d3d9 dri3 egl gbm gles2 llvm lm-sensors opencl osmesa unwind vaapi vulkan vulkan-overlay 
 x11-libs/gtk+ broadway cloudprint colord introspection
 dev-libs/nss cacert
-app-text/poppler cairo jpeg2k nss png tiff utils
+app-text/poppler boost cairo jpeg2k nss png tiff utils
 sys-libs/glibc static-pie ssp
-net-libs/glib-networking -gnome
 sys-devel/binutils multitarget
-media-libs/libsdl video 
 dev-python/numpy lapack
 dev-python/pandas full-support test
 # dev-python/pandas-datareader doc
 dev-python/matplotlib cairo excel gtk3 latex qt5 tk webagg
 dev-python/ipython matplotlib nbconvert notebook qt5 smp
-dev-lang/perl gdbm ithreads
+dev-lang/perl ithreads
 dev-lang/R doc icu java jpeg lapack perl profile png tiff tk
 dev-libs/boost bzip2 context icu lzma mpi numpy python threads tools zlib zstd
 sys-apps/kmod lzma pkcs7 python tools zlib
 sys-libs/pam berkdb cracklib filecaps pie
-sys-devel/gettext git 
-dev-vcs/git blksha1 curl gnome-keyring gpg iconv pcre pcre-jit perl threads webdav
+dev-vcs/git blksha1 curl gnome-keyring gpg iconv pcre-jit webdav
 dev-vcs/subversion berkdb ctypes-python dso extras gnome-keyring http perl python -sasl vim-syntax
 dev-python/nltk numpy tk
 dev-lang/swig ccache pcre
@@ -100,7 +90,7 @@ dev-python/twisted conch http2 serial
 dev-python/QtPy printsupport
 media-gfx/nomacs plugins
 dev-qt/qtdeclarative vulkan
-net-libs/libsoup brotli gssapi
+net-libs/libsoup brotli 
 net-libs/rabbitmq-c tools
 x11-misc/rofi windowmode
 net-fs/cifs-utils creds
@@ -116,15 +106,15 @@ dev-db/mongodb lto -kerberos
 sys-fs/cryptsetup argon2 -luks1_default pwquality reencrypt
 net-libs/libpcap bluetooth netlink
 dev-python/pyyaml libyaml
-media-libs/opencv contrib contribcvv contribdnn contribfreetype contribhdf contribsfm contribxfeatures2d cuda gdal gflags glog lto opencl opencvapps tesseract vtk download -gtk3 qt5 # Qt5 layer is apparently better
-dev-cpp/eigen c++11 cuda
+media-libs/opencv contrib contribcvv contribdnn contribfreetype contribhdf contribsfm contribxfeatures2d gdal gflags glog lto opencl opencvapps tesseract vtk download -gtk3 qt5 # Qt5 layer is apparently better
+dev-cpp/eigen c++11 
 media-libs/libsdl2 haptic kms vulkan
 media-libs/vulkan-loader layers
 media-libs/x264 opencl
 media-libs/libwebp swap-16bit-csp # LFS has this enabled
 media-sound/pulseaudio alsa -libsamplerate equalizer realtime
+media-video/pipewire pipewire-alsa
 gnome-base/gvfs afp archive -gnome-online-accounts fuse nfs samba
-net-libs/gnome-online-accounts -gnome
 net-fs/nfs-utils junction nfsdcld nfsv41
 sys-libs/libblockdev bcache device-mapper kbd lvm
 sys-libs/zlib minizip static-libs
@@ -137,7 +127,7 @@ dev-qt/qt3d gamepad
 dev-qt/qttest vulkan
 virtual/mpi romio
 dev-qt/qtdeclarative localstorage
-dev-python/PyQt5 declarative designer help location networkauth positioning sensors serialport sql testlib webchannel websockets x11extras xmlpatterns
+dev-python/PyQt5 declarative designer help location networkauth positioning sensors serialport sql testlib webchannel websockets xmlpatterns
 sci-libs/armadillo arpack superlu
 sci-libs/gdal armadillo fits geos gml ogdi postgres opencl xls
 sci-libs/lapack lapacke
@@ -152,37 +142,30 @@ app-emulation/libvirt firewalld fuse iscsi iscsi-direct libssh lvm nfs parted pc
 app-emulation/virtualbox lvm
 net-firewall/nftables json -xtables
 dev-qt/qtgui egl vulkan
-media-video/mpv archive cplugins cuda drm gbm libmpv rubberband samba tools vulkan zimg -sdl -openal
 media-libs/libplacebo glslang
-app-text/ghostscript-gpl cups
-net-print/cups-filters ipp_autosetup pclm
-net-dns/dnsmasq auth-dns conntrack dhcp-tools dnssec libidn2 script
-media-libs/speex utils
+net-print/cups-filters pclm
+net-dns/dnsmasq conntrack dhcp-tools dnssec -idn libidn2 
 media-libs/freetype harfbuzz
-dev-qt/qtnetwork gssapi libproxy
 dev-qt/designer declarative
-dev-qt/qtwebkit -multimedia nsplugin gstreamer 
+# dev-qt/qtwebkit -multimedia nsplugin gstreamer 
 dev-qt/* qml
 net-analyzer/wireshark androiddump bcg729 brotli ciscodump dpauxmon http2 libxml2 maxminddb sbc smi spandsp sshdump tfshark
 net-libs/nghttp2 hpack-tools utils
 net-libs/libpcap netlink
-media-libs/libcanberra -alsa -udev -gnome -gstreamer tdb
+media-libs/libcanberra -alsa -udev -gstreamer tdb
 media-libs/gst-plugins-base gbm
-media-plugins/gst-plugins-meta http libvisual vpx
-sci-mathematics/pspp postgres
+media-plugins/gst-plugins-meta http vpx
 sci-mathematics/rstudio server
 sys-fs/lvm2 lvm2create_initrd
 games-emulation/dolphin bluetooth discord-presence lto
-media-video/ffmpeg amr amrenc bs2b chromaprint chromium codec2 dav1d fdk frei0r fribidi gme kvazaar libaom libaribb24 libdrm libilbc librtmp libsoxr libtesseract libxml2 lv2 openh264 openssl rav1e rubberband samba srt ssh twolame vidstab vpx x265 zeromq zimg zvbi cuda opencl
 dev-python/rdflib berkdb
 net-misc/wget cookie_check ntlm metalink uuid
-dev-qt/qtsql freetds mysql postgres
+dev-qt/qtsql mysql postgres
 dev-db/freetds mssql
-sys-libs/libomp cuda hwloc offload ompt
+sys-libs/libomp hwloc offload ompt
 dev-libs/libdbusmenu gtk3
 dev-python/statsmodels examples
 dev-python/bokeh examples
-sci-libs/cholmod cuda metis
 sci-libs/gsl cblas-external
 sci-libs/proj europe
 net-libs/libgsasl gcrypt 
@@ -190,7 +173,6 @@ app-crypt/gcr vala # Seahorse
 app-crypt/libsecret vala # Seahorse
 gui-libs/libhandy vala # Seahorse
 sys-cluster/minikube libvirt
-sci-libs/netcdf tools
 dev-cpp/glog gflags
 sci-libs/symengine arb boost ecm flint mpc mpfr tcmalloc
 dev-python/spyder test
@@ -199,7 +181,7 @@ dev-perl/DBD-mysql -mysql mariadb
 dev-perl/DBD-SQLite system-sqlite
 www-client/firefox clang geckodriver hwaccel lto pgo # LLVM is recommended per MDN.
 media-libs/libvpx postproc
-x11-base/xorg-server xcsecurity xvfb -suid
+x11-base/xorg-server -xorg -suid
 net-libs/nodejs inspector
 app-text/texlive-core xetex xindy
 net-libs/zeromq drafts pgm
@@ -207,7 +189,7 @@ dev-qt/qtwebengine designer jumbo-build widgets
 dev-python/mpmath matplotlib
 sci-mathematics/flint gc ntl
 app-doc/doxygen clang dot doxysearch
-dev-python/pygpu cuda opencl
+dev-python/pygpu opencl
 dev-libs/libbytesize tools
 dev-libs/appstream-glib fonts stemmer
 app-text/docbook-sgml-utils jadetex
@@ -221,36 +203,33 @@ app-office/libreoffice coinmp -eds libreoffice_extensions_nlpsolver libreoffice_
 dev-lang/go system-bootstrap
 media-libs/phonon designer
 app-text/zathura synctex
-app-text/zathura-meta cb postscript
+app-text/zathura-meta cb 
 dev-qt/qtscript scripttools
-media-video/vlc aom archive aribsub chromaprint cuda dav1d faad fluidsynth fdk gme libtar live nfs opencl omxil postproc samba sdl-image sftp sid skins soxr srt rav1e twolame x265 vpx zvbi
-www-client/chromium cups widevine # NETFLIX AHH
+media-video/mpv archive cplugins drm gbm libmpv rubberband samba tools vulkan zimg -openal
+media-video/vlc aom archive chromaprint dav1d faad fluidsynth gme lua libtar live nfs opencl omxil postproc samba sdl-image sftp sid srt rav1e twolame x265 vpx 
+media-video/ffmpeg amr amrenc bs2b chromaprint chromium codec2 dav1d frei0r gme libaribb24 libdrm libilbc librtmp libsoxr libtesseract libxml2 lv2 openh264 openssl rav1e rubberband samba srt ssh twolame vidstab vpx x265 zeromq zimg opencl
+www-client/chromium widevine # NETFLIX AHH
 dev-libs/botan boost
 sys-devel/gdb source-highlight xxhash
 dev-util/ctags json yaml
-sci-libs/tensorflow cuda xla
-games-fps/gzdoom fluidsynth mpg123
-games-fps/prboom-plus dumb fluidsynth net portmidi sdl2-image
+sci-libs/tensorflow xla
+games-fps/gzdoom non-free
+games-fps/prboom-plus dumb fluidsynth net portmidi server sdl2-image
 games-fps/yamagi-quake2 ctf dedicated rogue softrender xatrix
 dev-python/dask distributed
 sci-libs/shogun R opencl
 sci-libs/scikits_image freeimage pyamg
 dev-python/networkx extras pandas scipy yaml
 net-fs/s3fs openssl
-dev-python/nose coverage 
 net-p2p/transmission -qt5
-media-gfx/gimp heif postscript vector-icons
-media-gfx/blender collada color-management cuda cycles llvm man opencl openimageio opensubdiv openvdb osl player 
+media-gfx/gimp heif vector-icons
+media-gfx/blender alembic collada color-management cycles llvm man opencl openimageio opensubdiv openvdb osl player 
 media-libs/libmypaint gegl
 media-libs/gegl lensfun umfpack
-sys-cluster/openmpi cma heterogeneous romio threads openmpi_fabrics_knem cuda
+sys-cluster/openmpi cma heterogeneous romio threads openmpi_fabrics_knem 
 dev-libs/apr-util openssl
-www-servers/nginx aio pcre-jit NGINX_MODULES_HTTP: auth_pam brotli gunzip memc metrics naxsi secure_link stub_status vhost_traffic_status -security NGINX_MODULES_STREAM: access
-media-sound/mpd chromaprint expat faad fluidsynth gme libmpdclient libsoxr mpg123 nfs pipe recorder samba sid twolame -openal
-media-libs/chromaprint tools
-media-sound/mpg123 -portaudio -sdl
-media-libs/openal -portaudio -sdl # I don't really need these as backends
-media-sound/fluidsynth -portaudio -sdl
+media-sound/mpd chromaprint expat faad fluidsynth gme libmpdclient -mad mpg123 nfs pipe samba sid twolame -openal
+media-sound/fluidsynth sdl
 media-libs/sdl2-mixer fluidsynth mod midi playtools
 dev-lang/ghc elfutils ghcbootstrap profile
 app-text/pandoc optimize
@@ -258,9 +237,8 @@ dev-haskell/pandoc-citeproc unicode-collation
 dev-haskell/yaml system-libyaml
 dev-haskell/rfc5051 mkunicodedata
 app-arch/p7zip rar
-dev-java/ant jai jmf swing testutil xz
 app-arch/xz-utils static-libs
-media-libs/allegro dumb physfs -openal
+media-libs/allegro dumb physfs
 games-emulation/dosbox glide
 media-libs/sdl-sound physfs
 dev-games/physfs 7zip doc grp hog iso mvl qpak slb vdf wad
@@ -270,38 +248,28 @@ games-fps/eduke32 fluidsynth hrp offensive opl psx sc-55 sdk server tools voxels
 media-fonts/mplus-outline-fonts ipafont
 media-fonts/source-han-sans l10n_ja l10n_ko l10n_zh-CN l10n_zh-TW # I need Japanese/Chinese fonts, right?
 media-fonts/noto extra
-app-emulation/wine-staging dos gssapi netapi osmesa opencl pipelight themes vkd3d vulkan
+app-emulation/wine-staging dos netapi osmesa opencl pipelight themes vkd3d vulkan
 sys-fs/libostree man openssl
-media-gfx/inkscape cdr inkjar postscript svg svg2 visio wpg
+media-gfx/inkscape cdr postscript svg2 visio wpg
 media-sound/alsa-utils bat 
 media-video/smplayer mpris
 media-libs/libextractor gsf midi tidy
 sys-apps/pciutils dns
 sys-apps/lm-sensors contrib
 net-analyzer/nmap libssh2 ncat ndiff nmap-update nping system-lua zenmap
-net-misc/openssh X509 ldns -sctp
+net-misc/openssh X509 ldns
 net-libs/ldns ed25519 ed448 gost
 net-fs/libnfs utils
 app-shells/bash plugins
-net-dns/bind-tools gssapi
 net-analyzer/tcpdump samba smi
-sci-physics/root R -c++11 c++17 libcxx fits pythia8 vc vmc root7 cudnn cuda
+sci-physics/root R -c++11 c++17 libcxx fits pythia8 vc vmc root7 uring
 media-libs/libafterimage shm
-media-fonts/dejavu fontforge
-media-gfx/fontforge woff2
-media-fonts/liberation-fonts fontforge
-sys-apps/irqbalance caps tui
-sci-libs/pytorch asan cuda gflags glog lmdb mkldnn namedtensor opencl opencv redis tbb tools zeromq
+sci-libs/pytorch asan gflags glog lmdb mkldnn namedtensor opencl opencv redis tbb tools zeromq
 app-crypt/mit-krb5 lmdb 
-net-libs/liboauth -nss 
-media-libs/raptor json
 dev-libs/redland postgres
-net-libs/neon libproxy
 virtual/notification-daemon -gnome # Enable for Cinnamon/Gnome
-x11-libs/libwnck tools
-sys-apps/gnome-disk-utility -gnome fat
 sci-libs/hdf5 -cxx -threads
-media-libs/xine-lib vpx samba xvmc vdr
+media-libs/xine-lib vpx samba -mad
 sys-libs/timezone-data leaps-timezone
 app-emulation/qemu capstone gnutls nfs plugins sdl-image ssh usbredir vde vhost-user-fs virtfs virgl
 sys-apps/gawk mpfr
@@ -310,11 +278,12 @@ sys-apps/shadow bcrypt -cracklib # Cracklib conflicts with PAM
 sci-libs/fftw quad
 # dev-util/idea-community jbr11 -jbr8
 x11-themes/arc-theme xfce -pre-rendered
+gui-wm/sway X tray # X for XWayland...or something
 xfce-base/libxfce4ui libgtop
 x11-terms/xfce4-terminal utempter
 xfce-base/xfce4-settings libcanberra
 xfce-extra/tumbler odf
-media-libs/libcanberra -alsa -gstreamer -gnome
+media-libs/libcanberra -alsa -gstreamer 
 app-arch/cabextract extras
 app-crypt/libb2 native-cflags
 app-crypt/seahorse -ldap

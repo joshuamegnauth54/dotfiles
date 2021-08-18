@@ -1,5 +1,4 @@
-=dev-lang/python-3.6*
-=dev-lang/python-3.7*
+<dev-lang/python-3.9
 <dev-lang/ruby-2.7
 dev-java/icedtea-bin
 dev-java/openjdk-jre-bin
@@ -9,3 +8,9 @@ dev-lang/julia-bin
 dev-python/mysql-python # Outdated and unmaintained
 net-nds/openldap
 dev-libs/cyrus-sasl # Nothing wrong with this; just don't want it
+net-firewall/iptables
+# Preventing vim and neovim from being installed at the same time
+app-editors/gvim
+app-editors/vim
+# Preferring graphicsmagick over imagemagick
+media-gfx/imagemagick

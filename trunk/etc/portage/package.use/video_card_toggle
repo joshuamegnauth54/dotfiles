@@ -1,0 +1,15 @@
+# I'm using this file to quickly toggle use flags such as CUDA support.
+sys-apps/hwloc -cuda -gl -nvml
+media-libs/opencv -cuda
+dev-cpp/eigen -cuda
+sys-libs/libomp -cuda
+sci-libs/cholmod -cuda
+sci-libs/tensorflow -cuda
+sci-libs/pytorch -cuda
+sci-physics/root -cuda -cudnn
+dev-python/pygpu -cuda
+media-video/mpv -cuda
+media-video/vlc -cuda
+media-video/ffmpeg -cuda
+media-gfx/blender -cuda
+sys-cluster/openmpi -cuda

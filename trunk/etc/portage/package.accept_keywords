@@ -1,8 +1,8 @@
 sys-devel/llvm ~amd64
 dev-lang/rust ~amd64
 virtual/rust ~amd64
-dev-lang/python ~amd64
-dev-lang/ghc ~amd64
+# dev-lang/python ~amd64
+# dev-lang/ghc ~amd64
 sys-devel/clang ~amd64
 sys-kernel/* ~amd64
 app-emulation/virtualbox-guest-additions ~amd64
@@ -22,25 +22,14 @@ sci-mathematics/rstudio ~amd64
 app-admin/eclean-kernel ~amd64
 sys-fs/zfs-kmod ~amd64
 sys-fs/zfs ~amd64
-dev-db/mongodb ~amd64
-app-admin/mongo-tools ~amd64
+# dev-db/mongodb ~amd64
+# app-admin/mongo-tools ~amd64
 dev-python/* ~amd64
-sys-libs/glibc ~amd64
-sys-libs/glib ~amd64
-media-libs/opencv ~amd64
-dev-util/gtk-doc ~amd64
-dev-util/gtk-doc-am ~amd64
-media-libs/opencv ~amd64
-sci-libs/vtk ~amd64
-sci-libs/libaec ~amd64
-sci-libs/gdal ~amd64
-sci-libs/openblas ~amd64
-sci-libs/armadillo ~amd64
+sci-libs/* ~amd64
+# media-libs/opencv ~amd64
 dev-java/icedtea ~amd64
-sci-libs/proj ~amd64
-sci-libs/scipy ~amd64
 app-editors/neovim ~amd64
-sys-devel/gdb ~amd64
+app-editors/vscodium ~amd64
 sys-cluster/openmpi ~amd64
 sys-libs/compiler-rt ~amd64
 sys-libs/libomp ~amd64
@@ -50,66 +39,37 @@ sys-apps/kmod ~amd64
 games-emulation/ppsspp ~amd64
 sys-devel/clang-common ~amd64
 sys-devel/llvmgold ~amd64
-=sys-fs/zfs-kmod-9999 **
-=sys-fs/zfs-9999 **
 =games-emulation/dolphin-9999 **
 =games-emulation/ppsspp-9999 **
 =games-emulation/higan-9999 **
-dev-util/pycharm-community ~amd64
-dev-util/idea-community ~amd64
+# dev-util/pycharm-community ~amd64
+# dev-util/idea-community ~amd64
 dev-java/openjdk ~amd64
-sys-devel/gcc ~amd64
 sci-mathematics/pymc3 ~amd64
 www-client/firefox ~amd64
 www-client/firefox-bin ~amd64
-sci-libs/symengine ~amd64
 sci-mathematics/arb ~amd64
 sci-mathematics/flint ~amd64
 sci-mathematics/gmp-ecm ~amd64
-gnome-extra/* ~amd64
-gnome-base/* ~amd64
 net-misc/streamlink ~amd64
-=net-misc/streamlink-9999 **
 sys-cluster/spark-bin ~amd64
 games-fps/yamagi-quake2 ~amd64
-net-misc/wireguard ~amd64
 net-vpn/wireguard-tools ~amd64
-net-vpn/wireguard-modules ~amd64
-net-vpn/networkmanager-wireguard ~amd64
 media-video/smplayer ~amd64
 virtual/mpi ~amd64
-x11-terms/kitty ~amd64
 games-fps/gzdoom ~amd64
 games-fps/prboom-plus ~amd64
-=games-emulation/dosbox-9999 **
 games-emulation/dosbox ~amd64
-media-libs/openglide ~amd64
-media-gfx/fontforge ~amd64
 media-fonts/cascadia-code ~amd64
-dev-libs/nss ~amd64
-dev-libs/nspr ~amd64
-media-libs/libvpx ~amd64
 www-client/chromium ~amd64
 sys-apps/apparmor ~amd64
 sys-libs/libapparmor ~amd64
 sec-policy/apparmor-profiles ~amd64
 sys-apps/apparmor-utils ~amd64
-=app-shells/tmux-bash-completion-9999 **
-=sci-physics/root-9999 **
-sci-CRAN/* ~amd64
-sci-omegahat/XML ~amd64
-virtual/*::R_Overlay ~amd64
 media-fonts/fira-code ~amd64
 media-fonts/fira-mono ~amd64
 media-fonts/fira-sans ~amd64
-sci-libs/tensorflow ~amd64
-sci-libs/pytorch ~amd64
-dev-python/* ~amd64
-xfce-base/* ~amd64
-xfce-extra/* ~amd64
-x11-terms/kitty-terminfo ~amd64
 */*::sakaki-tools ~amd64
-net-libs/quiche ~amd64
 media-fonts/jetbrains-mono ~amd64
 media-fonts/fantasque-sans-mono ~amd64
 games-action/dxx-rebirth ~amd64
@@ -118,5 +78,4 @@ app-text/pandoc ~amd64
 dev-haskell/* ~amd64
 app-admin/haskell-updater ~amd64
 dev-libs/libclangformat-ide ~amd64
-sci-libs/arpack ~amd64
 dev-tex/biblatex-apa ~amd64
