@@ -1,5 +1,9 @@
 # Packages that still require X
 x11-libs/libva X
+gui-libs/wlroots X x11-backend
 media-libs/mesa X
+media-libs/libquicktime X
 dev-qt/qtgui X
 dev-qt/qtwayland X
+dev-lang/R X
+dev-python/pandas X

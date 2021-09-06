@@ -8,6 +8,8 @@ sci-libs/tensorflow -cuda
 sci-libs/pytorch -cuda
 sci-physics/root -cuda -cudnn
 dev-python/pygpu -cuda
+dev-util/nvidia-cuda-toolkit nsight profiler sanitizer vis-profiler
+dev-util/nvidia-cuda-sdk opencl
 media-video/mpv -cuda
 media-video/vlc -cuda
 media-video/ffmpeg -cuda

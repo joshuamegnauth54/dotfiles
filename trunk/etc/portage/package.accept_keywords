@@ -1,81 +1,47 @@
-sys-devel/llvm ~amd64
 dev-lang/rust ~amd64
 virtual/rust ~amd64
-# dev-lang/python ~amd64
-# dev-lang/ghc ~amd64
-sys-devel/clang ~amd64
-sys-kernel/* ~amd64
-app-emulation/virtualbox-guest-additions ~amd64
-app-emulation/virtualbox ~amd64
-app-emulation/virtualbox-modules ~amd64
-sys-app/portage ~amd64
-app-portage/gentoolkit ~amd64
-sys-devel/clang-runtime ~amd64
-sys-libs/libcxx ~amd64
-sys-libs/libcxxabi ~amd64
-dev-util/lldb ~amd64
-sys-devel/lld ~amd64
-dev-ml/llvm-ocaml ~amd64
-sys-devel/llvm-common ~amd64
-dev-lang/R ~amd64
-sci-mathematics/rstudio ~amd64
-app-admin/eclean-kernel ~amd64
-sys-fs/zfs-kmod ~amd64
-sys-fs/zfs ~amd64
-# dev-db/mongodb ~amd64
-# app-admin/mongo-tools ~amd64
 dev-python/* ~amd64
-sci-libs/* ~amd64
-# media-libs/opencv ~amd64
+dev-haskell/* ~amd64
 dev-java/icedtea ~amd64
+sci-libs/* ~amd64
 app-editors/neovim ~amd64
 app-editors/vscodium ~amd64
-sys-cluster/openmpi ~amd64
-sys-libs/compiler-rt ~amd64
-sys-libs/libomp ~amd64
-sys-libs/llvm-libunwind ~amd64
-sys-libs/compiler-rt-sanitizers ~amd64
-sys-apps/kmod ~amd64
-games-emulation/ppsspp ~amd64
-sys-devel/clang-common ~amd64
-sys-devel/llvmgold ~amd64
-=games-emulation/dolphin-9999 **
-=games-emulation/ppsspp-9999 **
-=games-emulation/higan-9999 **
-# dev-util/pycharm-community ~amd64
-# dev-util/idea-community ~amd64
-dev-java/openjdk ~amd64
-sci-mathematics/pymc3 ~amd64
-www-client/firefox ~amd64
-www-client/firefox-bin ~amd64
-sci-mathematics/arb ~amd64
-sci-mathematics/flint ~amd64
-sci-mathematics/gmp-ecm ~amd64
-net-misc/streamlink ~amd64
-sys-cluster/spark-bin ~amd64
-games-fps/yamagi-quake2 ~amd64
-net-vpn/wireguard-tools ~amd64
-media-video/smplayer ~amd64
 virtual/mpi ~amd64
+sys-cluster/spark-bin ~amd64
+games-emulation/ppsspp ~amd64
+games-emulation/dolphin ~amd64
+games-emulation/higan ~amd64
+games-emulation/dosbox ~amd64
 games-fps/gzdoom ~amd64
 games-fps/prboom-plus ~amd64
-games-emulation/dosbox ~amd64
+games-fps/yamagi-quake2 ~amd64
+games-action/dxx-rebirth ~amd64
+games-action/supertuxkart ~amd64
+www-client/firefox ~amd64
+www-client/firefox-bin ~amd64
+net-misc/streamlink ~amd64
+media-video/smplayer ~amd64
 media-fonts/cascadia-code ~amd64
-www-client/chromium ~amd64
+media-fonts/fira-code ~amd64
+media-fonts/fira-mono ~amd64
+media-fonts/fira-sans ~amd64
 sys-apps/apparmor ~amd64
 sys-libs/libapparmor ~amd64
 sec-policy/apparmor-profiles ~amd64
 sys-apps/apparmor-utils ~amd64
-media-fonts/fira-code ~amd64
-media-fonts/fira-mono ~amd64
-media-fonts/fira-sans ~amd64
-*/*::sakaki-tools ~amd64
-media-fonts/jetbrains-mono ~amd64
-media-fonts/fantasque-sans-mono ~amd64
-games-action/dxx-rebirth ~amd64
-games-action/supertuxkart ~amd64
 app-text/pandoc ~amd64
-dev-haskell/* ~amd64
 app-admin/haskell-updater ~amd64
-dev-libs/libclangformat-ide ~amd64
-dev-tex/biblatex-apa ~amd64
+x11-terms/kitty ~amd64
+x11-terms/kitty-terminfo ~amd64
+
+# GURU PACKAGES
+# The official Gentoo Discord package is outdated.
+# PTB (public test build) is a fairly stable beta client.
+gui-apps/wofi ~amd64
+net-im/discord-ptb-bin ~amd64
+x11-misc/i3status-rust ~amd64
+
+# Wayland
+gui-libs/greetd ~amd64
+gui-apps/gtkgreet ~amd64
+gui-apps/kanshi ~amd64

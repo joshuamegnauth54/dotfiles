@@ -1,5 +1,5 @@
-<dev-lang/python-3.9
-<dev-lang/ruby-2.7
+# <dev-lang/python-3.9
+# <dev-lang/ruby-2.7
 dev-java/icedtea-bin
 dev-java/openjdk-jre-bin
 dev-lang/scala-bin
@@ -12,5 +12,3 @@ net-firewall/iptables
 # Preventing vim and neovim from being installed at the same time
 app-editors/gvim
 app-editors/vim
-# Preferring graphicsmagick over imagemagick
-media-gfx/imagemagick

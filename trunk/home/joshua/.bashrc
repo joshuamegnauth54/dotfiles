@@ -18,9 +18,9 @@ fi
 # Put your fun stuff here.
 export PS1="\[$(tput bold)\]\[\033[38;5;81m\]\u\[$(tput sgr0)\]@\[$(tput sgr0)\]\[$(tput bold)\]\[\033[38;5;206m\]\h\[$(tput sgr0)\]:\[$(tput sgr0)\]\[\033[38;5;6m\][\w]\[$(tput sgr0)\]: \[$(tput sgr0)\]"
 
-# Updated PATH
+# Add Cargo and NPM to PATH
 NPM_PACKAGES="${HOME}/.npm-packages"
-export PATH="$PATH:/usr/lib/root/9999/bin:${NPM_PACKAGES}/bin"
+export PATH="$PATH:${HOME}/.cargo/bin:${NPM_PACKAGES}/bin"
 export MANPATH="${MANPATH-$(manpath)}:$NPM_PACKAGES/share/man"
 
 # Editors, pager, et cetera
@@ -34,8 +34,8 @@ export RUST_BACKTRACE=1
 export CARGO_NAME=Joshua
 
 # SDL
-export SDL_AUDIODRIVER="pulseaudio"
-export SDL_VIDEODRIVER="x11"
+export SDL_AUDIODRIVER="pipewire"
+export SDL_VIDEODRIVER="wayland"
 
 # Java
 export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=on -Dswing.aatext=true -Dswing.defaultlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel -swing.crossplatformlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel'
@@ -73,30 +73,25 @@ alias less='less --mouse'
 alias grep='grep --color=auto'
 alias ip='ip --color=auto'
 
-emergeupd () {
-	emerge --update --newuse --deep --fetchonly --with-bdeps=y --ask --backtrack=30 "$@" @world &&
-	emerge --update --newuse --verbose --deep --keep-going --with-bdeps=y --quiet-build --backtrack=30 "$@" @world
-}
-
-emergefinst () {
-	emerge --ask --fetchonly --verbose "$@" &&
-	emerge --quiet-build "$@"
-}
-
-emergeinst () {
-	emerge --ask --verbose --quiet-build "$@"
-}
-
 # Options
 shopt -s checkwinsize # Automatically update max lines/columns when terminal emulator is resized
 shopt -s checkhash
 shopt -s dirspell # Autocorrects misspelled directory names during tab completion
+shopt -s cdspell
+shopt -s nocaseglob
 shopt -s extglob # Required for completion?
 shopt -s histappend
 shopt -s histreedit
 shopt -s histverify
+PROMPT_DIRTRIM=2 # Trim long paths
 set -o noclobber # Don't clobber files with > (override with >|)
 set -o ignoreeof # EOF (i.e. ctrl-d) doesn't exit the shell
+
+# Better completions
+bind "set show-all-if-ambiguous on"
+bind "set completion-ignore-case on"
+bind "set completion-map-case on"
+bind "set mark-symlinked-directories on"
 
 # Just so I don't forget:
 set -o vi

@@ -1,0 +1,5 @@
+# Python (and other packages) targets
+# (Ruby's target is in make.conf though).
+*/* PYTHON_TARGETS: -* python3_9
+*/* PYTHON_SINGLE_TARGET: -* python3_9
+
