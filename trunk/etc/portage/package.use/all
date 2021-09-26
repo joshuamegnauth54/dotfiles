@@ -6,10 +6,15 @@ sys-devel/clang-runtime libcxx
 dev-util/lldb libedit
 sys-libs/libcxx libunwind
 sys-libs/libunwind debug-frame
+sys-libs/libomp hwloc offload ompt
+sys-libs/libseccomp static-libs
+sys-libs/zlib minizip 
+sys-libs/glibc static-pie ssp
+sys-libs/gdbm berkdb exporter
 sys-devel/gcc graphite libssp lto nptl pgo sanitize ssp vtv
 app-editors/neovim nvimpager tui
 dev-lang/python tk
-sys-apps/systemd -curl cryptsetup gcrypt gnuefi homed kmod pwquality 
+sys-apps/systemd -curl cryptsetup gcrypt gnuefi kmod 
 net-dns/knot dnstap
 net-dns/unbound dnscrypt dnstap ecs gost
 net-firewall/firewalld -iptables nftables
@@ -25,7 +30,7 @@ dev-libs/openssl asm -bindist
 sys-apps/portage gentoo-dev native-extensions rsync-verify
 sys-apps/coreutils hostname 
 sys-apps/net-tools -hostname 
-sys-apps/util-linux static-libs -suid 
+sys-apps/util-linux -suid 
 sys-apps/hwloc plugins
 net-misc/rsync stunnel system-zlib xxhash
 net-misc/curl alt-svc brotli gopher http2 hsts imap metalink progress-meter rtmp ssh telnet quiche samba
@@ -52,14 +57,12 @@ sys-kernel/genkernel-next cryptsetup gpg
 x11-libs/libdrm libkms 
 x11-libs/libva drm 
 x11-libs/libva-compat egl
-sys-libs/gdbm berkdb exporter
-sys-libs/libseccomp static-libs
 media-gfx/ufraw contrast fits timezone
-media-libs/mesa -classic d3d9 dri3 egl gbm gles2 opencl vulkan-overlay zink
+media-libs/mesa -classic d3d9 dri3 egl gbm gles2 vulkan-overlay zink
+x11-apps/mesa-progs egl gles2
 x11-libs/gtk+ broadway cloudprint introspection
 dev-libs/nss cacert
 app-text/poppler boost nss utils
-sys-libs/glibc static-pie ssp
 sys-devel/binutils multitarget
 dev-python/pandas full-support 
 dev-python/matplotlib excel gtk3 qt5 tk webagg -wxwidgets
@@ -97,7 +100,6 @@ media-libs/libwebp swap-16bit-csp # LFS has this enabled
 media-sound/pulseaudio -libsamplerate -qt5 -udev
 media-video/pipewire pipewire-alsa
 net-fs/nfs-utils nfsdcld 
-sys-libs/zlib minizip static-libs
 sci-libs/vtk all-modules boost gdal imaging json kits pegtl postgres rendering views 
 sci-mathematics/z3 isabelle
 app-text/tesseract math opencl osd training
@@ -114,7 +116,7 @@ dev-python/pillow imagequant tk
 dev-qt/* qml
 dev-qt/qtmultimedia widgets
 dev-qt/qtsql mysql postgres
-dev-qt/qtgui egl 
+dev-qt/qtgui egl eglfs
 dev-qt/qtscript scripttools
 dev-qt/qtwebengine designer jumbo-build widgets
 dev-qt/qt3d gamepad
@@ -146,7 +148,6 @@ games-emulation/ppsspp discord
 dev-python/rdflib berkdb
 net-misc/wget cookie_check ntlm metalink uuid
 dev-db/freetds mssql
-sys-libs/libomp hwloc offload ompt
 dev-libs/libdbusmenu gtk3
 dev-python/statsmodels examples
 sci-libs/gsl cblas-external
@@ -165,7 +166,7 @@ dev-perl/DBD-mysql -mysql mariadb
 dev-perl/DBD-SQLite system-sqlite
 www-client/firefox geckodriver hwaccel lto pgo
 media-libs/libvpx postproc
-x11-base/xorg-server -xorg -suid minimal
+x11-base/xorg-server -xorg -suid xvfb # Firefox PGO
 app-text/texlive-core xetex xindy
 dev-python/mpmath matplotlib
 sci-mathematics/flint ntl
@@ -205,7 +206,6 @@ app-text/pandoc optimize
 dev-haskell/pandoc-citeproc unicode-collation
 dev-haskell/yaml system-libyaml
 app-arch/p7zip rar -wxwidgets
-app-arch/xz-utils static-libs
 media-libs/allegro dumb physfs
 games-emulation/dosbox glide
 media-libs/sdl-sound physfs
@@ -254,3 +254,4 @@ dev-haskell/aeson cffi
 media-fonts/terminus-font otf
 dev-util/strace aio 
 net-wireless/bluez midi user-session
+net-vpn/openconnect stoken

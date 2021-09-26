@@ -1,5 +1,6 @@
 # I'm using this file to quickly toggle use flags such as CUDA support.
 sys-apps/hwloc -cuda -gl -nvml
+media-libs/mesa -opencl
 media-libs/opencv -cuda
 dev-cpp/eigen -cuda
 sys-libs/libomp -cuda

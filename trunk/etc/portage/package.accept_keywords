@@ -3,13 +3,15 @@ virtual/rust ~amd64
 dev-python/* ~amd64
 dev-haskell/* ~amd64
 dev-java/icedtea ~amd64
+dev-libs/nss ~amd64 # Firefox
+dev-libs/nspr ~amd64 # Firefox
 sci-libs/* ~amd64
 app-editors/neovim ~amd64
 app-editors/vscodium ~amd64
-virtual/mpi ~amd64
 sys-cluster/spark-bin ~amd64
 games-emulation/ppsspp ~amd64
 games-emulation/dolphin ~amd64
+games-emulation/mgba ~amd64
 games-emulation/higan ~amd64
 games-emulation/dosbox ~amd64
 games-fps/gzdoom ~amd64
@@ -20,7 +22,6 @@ games-action/supertuxkart ~amd64
 www-client/firefox ~amd64
 www-client/firefox-bin ~amd64
 net-misc/streamlink ~amd64
-media-video/smplayer ~amd64
 media-fonts/cascadia-code ~amd64
 media-fonts/fira-code ~amd64
 media-fonts/fira-mono ~amd64
@@ -45,3 +46,4 @@ x11-misc/i3status-rust ~amd64
 gui-libs/greetd ~amd64
 gui-apps/gtkgreet ~amd64
 gui-apps/kanshi ~amd64
+

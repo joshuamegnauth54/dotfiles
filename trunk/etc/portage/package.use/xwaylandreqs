@@ -1,9 +1,13 @@
 # Packages that still require X
 x11-libs/libva X
+x11-libs/cairo X # matplotlib, Firefox
+x11-libs/gtk+ X #Firefox
 gui-libs/wlroots X x11-backend
+media-libs/libepoxy X # xwayland
 media-libs/mesa X
-media-libs/libquicktime X
-dev-qt/qtgui X
-dev-qt/qtwayland X
+# media-libs/libquicktime X
+# dev-qt/qtgui X
+# dev-qt/qtwayland X
 dev-lang/R X
 dev-python/pandas X
+sys-apps/dbus X # LibreOffice and others
