@@ -70,11 +70,13 @@ set backspace=2
 set nojoinspaces
 
 " Settings for specific file types
+" (Yes, I have to clean this up)
 autocmd BufRead,BufNewFile *.md setlocal spell "setlocal complete+=kspell
 autocmd BufRead,BufNewFile *.Rmd setlocal spell "setlocal complete+=kspell
 autocmd BufRead,BufNewFile *.txt setlocal spell "setlocal complete+=kspell
 autocmd BufRead,BufNewFile *.tex setlocal spell "setlocal complete+=kspell
 autocmd FileType gitcommit setlocal spell "setlocal complete+=kspell
+autocmd FileType rust setlocal colorcolumn=100
 
 " Keybindings
 
@@ -100,12 +102,13 @@ Plug 'sheerun/vim-polyglot'
 " Plug 'neovim/nvim-lsp'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'clangd/coc-clangd', {'do': 'yarn install --frozen-lockfile'}
-Plug 'voldikss/coc-cmake', {'do': 'yarn install --frozen-lockfile'}
-Plug 'neoclide/coc-python', {'do': 'yarn install --frozen-lockfile'}
+" Plug 'voldikss/coc-cmake', {'do': 'yarn install --frozen-lockfile'}
+Plug 'pappasam/coc-jedi', {'do': 'yarn install --frozen-lockfile && yarn build', 'branch': 'main'}
 Plug 'neoclide/coc-r-lsp', {'do': 'yarn install --frozen-lockfile'}
 Plug 'bash-lsp/bash-language-server', {'do': 'yarn install --frozen-lockfile'}
 " Plug 'neoclide/coc-rls'
 Plug 'fannheyward/coc-rust-analyzer', {'do': 'yarn install --frozen-lockfile'}
+Plug 'neoclide/coc-vimtex', {'do': 'yarn install --frozen-lockfile'}
 Plug 'frazrepo/vim-rainbow'
 Plug 'liuchengxu/vista.vim'
 Plug 'tpope/vim-commentary'

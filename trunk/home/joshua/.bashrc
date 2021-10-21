@@ -41,7 +41,9 @@ export SDL_VIDEODRIVER="wayland"
 export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=on -Dswing.aatext=true -Dswing.defaultlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel -swing.crossplatformlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel'
 
 # Program specific
-export PYCHARM_JDK=`java-config -O`
+# export PYCHARM_JDK=`java-config -O`
+export KITTY_ENABLE_WAYLAND=1
+export MOZ_ENABLE_WAYLAND=1
 
 # double entries in the shell history
 export HISTCONTROL="$HISTCONTROL erasedups:ignoreboth"
@@ -52,6 +54,10 @@ set -o noclobber
 # Qt environmental variables
 export QT_AUTO_SCREEN_SCALE_FACTOR=1
 export QT_QPA_PLATFORMTHEME=gtk2
+export QT_QPA_PLATFORM=wayland
+
+# Clutter
+export CLUTTER_BACKEND=wayland
 
 # SciPy
 export SCIPY_PIL_IMAGE_VIEWER=nomacs
