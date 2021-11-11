@@ -1,0 +1,10 @@
+# From the Arch Wiki
+exec "gtkgreet -l; swaymsg exit"
+
+bindsym Mod4+q exec swaynag \
+-t warning \
+-m 'Quit?' \
+-b 'Shutdown' 'systemctl poweroff'
+-b 'Reboot' 'systemctl reboot'
+
+include /etc/sway/config.d/*

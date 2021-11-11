@@ -40,6 +40,9 @@ export SDL_VIDEODRIVER="wayland"
 # Java
 export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=on -Dswing.aatext=true -Dswing.defaultlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel -swing.crossplatformlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel'
 
+# wlroots
+WLR_RENDERER=vulkan
+
 # Program specific
 # export PYCHARM_JDK=`java-config -O`
 export KITTY_ENABLE_WAYLAND=1

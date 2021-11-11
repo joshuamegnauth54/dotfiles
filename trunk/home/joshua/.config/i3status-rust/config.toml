@@ -1,0 +1,46 @@
+[theme]
+file = "dracula"
+
+[icons]
+name = "awesome"
+
+[[block]]
+block = "music"
+player = "mpd"
+buttons = ["prev", "play", "next"]
+# format = "{combo}"
+
+[[block]]
+block = "sound"
+step_width = 1
+show_volume_when_muted = true
+headphones_indicator = true
+
+[[block]]
+block = "notify"
+
+[[block]]
+block = "net"
+format = "{graph_up} {graph_down}"
+format_alt = "{ssid} {signal_strength} {graph_up} {graph_down}"
+
+[[block]]
+block = "memory"
+format_mem = "{mem_used_percents}"
+format_swap = "{swap_used_percents}"
+display_type = "memory"
+icons = true
+clickable = true
+interval = 5
+warning_mem = 75
+warning_swap = 85
+critical_mem = 85
+critical_swap = 95
+
+[[block]]
+block = "cpu"
+format = "{utilization}"
+
+[[block]]
+block = "time"
+format = "%H:%M %F"

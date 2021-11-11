@@ -12,3 +12,4 @@ net-firewall/iptables
 # Preventing vim and neovim from being installed at the same time
 app-editors/gvim
 app-editors/vim
+media-gfx/imagemagick

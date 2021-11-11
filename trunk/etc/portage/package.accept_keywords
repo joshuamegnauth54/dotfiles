@@ -41,7 +41,7 @@ x11-terms/kitty-terminfo ~amd64
 gui-apps/wofi ~amd64
 net-im/discord-ptb-bin ~amd64
 x11-misc/i3status-rust ~amd64
-
+dev-games/godot ~amd64
 # Wayland
 gui-libs/greetd ~amd64
 gui-apps/gtkgreet ~amd64

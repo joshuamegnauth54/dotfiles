@@ -1,0 +1,13 @@
+idle_bg = "#282a36" # background
+idle_fg = "#f8f8f2" # foreground
+info_bg = "#bd93f9" # purple
+info_fg = "#282a36" # background
+good_bg = "#50fa7b" # green
+good_fg = "#282a36" # background
+warning_bg = "#f1fa8c" # yellow
+warning_fg = "#282a36" # background
+critical_bg = "#ff5555" # red
+critical_fg = "#282a36" # background
+separator = "\ue0b2"
+separator_bg = "auto"
+separator_fg = "auto"
