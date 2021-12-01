@@ -64,6 +64,7 @@ export CLUTTER_BACKEND=wayland
 
 # SciPy
 export SCIPY_PIL_IMAGE_VIEWER=nomacs
+export USE_SYMENGINE=1
 
 # wrap these commands for interactive use to avoid accidental overwrites.
 rm() { command rm -i "$@"; }
