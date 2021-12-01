@@ -1,0 +1,6 @@
+import:
+  - ~/Repositories/not_mine/dracula/alacritty/dracula.yml
+
+window:
+  opacity: 0.85
+  startup_mode: Fullscreen
