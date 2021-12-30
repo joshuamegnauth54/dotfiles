@@ -1,6 +1,9 @@
 import:
-  - ~/Repositories/not_mine/dracula/alacritty/dracula.yml
+  - ~/Repos/dracula/alacritty/dracula.yml
 
 window:
   opacity: 0.85
-  startup_mode: Fullscreen
+  startup_mode: Maximized
+
+font:
+  size: 16.0
