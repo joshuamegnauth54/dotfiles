@@ -2,8 +2,7 @@ import:
   - ~/Repos/dracula/alacritty/dracula.yml
 
 window:
-  opacity: 0.85
-  startup_mode: Maximized
+  startup_mode: Fullscreen
 
 font:
   size: 16.0
