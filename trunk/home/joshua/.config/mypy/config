@@ -1,0 +1,16 @@
+[mypy]
+# I want extra warnings
+warn_unused_configs = True
+warn_unused_ignores = True
+warn_return_any = True
+warn_redundant_casts = True
+warn_unreachable = True
+
+# Prettier errors
+show_error_context = True
+show_column_numbers = True
+show_error_codes = True
+pretty = True
+
+# Plugins
+plugins = numpy.typing.mypy_plugin
