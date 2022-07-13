@@ -36,6 +36,7 @@ alias diff='diff --color=auto'
 alias less='less --mouse'
 alias grep='grep --color=auto'
 alias ip='ip --color=auto'
+alias bat='bat --theme Dracula'
 
 # Options
 shopt -s checkwinsize # Automatically update max lines/columns when terminal emulator is resized
@@ -55,6 +56,9 @@ bind "set show-all-if-ambiguous on"
 bind "set completion-ignore-case on"
 bind "set completion-map-case on"
 bind "set mark-symlinked-directories on"
+
+# Set completions that aren't automatically set
+complete -cf doas
 
 # Just so I don't forget:
 set -o vi

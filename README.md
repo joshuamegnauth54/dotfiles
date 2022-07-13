@@ -1,4 +1,4 @@
-# LinuxDotFiles
+# Dotfiles
 
 Hello nerds!
 

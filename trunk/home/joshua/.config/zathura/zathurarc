@@ -3,7 +3,8 @@
 # PSA: sandboxing disables printing
 set sandbox strict
 set selection-clipboard clipboard
-set database "sqlite"
+# Database is for saving bookmarks.
+set database "null"
 
 # Zooming options
 map <C-+> zoom in
