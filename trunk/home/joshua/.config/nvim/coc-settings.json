@@ -17,7 +17,9 @@
 			"ignoredRootPaths": ["~"]
 		}
 	},
-	"python.linting.flake8Enabled": true,
-	"python.linting.pylintEnabled": true,
+	"coc.preferences.formatOnSaveFiletypes": ["rust", "python", "sql"],
+	"pyright.enable": true,
+	"python.analysis.typeCheckingMode": "strict",
+	"python.formatting.provider": "black",
 	"python.autoComplete.addBrackets": true
 }

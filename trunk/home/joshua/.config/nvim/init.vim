@@ -103,7 +103,8 @@ Plug 'sheerun/vim-polyglot'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'clangd/coc-clangd', {'do': 'yarn install --frozen-lockfile'}
 " Plug 'voldikss/coc-cmake', {'do': 'yarn install --frozen-lockfile'}
-Plug 'pappasam/coc-jedi', {'do': 'yarn install --frozen-lockfile && yarn build', 'branch': 'main'}
+" Plug 'pappasam/coc-jedi', {'do': 'yarn install --frozen-lockfile && yarn build', 'branch': 'main'}
+Plug 'fannheyward/coc-pyright'
 Plug 'neoclide/coc-r-lsp', {'do': 'yarn install --frozen-lockfile'}
 Plug 'bash-lsp/bash-language-server', {'do': 'yarn install --frozen-lockfile'}
 " Plug 'neoclide/coc-rls'
@@ -113,6 +114,9 @@ Plug 'frazrepo/vim-rainbow'
 Plug 'liuchengxu/vista.vim'
 Plug 'tpope/vim-commentary'
 Plug 'junegunn/fzf.vim'
+" Lua stuff for later
+Plug 'nvim-lua/plenary.nvim'
+
 
 " PLUGINS: Colorschemes
 "Plug 'nanotech/jellybeans.vim'
