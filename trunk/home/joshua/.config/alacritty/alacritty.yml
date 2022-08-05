@@ -4,6 +4,7 @@ import:
 window:
   decorations: none
   startup_mode: Maximized
+  gtk_theme_variant: dark
 
 font:
   size: 16.0

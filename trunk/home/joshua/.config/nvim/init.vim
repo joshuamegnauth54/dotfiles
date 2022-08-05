@@ -105,6 +105,7 @@ Plug 'clangd/coc-clangd', {'do': 'yarn install --frozen-lockfile'}
 " Plug 'voldikss/coc-cmake', {'do': 'yarn install --frozen-lockfile'}
 " Plug 'pappasam/coc-jedi', {'do': 'yarn install --frozen-lockfile && yarn build', 'branch': 'main'}
 Plug 'fannheyward/coc-pyright'
+Plug 'yaegassy/coc-sqlfluff'
 Plug 'neoclide/coc-r-lsp', {'do': 'yarn install --frozen-lockfile'}
 Plug 'bash-lsp/bash-language-server', {'do': 'yarn install --frozen-lockfile'}
 " Plug 'neoclide/coc-rls'
