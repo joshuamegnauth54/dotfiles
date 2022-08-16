@@ -47,5 +47,3 @@ export CLUTTER_BACKEND=wayland
 export SCIPY_PIL_IMAGE_VIEWER=nomacs
 export USE_SYMENGINE=1
 
-# Execute .bashrc last
-[[ -f ~/.bashrc ]] && . ~/.bashrc
