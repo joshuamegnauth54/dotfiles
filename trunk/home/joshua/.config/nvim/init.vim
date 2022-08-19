@@ -68,6 +68,8 @@ set secure
 let c_space_error=1
 set backspace=2
 set nojoinspaces
+" Needed for mouse in zellij
+set mouse=a
 
 " Settings for specific file types
 " (Yes, I have to clean this up)
