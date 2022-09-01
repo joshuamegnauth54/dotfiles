@@ -103,6 +103,9 @@ Plug 'sheerun/vim-polyglot'
 " Replace coc.nvim later
 " Plug 'neovim/nvim-lsp'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'neoclide/coc-eslint', {'branch': 'release'}
+Plug 'josa42/coc-lua', {'branch': 'release'}
+Plug 'josa42/coc-sh', {'branch': 'release'}
 Plug 'clangd/coc-clangd', {'do': 'yarn install --frozen-lockfile'}
 " Plug 'voldikss/coc-cmake', {'do': 'yarn install --frozen-lockfile'}
 " Plug 'pappasam/coc-jedi', {'do': 'yarn install --frozen-lockfile && yarn build', 'branch': 'main'}
