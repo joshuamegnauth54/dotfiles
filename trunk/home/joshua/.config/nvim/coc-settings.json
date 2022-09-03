@@ -17,8 +17,10 @@
 			"ignoredRootPaths": ["~"]
 		}
 	},
-	"coc.preferences.formatOnSaveFiletypes": ["rust", "python", "sql"],
+	"coc.preferences.formatOnSaveFiletypes": ["rust", "python", "sql", "javascript", "typescript", "css", "json", "markdown"],
 	"pyright.enable": true,
+	"eslint.enable": true,
+	"eslint.format.enable": true,
 	"python.analysis.typeCheckingMode": "strict",
 	"python.formatting.provider": "black",
 	"python.autoComplete.addBrackets": true

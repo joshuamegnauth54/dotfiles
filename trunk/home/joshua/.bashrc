@@ -37,6 +37,7 @@ alias less='less --mouse'
 alias grep='grep --color=auto'
 alias ip='ip --color=auto'
 alias bat='bat --theme Dracula'
+alias exa='exa --icons'
 
 # Options
 shopt -s checkwinsize # Automatically update max lines/columns when terminal emulator is resized
