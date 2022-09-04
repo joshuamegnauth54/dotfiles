@@ -1,6 +1,6 @@
 # Environmental variables
 # Add Cargo and global NPM to PATH
-export NPM_PACKAGES="${HOME}/.npm-packages"
+export NPM_PACKAGES="${HOME}/.cache/.npm/.npm-packages"
 export PATH="$PATH:${HOME}/.cargo/bin:${NPM_PACKAGES}/bin"
 export MANPATH="${MANPATH-$(manpath)}:$NPM_PACKAGES/share/man"
 
