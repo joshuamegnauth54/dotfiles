@@ -29,7 +29,6 @@ ln() { command ln -i "$@"; }
 # Aliases
 alias ls='ls -Fh --color=auto'
 alias ll="ls -la"
-alias vim='nvim'
 alias df='df -kTh'
 alias sudo='sudo '
 alias diff='diff --color=auto'
@@ -37,7 +36,25 @@ alias less='less --mouse'
 alias grep='grep --color=auto'
 alias ip='ip --color=auto'
 alias bat='bat --theme Dracula'
-alias exa='exa --icons'
+alias exa='exa --icons --group-directories-first'
+alias procs='procs --theme dark'
+
+# Alias if I have this stuff installed
+if [[ -f /usr/bin/bat ]]
+then
+	alias cat='bat'
+fi
+
+if [[ -f /usr/bin/exa ]]
+then
+	alias ls='exa'
+	alias ll='exa -la'
+fi
+
+if [[ -f /usr/bin/nvim ]]
+then
+	alias vim='nvim'
+fi
 
 # Options
 shopt -s checkwinsize # Automatically update max lines/columns when terminal emulator is resized
