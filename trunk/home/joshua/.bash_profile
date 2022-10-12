@@ -2,7 +2,7 @@
 # Add Cargo and local, non-root NPM to PATH
 export NPM_PACKAGES="${HOME}/.cache/npm/npm-packages"
 export PATH="$PATH:${HOME}/.cargo/bin:${NPM_PACKAGES}/bin"
-export MANPATH="${MANPATH-$(manpath)}:$NPM_PACKAGES/share/man"
+export MANPATH="${MANPATH-$(manpath)}:${NPM_PACKAGES}/share/man"
 
 # Editors, pager, et cetera
 export EDITOR="nvim"
@@ -46,6 +46,9 @@ export CLUTTER_BACKEND=wayland
 # SciPy
 export SCIPY_PIL_IMAGE_VIEWER=nomacs
 export USE_SYMENGINE=1
+
+# Go junk
+export GOPATH="${HOME}/.go/packages:${HOME}/.go/josh"
 
 # Execute .bashrc last
 [[ -f ~/.bashrc ]] && . ~/.bashrc

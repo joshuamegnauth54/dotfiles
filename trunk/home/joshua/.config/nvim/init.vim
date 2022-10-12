@@ -79,6 +79,7 @@ autocmd BufRead,BufNewFile *.txt setlocal spell "setlocal complete+=kspell
 autocmd BufRead,BufNewFile *.tex setlocal spell "setlocal complete+=kspell
 autocmd FileType gitcommit setlocal spell "setlocal complete+=kspell
 autocmd FileType rust setlocal colorcolumn=100
+autocmd BufWritePre *.go :call CocAction('runCommand', 'editior.action.organizeImport')
 
 " Keybindings
 

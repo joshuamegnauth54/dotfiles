@@ -15,6 +15,14 @@
 			"args": ["start"],
 			"filetypes": ["sh"],
 			"ignoredRootPaths": ["~"]
+		},
+		"golang": {
+			"command": "gopls",
+			"rootPatterns": ["go.mod", "go.work"],
+			"filetypes": ["go"],
+			"initializationOptions": {
+				"usePlaceholders": true
+			}
 		}
 	},
 	"coc.preferences.formatOnSaveFiletypes": ["rust", "python", "sql", "javascript", "typescript", "css", "json", "markdown"],
