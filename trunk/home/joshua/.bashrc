@@ -56,6 +56,11 @@ then
 	alias vim='nvim'
 fi
 
+if [[ -f /usr/bin/dust ]]
+then
+	alias du="dust"
+fi
+
 # Options
 shopt -s checkwinsize # Automatically update max lines/columns when terminal emulator is resized
 shopt -s checkhash

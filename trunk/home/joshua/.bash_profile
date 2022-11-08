@@ -3,6 +3,7 @@
 export NPM_PACKAGES="${HOME}/.cache/npm/npm-packages"
 export PATH="$PATH:${HOME}/.cargo/bin:${NPM_PACKAGES}/bin"
 export MANPATH="${MANPATH-$(manpath)}:${NPM_PACKAGES}/share/man"
+export GOPATH="${HOME}/.cache/.go:${HOME}/Repos/Golang"
 
 # Editors, pager, et cetera
 export EDITOR="nvim"
@@ -47,8 +48,6 @@ export CLUTTER_BACKEND=wayland
 export SCIPY_PIL_IMAGE_VIEWER=nomacs
 export USE_SYMENGINE=1
 
-# Go junk
-export GOPATH="${HOME}/.go/packages:${HOME}/.go/josh"
 
 # Execute .bashrc last
 [[ -f ~/.bashrc ]] && . ~/.bashrc

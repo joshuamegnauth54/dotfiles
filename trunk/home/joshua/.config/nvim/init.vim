@@ -79,7 +79,8 @@ autocmd BufRead,BufNewFile *.txt setlocal spell "setlocal complete+=kspell
 autocmd BufRead,BufNewFile *.tex setlocal spell "setlocal complete+=kspell
 autocmd FileType gitcommit setlocal spell "setlocal complete+=kspell
 autocmd FileType rust setlocal colorcolumn=100
-autocmd BufWritePre *.go :call CocAction('runCommand', 'editior.action.organizeImport')
+" From gopls repo on GitHub
+autocmd BufWritePre *.go :call CocAction('runCommand', 'editor.action.organizeImport')
 
 " Keybindings
 
@@ -291,3 +292,4 @@ nnoremap <silent><nowait> <space>k  :<C-u>CocPrev<CR>
 nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
 
 " End coc.nvim completion options
+
