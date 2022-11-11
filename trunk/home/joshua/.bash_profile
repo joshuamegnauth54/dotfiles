@@ -48,6 +48,8 @@ export CLUTTER_BACKEND=wayland
 export SCIPY_PIL_IMAGE_VIEWER=nomacs
 export USE_SYMENGINE=1
 
+# Don't append CWD to the import path
+export PYTHONSAFEPATH
 
 # Execute .bashrc last
 [[ -f ~/.bashrc ]] && . ~/.bashrc

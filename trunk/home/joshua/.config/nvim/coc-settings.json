@@ -1,35 +1,47 @@
 {
-	"languageserver": {
-		"clangd": {
-			"command": "clangd",
-			"rootPatterns": ["compile_flags.txt", "compile_commands.json"],
-			"filetypes": ["c", "cpp", "objc", "objcpp"]
-			},
-		"rust": {
-			"command": "rust-analyzer",
-			"filetypes": ["rust"],
-			"rootPatterns": ["Cargo.toml"]
-			},
-		"bash": {
-			"command": "bash-language-server",
-			"args": ["start"],
-			"filetypes": ["sh"],
-			"ignoredRootPaths": ["~"]
-		},
-		"golang": {
-			"command": "gopls",
-			"rootPatterns": ["go.mod", "go.work"],
-			"filetypes": ["go"],
-			"initializationOptions": {
-				"usePlaceholders": true
-			}
-		}
-	},
-	"coc.preferences.formatOnSaveFiletypes": ["rust", "python", "sql", "javascript", "typescript", "css", "json", "markdown"],
-	"pyright.enable": true,
-	"eslint.enable": true,
-	"eslint.format.enable": true,
-	"python.analysis.typeCheckingMode": "strict",
-	"python.formatting.provider": "black",
-	"python.autoComplete.addBrackets": true
+  "languageserver": {
+    "clangd": {
+      "command": "clangd",
+      "rootPatterns": ["compile_flags.txt", "compile_commands.json"],
+      "filetypes": ["c", "cpp", "objc", "objcpp"]
+    },
+    "rust": {
+      "command": "rust-analyzer",
+      "filetypes": ["rust"],
+      "rootPatterns": ["Cargo.toml"]
+    },
+    "bash": {
+      "command": "bash-language-server",
+      "args": ["start"],
+      "filetypes": ["sh"],
+      "ignoredRootPaths": ["~"]
+    },
+    "golang": {
+      "command": "gopls",
+      "rootPatterns": ["go.mod", "go.work"],
+      "filetypes": ["go"],
+      "initializationOptions": {
+        "usePlaceholders": true
+      }
+    }
+  },
+  "coc.preferences.formatOnSaveFiletypes": [
+    "rust",
+    "python",
+    "sql",
+    "javascript",
+    "typescript",
+    "css",
+    "json",
+    "markdown"
+  ],
+  "rust-analyzer.cargo.buildScripts.enable": true,
+  "rust-analyzer.cargo.buildScripts.useRustcWrapper": true,
+  "rust-analyzer.checkOnSave.command": "clippy",
+  "pyright.enable": true,
+  "eslint.enable": true,
+  "eslint.format.enable": true,
+  "python.analysis.typeCheckingMode": "strict",
+  "python.formatting.provider": "black",
+  "python.autoComplete.addBrackets": true
 }

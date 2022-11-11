@@ -59,7 +59,7 @@ set pumblend=20
 set whichwrap+=<,>,h,l
 
 " Wrapping options
-set colorcolumn=80
+" set colorcolumn=80
 set wrap
 set linebreak
 
@@ -78,7 +78,7 @@ autocmd BufRead,BufNewFile *.Rmd setlocal spell "setlocal complete+=kspell
 autocmd BufRead,BufNewFile *.txt setlocal spell "setlocal complete+=kspell
 autocmd BufRead,BufNewFile *.tex setlocal spell "setlocal complete+=kspell
 autocmd FileType gitcommit setlocal spell "setlocal complete+=kspell
-autocmd FileType rust setlocal colorcolumn=100
+" autocmd FileType rust setlocal colorcolumn=100
 " From gopls repo on GitHub
 autocmd BufWritePre *.go :call CocAction('runCommand', 'editor.action.organizeImport')
 
