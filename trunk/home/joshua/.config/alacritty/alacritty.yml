@@ -4,7 +4,7 @@ import:
 window:
   decorations: none
   startup_mode: Fullscreen
-  gtk_theme_variant: dark
+  decorations_theme_variant: dark
 
 font:
   size: 16.0
