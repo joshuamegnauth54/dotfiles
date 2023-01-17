@@ -1,0 +1,22 @@
+[user]
+	name = Josh Megnauth
+	email = {CHANGE}
+	editor = nvim
+[core]
+	editor = nvim
+	pager = delta
+[commit]
+	gpgSign = true
+[interactive]
+	diffFilter = delta --color-only
+[diff]
+	colorMoved = default
+[merge]
+	conflictstyle = diff3
+[delta]
+	syntax-theme = Dracula
+	light = false
+	line-numbers = true
+	# N and n to move between diff sections
+	navigate = true
+	side-by-side = true

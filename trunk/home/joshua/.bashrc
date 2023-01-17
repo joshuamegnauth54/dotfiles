@@ -36,6 +36,7 @@ alias less='less --mouse'
 alias grep='grep --color=auto'
 alias ip='ip --color=auto'
 alias bat='bat --theme Dracula'
+alias delta='delta --syntax-theme Dracula'
 alias exa='exa --icons --group-directories-first'
 alias procs='procs --theme dark'
 
