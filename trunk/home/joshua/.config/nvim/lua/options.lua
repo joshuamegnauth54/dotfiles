@@ -10,6 +10,13 @@ local g = vim.g
 g.loaded_netrw = 1
 g.loaded_netrwPlugin = 1
 
+-- Disable unused plugin providers. I only wish to use Lua and vimscript plugins.
+g.loaded_perl_provider = 0
+g.loaded_ruby_provider = 0
+g.loaded_node_provider = 0
+g.loaded_python_provider = 0
+g.loaded_python3_provider = 0
+
 -- Set leader to space
 g.mapleader = " "
 g.maplocalleader = " "
@@ -60,6 +67,9 @@ set.secure = true
 -- 0 looks nicer. The default is 1. I had 2 set previously for some reason.
 set.cmdheight = 0
 
+-- Disable certain messages so prevent hit-enter prompts (useful in conjunction with the above)
+set.shortmess:append "s"
+
 -- Automatically check if file was modified
 set.autoread = true
 
@@ -84,9 +94,13 @@ set.splitbelow = true
 -- Write temporary files and back ups to temp_dir
 local temp_dir = "/tmp"
 set.backup = true
+set.undofile = true
 set.backupdir = temp_dir
 set.directory = temp_dir
 set.undodir = temp_dir
+
+-- Use ripgrep for grep
+set.grepprg = "rg --vimgrep"
 
 -- Longer history
 set.history = 1000
@@ -103,6 +117,7 @@ set.backspace = "indent,eol,start"
 -- Built in neovim completion; this is useful for the command bar
 set.wildmenu = true
 set.wildignorecase = true
-set.wildmode = "longest,full"
+set.wildmode = "longest:full,full"
 set.wildoptions = "pum"
 set.pumblend = 20
+

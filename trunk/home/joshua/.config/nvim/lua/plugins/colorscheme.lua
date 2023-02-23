@@ -5,6 +5,16 @@ return {
         lazy = false,
         priority = 1000,
         config = function()
+            require("catppuccin").setup(
+                {
+                    integrations = {
+                        indent_blankline = {
+                            enabled = true
+                        },
+                        ts_rainbow2 = true
+                    }
+                }
+            )
             vim.cmd([[colorscheme catppuccin]])
         end
     },
