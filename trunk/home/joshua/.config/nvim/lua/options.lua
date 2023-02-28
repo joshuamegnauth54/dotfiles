@@ -5,10 +5,33 @@
 local set = vim.opt
 local g = vim.g
 
--- Options for plugins so that they don't break
--- For nvim-tree
-g.loaded_netrw = 1
-g.loaded_netrwPlugin = 1
+-- Disable unused built-in plugins.
+-- Some plugins, such as nvim-tree, require disabling a few of these anyway.
+-- These plugins aren't anything I'd use either. 
+local disabled_plugins = { "2html_plugin",
+  "getscript",
+  "getscriptPlugin",
+  "gzip",
+  "logipat",
+  "netrw",
+  "netrwPlugin",
+  "netrwSettings",
+  "netrwFileHandlers",
+  "matchit",
+  "matchparen",
+  "tar",
+  "tarPlugin",
+  "rrhelper",
+  "vimball",
+  "vimballPlugin",
+  "zip",
+  "zipPlugin"
+  }
+
+for _, plugin in pairs(disabled_plugins) do
+    g["loaded_" .. plugin] = 1
+
+end
 
 -- Disable unused plugin providers. I only wish to use Lua and vimscript plugins.
 g.loaded_perl_provider = 0
@@ -68,7 +91,7 @@ set.secure = true
 set.cmdheight = 0
 
 -- Disable certain messages so prevent hit-enter prompts (useful in conjunction with the above)
-set.shortmess:append "s"
+set.shortmess:append "sc"
 
 -- Automatically check if file was modified
 set.autoread = true
