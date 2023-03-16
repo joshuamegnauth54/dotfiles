@@ -1,19 +1,23 @@
-# Dotfiles
+# Josh's dot files
 
-Hello nerds!
+I don't intend for my dot files to be usable for the general public. However, you may find some use of them in configuring your own system. Software is a series of esoteria, arcane knowledge that must be found on pull requests, ancient mailing lists, the hearsay of internet strangers...sometimes you need a little help.
 
-The following repository contains the majority of my dotfiles that I use across Gentoo and Arch Linux.
+# Organization
 
-## Why?
+Some people manage their dot files with programs such as [GNU Stow](https://www.gnu.org/software/stow/). I don't. I usually `cp -ri` whatever I need.
 
-My initial but resolute extant Arch Linux install was a lesson in misery. I struggled every step along the way until I ended up with a patchwork monstrosity of Googled answers and forum copypastas. I refuse to touch certain config files because they work.
+## `/etc`
 
-Recently, I decided I wish to _actually_ learn Linux. Linux, via the myriad distributions available, is immenently usable despite some kinks. However, I want to actually understand how the software fits together and _what_ is doing _bleh._ I chose Gentoo for kicks, but I enjoy it despite the lengthy compilation times.
+Several of my configs are entirely unused, but at one point I have used them and thus keep those for posterity in case I need them again. Other configs are useless because my distro's defaults cover them.
 
-I am not an ideologue. I love Linux, Windows, and FreeBSD. I do have a preference for F.O.S.S., but I'd be a liar if I said I **only** use open source. Last I checked, neither my P.C. nor PlayStation or Nintendo games are open source. With that said, I am thoroughly enjoying Linux, and I feel that my configs are at the point that I'd want to back some of them up while having them publicly available for those partaking in the same journey.
+Certain files may be outright incorrect or deprecated. I intend to remove those as I find them, but you surely should not copy blindly.
 
-## Who should use these?
+## `~/`
 
-Are you a thinking, rational individual? Please ctrl+w if you answered "yes."
+My home directory configs are my personal choices so, like everything else, you must appraise them prior to copying. For color schemes, I have a mix of [Catppuccin](https://catppuccin.com) and [Dracula](https://draculatheme.com/). Everything is Catppuccin where possible, but I have stray Draculas where setting Catppuccin is too annoying (IPython). My Bash and Fish profiles are centered around Wayland and Pipewire. 
 
-I hope that some of these configurations may aid someone somewhere, but honestly only a fool would use any of these wholesale. I am proud of managing to scrape together a working Unbound with DNSSEC that updates root.hints and whatnot on my system's boot. On the other hand, I surely have the worst use flags in all of existence.
+Color schemes are either links to cloned repos or installed via a package manager.
+
+## neovim
+
+My main editor is [neovim](https://neovim.io/) which I've configured in Lua.

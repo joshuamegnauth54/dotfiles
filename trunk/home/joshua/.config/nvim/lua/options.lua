@@ -8,24 +8,32 @@ local g = vim.g
 -- Disable unused built-in plugins.
 -- Some plugins, such as nvim-tree, require disabling a few of these anyway.
 -- These plugins aren't anything I'd use either. 
-local disabled_plugins = { "2html_plugin",
-  "getscript",
-  "getscriptPlugin",
-  "gzip",
-  "logipat",
-  "netrw",
-  "netrwPlugin",
-  "netrwSettings",
-  "netrwFileHandlers",
-  "matchit",
-  "matchparen",
-  "tar",
-  "tarPlugin",
-  "rrhelper",
-  "vimball",
-  "vimballPlugin",
-  "zip",
-  "zipPlugin"
+local disabled_plugins = {
+    "2html_plugin",
+    "bugreport",
+    "compiler",
+    "getscript",
+    "getscriptPlugin",
+    "gzip",
+    "logipat",
+    "netrw",
+    "netrwPlugin",
+    "netrwSettings",
+    "netrwFileHandlers",
+    "matchit",
+    "matchparen",
+    "optwin",
+    "rplugin",
+    "rrhelper",
+    "spellfile_plugin",
+    "synmenu",
+    "tar",
+    "tarPlugin",
+    "tutor",
+    "vimball",
+    "vimballPlugin",
+    "zip",
+    "zipPlugin"
   }
 
 for _, plugin in pairs(disabled_plugins) do
@@ -91,7 +99,7 @@ set.secure = true
 set.cmdheight = 0
 
 -- Disable certain messages so prevent hit-enter prompts (useful in conjunction with the above)
-set.shortmess:append "sc"
+set.shortmess:append "scI"
 
 -- Automatically check if file was modified
 set.autoread = true
@@ -144,3 +152,5 @@ set.wildmode = "longest:full,full"
 set.wildoptions = "pum"
 set.pumblend = 20
 
+-- Set up autocomplete defaults for nvim-cmp
+set.completeopt = "menuone,noinsert,noselect"

@@ -1,5 +1,7 @@
 import:
-  - ~/Repos/dracula/alacritty/dracula.yml
+  # Link to actual color scheme
+  # This must always be a path
+  - ~/.config/alacritty/colorscheme.yml
 
 window:
   decorations: none
@@ -7,4 +9,16 @@ window:
   decorations_theme_variant: dark
 
 font:
+  normal:
+    family: JetBrainsMono Nerd Font Mono
+    style: Regular
+  bold:
+    family: JetBrainsMono Nerd Font Mono
+    style: Bold
+  italic:
+    family: JetBrainsMono Nerd Font Mono
+    style: Italic
+  bold_italic:
+    family: JetBrainsMono Nerd Font Mono
+    style: Bold Italic
   size: 16.0

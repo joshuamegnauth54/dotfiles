@@ -1,88 +1,312 @@
 return {
-    -- Mason is a package manager for LSPs, DAPs, linters, and formatters
-    -- https://github.com/williamboman/mason.nvim
-    {
-        "williamboman/mason.nvim",
-        lazy = false
-    },
-    {
-        "williamboman/mason-lspconfig.nvim",
-        -- lazy = true
-    },
-    -- Quick language server configs
-    {
-        "neovim/nvim-lspconfig",
-        config = function()
-            -- Mappings.
-            -- Copied from the lspconfig repo with minor edits
-            local opts = { noremap=true, silent=true }
-            vim.keymap.set('n', '<space>e', vim.diagnostic.open_float, opts)
-            vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)
-            vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts)
-            vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist, opts)
-
-            -- Use an on_attach function to only map the following keys
-            -- after the language server attaches to the current buffer
-            local on_attach = function(client, bufnr)
-                -- Enable completion triggered by <c-x><c-o>
-                vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
-
-            -- Mappings.
-            -- See `:help vim.lsp.*` for documentation on any of the below functions
-            local bufopts = { noremap=true, silent=true, buffer=bufnr }
-            vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, bufopts)
-            vim.keymap.set('n', 'gd', vim.lsp.buf.definition, bufopts)
-            vim.keymap.set('n', 'K', vim.lsp.buf.hover, bufopts)
-            vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, bufopts)
-            vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, bufopts)
-            vim.keymap.set('n', '<space>wa', vim.lsp.buf.add_workspace_folder, bufopts)
-            vim.keymap.set('n', '<space>wr', vim.lsp.buf.remove_workspace_folder, bufopts)
-            vim.keymap.set('n', '<space>wl', function()
-                print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
-            end, bufopts)
-            vim.keymap.set('n', '<space>D', vim.lsp.buf.type_definition, bufopts)
-            vim.keymap.set('n', '<space>rn', vim.lsp.buf.rename, bufopts)
-            vim.keymap.set('n', '<space>ca', vim.lsp.buf.code_action, bufopts)
-            vim.keymap.set('n', 'gr', vim.lsp.buf.references, bufopts)
-            vim.keymap.set('n', '<space>f', function() vim.lsp.buf.format { async = true } end, bufopts)
-            end
-
-            local lsp_flags = {
-            }
-
-            -- Rust, base TypeScript, and Deno are managed by other plugins below
-
-            require('lspconfig')['pyright'].setup{
-                on_attach = on_attach,
-                flags = lsp_flags,
-            }
-        end
-    },
-    -- More pleasant Rust experience
-    {
-        "simrat39/rust-tools.nvim",
-        opts = {
-            server = {
-                on_attach = (function(_, bufnr)
-                    -- Hover actions
-                    vim.keymap.set("n", "<C-space>", rt.hover_actions.hover_actions, { buffer = bufnr })
-                    -- Code action groups
-                    vim.keymap.set("n", "<Leader>a", rt.code_action_group.code_action_group, { buffer = bufnr })
-                end),
-                flags = {
-                    rust-analyzer.check.command = "clippy"
-                },
+	-- Quick language server configs
+	{
+		"neovim/nvim-lspconfig",
+        event = { "BufReadPre", "BufNewFile" },
+		dependencies = {
+			-- Mason is a package manager for LSPs, DAPs, linters, and formatters
+			-- https://github.com/williamboman/mason.nvim
+			{ 
+                "williamboman/mason.nvim",
+                config = true 
             },
-        },
-        -- lazy = true,
-        config = true
-    },
-    -- Better cargo.toml integration
-    {
-        "saecki/crates.nvim",
-        dependencies = { "nvim-lua/plenary.nvim" },
-        config = true,
-        -- lazy = true,
-        event = "BufRead Cargo.toml"
-    }
+			{
+				"williamboman/mason-lspconfig.nvim",
+				config = true,
+			},
+		},
+		config = function()
+			-- Mappings.
+			-- Copied from the lspconfig repo with minor edits
+			local opts = { noremap = true, silent = true }
+			vim.keymap.set("n", "<space>e", vim.diagnostic.open_float, opts)
+			vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, opts)
+			vim.keymap.set("n", "]d", vim.diagnostic.goto_next, opts)
+			vim.keymap.set("n", "<space>q", vim.diagnostic.setloclist, opts)
+
+			-- Use an on_attach function to only map the following keys
+			-- after the language server attaches to the current buffer
+			local on_attach = function(client, bufnr)
+				-- Enable completion triggered by <c-x><c-o>
+				vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
+
+				-- Mappings.
+				-- See `:help vim.lsp.*` for documentation on any of the below functions
+				local bufopts = { noremap = true, silent = true, buffer = bufnr }
+				vim.keymap.set("n", "gD", vim.lsp.buf.declaration, bufopts)
+				vim.keymap.set("n", "gd", vim.lsp.buf.definition, bufopts)
+				vim.keymap.set("n", "K", vim.lsp.buf.hover, bufopts)
+				vim.keymap.set("n", "gi", vim.lsp.buf.implementation, bufopts)
+				vim.keymap.set("n", "<C-k>", vim.lsp.buf.signature_help, bufopts)
+				vim.keymap.set("n", "<space>wa", vim.lsp.buf.add_workspace_folder, bufopts)
+				vim.keymap.set("n", "<space>wr", vim.lsp.buf.remove_workspace_folder, bufopts)
+				vim.keymap.set("n", "<space>wl", function()
+					print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
+				end, bufopts)
+				vim.keymap.set("n", "<space>D", vim.lsp.buf.type_definition, bufopts)
+				vim.keymap.set("n", "<space>rn", vim.lsp.buf.rename, bufopts)
+				vim.keymap.set("n", "<space>ca", vim.lsp.buf.code_action, bufopts)
+				vim.keymap.set("n", "gr", vim.lsp.buf.references, bufopts)
+				vim.keymap.set("n", "<space>f", function()
+					vim.lsp.buf.format({ async = true })
+				end, bufopts)
+			end
+
+			-- Rust, C, base TypeScript, and Deno are managed by other plugins below
+			local lspconfig = require("lspconfig")
+			local default_lsps = {
+				"asm_lsp",
+				"awk_ls",
+				"bashls",
+				"cmake",
+				"csharp_ls",
+				"cssls",
+				"cssmodules_ls",
+				"docker_compose_language_service",
+				"dockerls",
+				"glslls",
+				"gopls",
+				"gradle_ls",
+				"graphql",
+				"hls",
+				"jsonls",
+				"kotlin_language_server",
+				"mlir_lsp_server",
+				"mlir_pdll_lsp_server",
+				-- I'm using this in conjunction with ruff.
+				-- Pyright = type checker
+				--
+				"pyright",
+				-- Convenient and fast tools for TypeScript including an LSP
+				-- https://github.com/rome/tools
+				"rome",
+				-- https://github.com/charliermarsh/ruff-lsp
+				-- Python
+				"ruff_lsp",
+				-- https://github.com/joe-re/sql-language-server
+				-- Has per project configs
+				"sqlls",
+				-- Svelte language server
+				-- https://github.com/sveltejs/language-tools/tree/master/packages/language-server,
+				"svelte",
+				-- Tailwind CSS
+				-- https://github.com/tailwindlabs/tailwindcss-intellisense
+				"tailwindcss",
+				-- Vue
+				-- https://github.com/vuejs/vetur/tree/master/server
+				"vuels",
+				-- WGSL
+				-- https://github.com/wgsl-analyzer/wgsl-analyzer
+				"wgsl_analyzer",
+				-- YAML
+				-- https://github.com/redhat-developer/yaml-language-server
+				"yamlls",
+			}
+
+			-- Variables to pass to LSP configs
+			local lsp_flags = {}
+			local capabilities = require("cmp_nvim_lsp").default_capabilities()
+
+			for _, lsp in pairs(default_lsps) do
+				lspconfig[lsp].setup({
+					capabilities = capabilities,
+					on_attach = on_attach,
+					flags = lsp_flags,
+				})
+			end
+
+			-- Special configs
+			lspconfig["jsonls"].setup({
+				settings = {
+					json = {
+						-- Use schemastore (see below)
+						schemas = require("schemastore").json.schemas(),
+						validate = { enable = true },
+					},
+				},
+			})
+
+			-- HTML requires a snippet engine
+			--Enable (broadcasting) snippet capability for completion
+			local html_cap = vim.lsp.protocol.make_client_capabilities()
+			html_cap.textDocument.completion.completionItem.snippetSupport = true
+
+			lspconfig["html"].setup({
+				capabilities = html_cap,
+			})
+
+			-- LanguageTool support for LaTeX, Markdown, and others
+			lspconfig["ltex"].setup({
+				capabilities = capabilities,
+				settings = {
+					ltex = {
+						language = "en_US",
+						ltex_ls = {
+							path = "/usr/bin/ltex-ls",
+						},
+						java = {
+							path = "/usr/bin/java",
+							maximumHeapSize = 1024,
+						},
+						sentenceCacheSize = 4096,
+					},
+				},
+			})
+
+			-- Lua
+			lspconfig["lua_ls"].setup({
+				capabilities = capabilities,
+				settings = {
+					Lua = {
+						telemetry = {
+							enable = false,
+						},
+					},
+				},
+			})
+
+			-- LaTeX
+			-- https://github.com/latex-lsp/texlab
+			lspconfig["texlab"].setup({
+				capabilities = capabilities,
+				settings = {
+					texlab = {
+						chktex = {
+							onEdit = true,
+						},
+					},
+				},
+			})
+		end,
+	},
+	-- More pleasant Rust experience
+	{
+		"simrat39/rust-tools.nvim",
+		dependencies = {
+			"neovim/nvim-lspconfig",
+			"nvim-lua/plenary.nvim",
+		},
+		opts = {
+			tools = {
+				inlay_hints = {
+					highlight = "Special",
+				},
+			},
+			server = {
+				on_attach = function(_, bufnr)
+					-- Hover actions
+					vim.keymap.set("n", "<C-space>", rt.hover_actions.hover_actions, { buffer = bufnr })
+					-- Code action groups
+					vim.keymap.set("n", "<Leader>a", rt.code_action_group.code_action_group, { buffer = bufnr })
+				end,
+				settings = {
+					["rust-analyzer"] = {
+						cargo = {
+							features = "all",
+						},
+						check = {
+							-- Check all targets and tests
+							allTargets = true,
+							-- Use clippy instead of the default "check"
+							command = "clippy",
+							-- Check all features instead of eliding feature gated code
+							-- Without this, code that is locked behind a feature isn't checked on save which is annoying
+							-- Defaults to whatever `rust-analyzer.cargo.features` is
+							features = "all",
+						},
+						inlayHints = {
+							closureReturnTypeHints = {
+								enable = "always",
+							},
+							-- This is too noisy
+							-- expressionAdjustmentHints = {
+							-- enable = "reborrow",
+							-- },
+							lifetimeElisionHints = {
+								enable = "skip_trivial",
+							},
+						},
+						lru = {
+							capacity = 256,
+						},
+					},
+				},
+			},
+		},
+		-- lazy = true,
+		-- event = "BufRead *.rs",
+		ft = { "rust" },
+	},
+	-- Better cargo.toml integration
+	{
+		"saecki/crates.nvim",
+		dependencies = { "nvim-lua/plenary.nvim" },
+		config = true,
+		-- lazy = true,
+		event = "BufRead Cargo.toml",
+	},
+	-- Better clang
+	{
+		"p00f/clangd_extensions.nvim",
+		dependencies = {
+			"neovim/nvim-lspconfig",
+		},
+		ft = { "c", "cpp", "objc", "objcpp", "cuda", "proto" },
+		opts = {
+			extensions = {
+				inlay_hints = {
+					highlight = "Special",
+				},
+			},
+		},
+	},
+	-- Better Deno
+	-- This may cause problems if tsserver is enabled too
+	-- I think I can use deno for everything though
+	-- Default root pattern: deno.json, deno.jsonc
+	{
+		"sigmasd/deno-nvim",
+		dependencies = { "neovim/nvim-lspconfig" },
+		ft = {
+			"javascript",
+			"javascriptreact",
+			"javascript.jsx",
+			"typescript",
+			"typescriptreact",
+			"typescript.tsx",
+		},
+		opts = {
+			server = {
+				settings = {
+					deno = {
+						inlayHints = {
+							parameterNames = {
+								enabled = "all",
+							},
+							parameterTypes = {
+								enabled = true,
+							},
+							variableTypes = {
+								enabled = true,
+							},
+							functionLikeReturnTypes = {
+								enabled = true,
+							},
+						},
+					},
+				},
+			},
+		},
+	},
+	-- https://schemastore.org/ support
+	{
+		"b0o/SchemaStore.nvim",
+		ft = { "json" },
+	},
+	-- Better Java support
+	-- I'm not setting up most of it though. Oh well
+	{
+		"mfussenegger/nvim-jdtls",
+		ft = { "java" },
+	},
 }

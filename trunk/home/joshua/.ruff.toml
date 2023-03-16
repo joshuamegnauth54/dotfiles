@@ -1,0 +1,29 @@
+# A default ruff settings file
+
+# Enable rules:
+select = [
+    "E",
+    "F",
+    "B",   # flake8-bugbear
+    "W",   # Warning
+    "I",   # isort
+    "N",   # pep8-naming
+    "D",   # pydocstyle
+    "YTT", # flake8-2020
+    "UP",  # pyupgrade
+    "S",   # flake8-bandit
+    "FBT", # flake8-boolean-trap
+    "C4",  # flake-comprehensions
+    "PT",  # flake8-pytest-style
+    "SIM", # flake8-simplify
+    "TCH", # flake8-type-checking
+    "TID", # flake8-tidy-imports
+    "TRY", # tryceratops
+    "RUF", # Ruff specific
+]
+
+# Never enforce `E501` (line length violations).
+ignore = ["E501"]
+
+# Avoid trying to fix flake8-bugbear (`B`) violations.
+unfixable = ["B"]
