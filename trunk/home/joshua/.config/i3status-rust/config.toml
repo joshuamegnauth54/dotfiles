@@ -1,46 +1,30 @@
-[theme]
-file = "dracula"
-
-[icons]
-name = "awesome"
+theme = "dracula"
+icons = "awesome"
 
 [[block]]
-block = "music"
-player = "mpd"
-buttons = ["prev", "play", "next"]
-# format = "{combo}"
-
-[[block]]
-block = "sound"
-step_width = 1
-show_volume_when_muted = true
-headphones_indicator = true
-
-[[block]]
-block = "notify"
-
-[[block]]
-block = "net"
-format = "{graph_up} {graph_down}"
-format_alt = "{ssid} {signal_strength} {graph_up} {graph_down}"
+block = "focused_window"
+[block.format]
+full = " $title.str(max_w:20) |"
+short = " $title.str(max_w:10) |"
 
 [[block]]
 block = "memory"
-format_mem = "{mem_used_percents}"
-format_swap = "{swap_used_percents}"
 display_type = "memory"
-icons = true
-clickable = true
-interval = 5
-warning_mem = 75
-warning_swap = 85
-critical_mem = 85
-critical_swap = 95
+format_mem = "{mem_used_percents}"
 
 [[block]]
 block = "cpu"
-format = "{utilization}"
+interval = 1
+
+[[block]]
+block = "load"
+interval = 1
+format = "{1m}"
+
+[[block]]
+block = "sound"
 
 [[block]]
 block = "time"
-format = "%H:%M %F"
+interval = 5
+format = "%Y-%m-%d %R"

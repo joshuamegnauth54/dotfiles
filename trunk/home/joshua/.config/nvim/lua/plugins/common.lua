@@ -20,84 +20,7 @@ return {
 		dependencies = { "kyazdani42/nvim-web-devicons" },
 		config = true,
 	},
-	-- Fuzzy finder
-	{
-		"nvim-telescope/telescope.nvim",
-		dependencies = { "nvim-lua/plenary.nvim" },
-		cmd = "Telescope",
-		config = function()
-			local tele = require("telescope")
-			tele.setup({
-				extensions = {
-					heading = {
-						treesitter = true,
-					},
-					undo = {
-						-- This delta: https://github.com/dandavison/delta
-						-- ...which I tend to have installed anyway
-						use_delta = true,
-					},
-				},
-			})
 
-			-- Note: Not every extension must be loaded like this
-			local extensions = {
-				"dap",
-				"fzf",
-				"heading",
-				"undo",
-			}
-
-			for _, ext in pairs(extensions) do
-				tele.load_extension(ext)
-			end
-		end,
-	},
-	-- Faster fuzzy searching with native fzf
-	{
-		"nvim-telescope/telescope-fzf-native.nvim",
-		build = "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build",
-		cmd = "Telescope",
-		dependencies = { "nvim-telescope/telescope.nvim" },
-	},
-	-- Search for emoji with Telescope
-	{
-		"nvim-telescope/telescope-symbols.nvim",
-		-- cmd = "Telescope",
-		keys = "<leader>fe",
-		dependencies = { "nvim-telescope/telescope.nvim" },
-		-- I'm not sure why the plugin doesn't do this itself
-		build = "git clone https://github.com/nvim-telescope/telescope-symbols.nvim /tmp/lazy/telescope-symbols && cp -r /tmp/lazy/telescope-symbols/data ~/.config/nvim",
-	},
-	-- Search through tabs with telescope
-	{
-		"LukasPietzschmann/telescope-tabs",
-		-- cmd = "Telescope",
-		keys = {
-			"<leader>ft",
-			"<leader>ftb",
-		},
-		dependencies = { "nvim-telescope/telescope.nvim" },
-	},
-	-- Search through headings in LaTeX and Markdown
-	{
-		"crispgm/telescope-heading.nvim",
-		-- cmd = "Telescope",
-		keys = "<leader>fo",
-		dependencies = { "nvim-telescope/telescope.nvim" },
-	},
-	{
-		"debugloop/telescope-undo.nvim",
-		-- cmd = "Telescope",
-		keys = "<leader>fu",
-		dependencies = { "nvim-telescope/telescope.nvim" },
-	},
-	-- DAP integration for telescope
-	{
-		"nvim-telescope/telescope-dap.nvim",
-		cmd = "Telescope",
-		dependencies = { "mfussenegger/nvim-dap", "nvim-telescope/telescope.nvim" },
-	},
 	-- Show tagged outline of source code (i.e. structs and functions)
 	{
 		"preservim/tagbar",
@@ -110,7 +33,7 @@ return {
 			show_current_context = true,
 			show_current_context_start = true,
 		},
-		config = true,
+		event = "BufReadPre",
 	},
 	-- Show git status signs
 	{

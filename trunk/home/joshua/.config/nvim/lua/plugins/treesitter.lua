@@ -17,6 +17,18 @@ return {
 			{
 				"nvim-treesitter/nvim-treesitter-textobjects",
 			},
+			{
+				-- Highlight matching brackets
+				-- NOTE: Periodically check this plugin because it's always deprecated for some reason
+				"HiPhish/nvim-ts-rainbow2",
+				-- lazy = true,
+			},
+			{
+				-- Context aware commenting using nvim's commentString buffer and treesitter
+				-- `gcc`
+				"JoosepAlviste/nvim-ts-context-commentstring",
+				lazy = true,
+			},
 		},
 		---@type TSConfig
 		opts = {
@@ -94,26 +106,14 @@ return {
 					"rainbow-parens",
 					html = "rainbow-tags",
 				},
-				strategy = {
-					-- require 'ts-rainbow.strategy.global',
-				},
+				-- strategy = {
+				-- require ("ts-rainbow").strategy.global,
+				-- },
 			},
 		},
 		---@param opts TSConfig
 		config = function(_, opts)
 			require("nvim-treesitter.configs").setup(opts)
 		end,
-	},
-	{
-		-- Highlight matching brackets
-		-- NOTE: Periodically check this plugin because it's always deprecated for some reason
-		"HiPhish/nvim-ts-rainbow2",
-		lazy = true,
-	},
-	{
-		-- Context aware commenting using nvim's commentString buffer and treesitter
-		-- `gcc`
-		"JoosepAlviste/nvim-ts-context-commentstring",
-		lazy = true,
 	},
 }

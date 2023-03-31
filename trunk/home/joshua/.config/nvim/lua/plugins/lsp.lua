@@ -1,15 +1,23 @@
+-- Language server provider configs
+
+local function crates_keys(func_str)
+	return function()
+		require("crates")[func_str]({})
+	end
+end
+
 return {
 	-- Quick language server configs
 	{
 		"neovim/nvim-lspconfig",
-        event = { "BufReadPre", "BufNewFile" },
+		event = { "BufReadPre", "BufNewFile" },
 		dependencies = {
 			-- Mason is a package manager for LSPs, DAPs, linters, and formatters
 			-- https://github.com/williamboman/mason.nvim
-			{ 
-                "williamboman/mason.nvim",
-                config = true 
-            },
+			{
+				"williamboman/mason.nvim",
+				config = true,
+			},
 			{
 				"williamboman/mason-lspconfig.nvim",
 				config = true,
@@ -75,7 +83,7 @@ return {
 				"mlir_pdll_lsp_server",
 				-- I'm using this in conjunction with ruff.
 				-- Pyright = type checker
-				--
+				-- https://github.com/microsoft/pyright
 				"pyright",
 				-- Convenient and fast tools for TypeScript including an LSP
 				-- https://github.com/rome/tools
@@ -244,6 +252,18 @@ return {
 		config = true,
 		-- lazy = true,
 		event = "BufRead Cargo.toml",
+		keys = {
+
+			{ "<leader>cv", crates_keys("show_versions_popup") },
+			{ "<leader>cf", crates_keys("show_features_popup") },
+			{ "<leader>cd", crates_keys("show_dependencies_popup") },
+			{ "<leader>cu", crates_keys("update_crate") },
+			{ "<leader>cu", crates_keys("update_crates"), "v" },
+			{ "<leader>ca", crates_keys("update_all_crates") },
+			{ "<leader>cU", crates_keys("upgrade_crate") },
+			{ "<leader>cU", crates_keys("upgrade_crates"), "v" },
+			{ "<leader>cA", crates_keys("upgrade_all_crates") },
+		},
 	},
 	-- Better clang
 	{

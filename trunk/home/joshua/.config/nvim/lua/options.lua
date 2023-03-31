@@ -7,38 +7,38 @@ local g = vim.g
 
 -- Disable unused built-in plugins.
 -- Some plugins, such as nvim-tree, require disabling a few of these anyway.
--- These plugins aren't anything I'd use either. 
+-- These plugins aren't anything I'd use either.
 local disabled_plugins = {
-    "2html_plugin",
-    "bugreport",
-    "compiler",
-    "getscript",
-    "getscriptPlugin",
-    "gzip",
-    "logipat",
-    "netrw",
-    "netrwPlugin",
-    "netrwSettings",
-    "netrwFileHandlers",
-    "matchit",
-    "matchparen",
-    "optwin",
-    "rplugin",
-    "rrhelper",
-    "spellfile_plugin",
-    "synmenu",
-    "tar",
-    "tarPlugin",
-    "tutor",
-    "vimball",
-    "vimballPlugin",
-    "zip",
-    "zipPlugin"
-  }
+	"2html_plugin",
+	"bugreport",
+	"compiler",
+	"getscript",
+	"getscriptPlugin",
+	"gzip",
+	"logipat",
+	"netrw",
+	"netrwPlugin",
+	"netrwSettings",
+	"netrwFileHandlers",
+	"matchit",
+	"matchparen",
+	"optwin",
+	"rplugin",
+	"rrhelper",
+	"spellfile_plugin",
+	"synmenu",
+	"tar",
+	"tarPlugin",
+	"tohtml",
+	"tutor",
+	"vimball",
+	"vimballPlugin",
+	"zip",
+	"zipPlugin",
+}
 
 for _, plugin in pairs(disabled_plugins) do
-    g["loaded_" .. plugin] = 1
-
+	g["loaded_" .. plugin] = 1
 end
 
 -- Disable unused plugin providers. I only wish to use Lua and vimscript plugins.
@@ -48,9 +48,9 @@ g.loaded_node_provider = 0
 g.loaded_python_provider = 0
 g.loaded_python3_provider = 0
 
--- Set leader to space
-g.mapleader = " "
-g.maplocalleader = " "
+-- Set leader to comma
+g.mapleader = ","
+g.maplocalleader = ","
 
 -- Syntax highlighting
 g.background = "dark"
@@ -99,7 +99,7 @@ set.secure = true
 set.cmdheight = 0
 
 -- Disable certain messages so prevent hit-enter prompts (useful in conjunction with the above)
-set.shortmess:append "scI"
+set.shortmess:append("scI")
 
 -- Automatically check if file was modified
 set.autoread = true
@@ -150,7 +150,18 @@ set.wildmenu = true
 set.wildignorecase = true
 set.wildmode = "longest:full,full"
 set.wildoptions = "pum"
+-- Transparency
 set.pumblend = 20
+-- Maximum number of items to show
+set.pumheight = 10
+
+-- Single status line for all neovim windows
+set.laststatus = 3
+
+-- Highlight cursor line so I don't get lost
+set.cursorline = true
 
 -- Set up autocomplete defaults for nvim-cmp
-set.completeopt = "menuone,noinsert,noselect"
+set.completeopt = { "menuone", "noselect", "noinsert" }
+-- Reduce update tic time from 4000 to 750 to decrease perceived latency
+vim.api.nvim_set_option("updatetime", 750)

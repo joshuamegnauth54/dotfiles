@@ -1,4 +1,4 @@
--- Code completion
+-- Code completion and snippets
 return {
 	-- https://github.com/hrsh7th/nvim-cmp
 	{
@@ -10,6 +10,7 @@ return {
 			"hrsh7th/cmp-buffer",
 			"hrsh7th/cmp-path",
 			"hrsh7th/cmp-cmdline",
+			"hrsh7th/cmp-nvim-lua",
 			-- Function parameter completion
 			"hrsh7th/cmp-nvim-lsp-signature-help",
 			"David-Kunz/cmp-npm",
@@ -34,7 +35,9 @@ return {
 				}),
 				sources = cmp.config.sources({
 					{ name = "nvim_lsp" },
-					{ name = "snippy" },
+					{ name = "snippy", keyword_length = 2 },
+					{ name = "nvim_lsp_signature_help" },
+					{ name = "nvim_lua", keyword_length = 2 },
 					{ name = "buffer" },
 					{ name = "path" },
 					{ name = "npm", keyword_length = 4 },

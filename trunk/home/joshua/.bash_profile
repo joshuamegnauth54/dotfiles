@@ -3,7 +3,8 @@
 export NPM_PACKAGES="${HOME}/.cache/npm/npm-packages"
 export PATH="$PATH:${HOME}/.cargo/bin:${NPM_PACKAGES}/bin"
 export MANPATH="${MANPATH-$(manpath)}:${NPM_PACKAGES}/share/man"
-export GOPATH="${HOME}/.cache/.go:${HOME}/Repos/Golang"
+export GOPATH="${HOME}/Repos/Golang"
+export GOMODCACHE="${HOME}/.cache/go"
 
 # Editors, pager, et cetera
 export EDITOR="nvim"
@@ -20,6 +21,7 @@ export SDL_AUDIODRIVER="pipewire"
 export SDL_VIDEODRIVER="wayland"
 
 # Java
+# Fix GUI
 export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=on -Dswing.aatext=true -Dswing.defaultlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel -Dswing.crossplatformlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel'
 
 # wlroots
@@ -50,6 +52,9 @@ export USE_SYMENGINE=1
 
 # Don't append CWD to the import path
 export PYTHONSAFEPATH
+
+# Use system libraries for Android emulator
+export ANDROID_EMULATOR_USE_SYSTEM_LIBS=1
 
 # Execute .bashrc last
 [[ -f ~/.bashrc ]] && . ~/.bashrc
