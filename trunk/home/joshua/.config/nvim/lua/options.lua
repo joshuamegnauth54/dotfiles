@@ -116,7 +116,11 @@ set.incsearch = true
 set.hlsearch = true
 
 -- Speeling (sp?)
-set.spelllang = "en_us"
+-- Next: ]s
+-- Prev: [s
+-- Suggestions: z=
+set.spelllang = { "en_us" }
+set.spell = true
 
 -- Splits don't shift current buffer
 set.splitright = true

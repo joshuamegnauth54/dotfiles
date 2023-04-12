@@ -10,14 +10,14 @@ return {
 	-- File manager
 	{
 		"kyazdani42/nvim-tree.lua",
-		dependencies = { "kyazdani42/nvim-web-devicons" },
+		dependencies = { "nvim-tree/nvim-web-devicons" },
 		cmd = "NvimTreeToggle",
 		config = true,
 	},
 	-- Better status line
 	{
 		"nvim-lualine/lualine.nvim",
-		dependencies = { "kyazdani42/nvim-web-devicons" },
+		dependencies = { "nvim-tree/nvim-web-devicons" },
 		config = true,
 	},
 

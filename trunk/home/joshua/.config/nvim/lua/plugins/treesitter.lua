@@ -101,7 +101,7 @@ return {
 			},
 			-- nvim-ts-rainbow2
 			rainbow = {
-				enabled = true,
+				enable = true,
 				query = {
 					"rainbow-parens",
 					html = "rainbow-tags",

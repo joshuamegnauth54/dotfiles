@@ -7,12 +7,27 @@ local function telescope_keys(builtin, opts)
 	end
 end
 
+-- Stolen from the lazy.nvim example config
+local symbols = {symbols = {
+    "Class",
+    "Function",
+    "Method",
+    "Constructor",
+    "Interface",
+    "Module",
+    "Struct",
+    "Trait",
+    "Field",
+    "Property"
+}}
+
 return {
 	-- Fuzzy finder over lists
 	{
 		"nvim-telescope/telescope.nvim",
 		dependencies = {
 			{ "nvim-lua/plenary.nvim" },
+            { "nvim-tree/nvim-web-devicons" },
 			-- Faster fuzzy searching with native fzf
 			{
 				"nvim-telescope/telescope-fzf-native.nvim",
@@ -22,10 +37,15 @@ return {
 		keys = {
 			{ "<leader>ff", telescope_keys("find_files"), desc = "Find files in CWD" },
 			{ "<leader>fg", telescope_keys("live_grep"), desc = "Live grep" },
+            { "<leader>fs", telescope_keys("grep_string"), desc = "Grep string" },
 			{ "<leader>fb", telescope_keys("buffers"), desc = "List open buffers" },
 			{ "<leader>fh", telescope_keys("help_tags"), desc = "List help tags" },
-			{ "<leader>fr", telescope_keys("lsp_references"), desc = "LSP references" },
-			{ "<leader>fds", telescope_keys("lsp_document_symbols"), desc = "LSP document symbols" },
+			{ "<leader>fs", telescope_keys("lsp_references"), desc = "LSP references" },
+			{ "<leader>fss", telescope_keys("lsp_document_symbols", symbols), desc = "LSP document symbols" },
+            { "<leader>fsS", telescope_keys("lsp_workplace_symbols", symbols), desc = "LSP workspace symbols" },
+            { "<leader>fm", telescope_keys("marks"), desc = "Search marks" },
+            { "<leader>sp", telescope_keys("spell_suggest"), desc = "Spelling" },
+            { "<leader>/", telescope_keys("current_buffer_fuzzy_find"), desc = "Buffer fuzzy find" },
 
 			-- Telescope extension keys
 			-- DAP telescope
@@ -64,7 +84,7 @@ return {
 	{
 		"nvim-telescope/telescope-symbols.nvim",
 		-- cmd = "Telescope",
-		keys = { "<leader>fe", "<cmd>Telescope symbols<cr>" },
+		keys = {{ "<leader>fe", "<cmd>Telescope symbols<cr>" }},
 		dependencies = { "nvim-telescope/telescope.nvim" },
 		-- I'm not sure why the plugin doesn't do this itself
 		build = "git clone https://github.com/nvim-telescope/telescope-symbols.nvim /tmp/lazy/telescope-symbols && cp -r /tmp/lazy/telescope-symbols/data ~/.config/nvim",
