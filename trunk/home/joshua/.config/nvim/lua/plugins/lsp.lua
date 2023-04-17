@@ -61,24 +61,46 @@ return {
 			end
 
 			-- Rust, C, base TypeScript, and Deno are managed by other plugins below
+			-- CSS, HTML, and JSON are set up below for snippet support
 			local lspconfig = require("lspconfig")
 			local default_lsps = {
+				-- https://github.com/angular/vscode-ng-language-service
+				"angularls",
+				-- https://github.com/bergercookie/asm-lsp
 				"asm_lsp",
+				-- https://github.com/Beaglefoot/awk-language-server/
 				"awk_ls",
+				-- https://github.com/mads-hartmann/bash-language-server
 				"bashls",
+				-- https://github.com/regen100/cmake-language-server
 				"cmake",
+				-- https://github.com/razzmatazz/csharp-language-server
 				"csharp_ls",
-				"cssls",
+				-- https://github.com/antonk52/cssmodules-language-server
 				"cssmodules_ls",
+				-- https://github.com/microsoft/compose-language-service
 				"docker_compose_language_service",
+				-- https://github.com/rcjsuen/dockerfile-language-server-nodejs
 				"dockerls",
+				-- https://github.com/nikeee/dot-language-server
+				-- Graphviz
+				"dotls",
+				-- https://github.com/influxdata/flux-lsp
+				-- Influx's query language
+				"flux_lsp",
+				-- https://github.com/svenstaro/glsl-language-server
 				"glslls",
+				-- https://github.com/golang/tools/tree/master/gopls
 				"gopls",
+				-- https://github.com/microsoft/vscode-gradle
 				"gradle_ls",
+				-- https://github.com/graphql/graphiql/tree/main/packages/graphql-language-service-cli
 				"graphql",
+				-- https://github.com/haskell/haskell-language-server
 				"hls",
-				"jsonls",
+				-- https://github.com/fwcd/kotlin-language-server
 				"kotlin_language_server",
+				-- https://github.com/llvm/llvm-project
 				"mlir_lsp_server",
 				"mlir_pdll_lsp_server",
 				-- I'm using this in conjunction with ruff.
@@ -112,6 +134,7 @@ return {
 			}
 
 			-- Variables to pass to LSP configs
+			-- https://github.com/neovim/nvim-lspconfig/wiki/Snippets
 			local lsp_flags = {}
 			local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
@@ -124,17 +147,9 @@ return {
 			end
 
 			-- Special configs
-			lspconfig["jsonls"].setup({
-				settings = {
-					json = {
-						-- Use schemastore (see below)
-						schemas = require("schemastore").json.schemas(),
-						validate = { enable = true },
-					},
-				},
-			})
 
-			-- HTML requires a snippet engine
+			-- https://github.com/hrsh7th/vscode-langservers-extracted
+			-- CSS, HTML, and JSON require a snippet engine
 			--Enable (broadcasting) snippet capability for completion
 			local html_cap = vim.lsp.protocol.make_client_capabilities()
 			html_cap.textDocument.completion.completionItem.snippetSupport = true
@@ -143,6 +158,21 @@ return {
 				capabilities = html_cap,
 			})
 
+			-- Snippet support for CSS completion
+			lspconfig["cssls"].setup({
+				capabilities = html_cap,
+			})
+
+			lspconfig["jsonls"].setup({
+				capabilities = html_cap,
+				settings = {
+					json = {
+						-- Use schemastore (see below)
+						schemas = require("schemastore").json.schemas(),
+						validate = { enable = true },
+					},
+				},
+			})
 			-- LanguageTool support for LaTeX, Markdown, and others
 			lspconfig["ltex"].setup({
 				capabilities = capabilities,

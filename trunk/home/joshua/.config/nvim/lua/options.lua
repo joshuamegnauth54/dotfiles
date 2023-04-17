@@ -1,4 +1,5 @@
--- Variables and options
+-- General variables and options
+-- Other settings may be found in specific files
 
 -- set => equivalent to vim script's "set"
 -- g => global
@@ -63,7 +64,12 @@ set.number = true
 
 -- Enable sign column (should be populated with information via plugins)
 -- "yes" rather than a boolean is correct.
+-- This should always be enabled or else the sign column would move when toggled
 set.signcolumn = "yes"
+
+g.markdown_fenced_languages = {
+	"ts=typescript",
+}
 
 -- Enable mouse support (I need this for zellij)
 set.mouse = "a"
@@ -169,3 +175,28 @@ set.cursorline = true
 set.completeopt = { "menuone", "noselect", "noinsert" }
 -- Reduce update tic time from 4000 to 750 to decrease perceived latency
 vim.api.nvim_set_option("updatetime", 750)
+
+-- Diagnostics
+vim.fn.sign_define("DiagnosticSignInfo", {
+	texthl = "DiagnosticSignInfo",
+	text = "",
+})
+
+vim.fn.sign_define("DiagnosticSignHint", {
+	texthl = "DiagnosticSignHint",
+	text = "",
+})
+
+vim.fn.sign_define("DiagnosticSignWarn", {
+	texthl = "DiagnosticSignWarn",
+	text = "",
+})
+
+vim.fn.sign_define("DiagnosticSignError", {
+	texthl = "DiagnosticSignError",
+	text = "󰋔",
+})
+
+-- Virtual text doesn't work as nicely as I'd want it to, so I'll use floating windows instead
+vim.diagnostic.config({ virtual_text = false })
+vim.cmd([[autocmd CursorHold * lua vim.diagnostic.open_float(nil, { focusable = false })]])

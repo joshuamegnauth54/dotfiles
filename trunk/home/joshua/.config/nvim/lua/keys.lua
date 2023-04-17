@@ -9,7 +9,7 @@ map("n", ";", ":", {})
 
 -- Buffer movement
 -- No more ;bn spam!
-map("n", "[b", "<cmd>bprevious<cr>", { desc = "Previous buffer" }) 
+map("n", "[b", "<cmd>bprevious<cr>", { desc = "Previous buffer" })
 map("n", "]b", "<cmd>bnext<cr>", { desc = "Next buffer" })
 map("n", "<leader>bb", "<cmd>e #<cr>", { desc = "Switch buffer" })
 

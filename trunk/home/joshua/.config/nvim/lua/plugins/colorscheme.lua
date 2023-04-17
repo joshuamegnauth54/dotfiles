@@ -7,30 +7,30 @@ return {
 		config = function()
 			require("catppuccin").setup({
 				integrations = {
-                    cmp = true,
+					cmp = true,
 					dap = {
 						enabled = true,
 						enable_ui = true,
 					},
-                    gitsigns = true,
+					gitsigns = true,
 					indent_blankline = {
 						enabled = true,
 					},
 					illuminate = true,
-                    lsp_trouble = true,
-                    markdown = true,
-                    mason = true,
-                    mini = true,
-                    noice = true,
-                    nvimtree = true,
-                    telescope = true,
-                    treesitter = true,
+					lsp_trouble = true,
+					markdown = true,
+					mason = true,
+					mini = true,
+					noice = true,
+					nvimtree = true,
+					telescope = true,
+					treesitter = true,
 					treesitter_context = true,
 					-- ts_rainbow = true,
 					ts_rainbow2 = true,
 				},
 			})
-			vim.cmd.colorscheme "catppuccin"
+			vim.cmd.colorscheme("catppuccin")
 		end,
 	},
 	{
@@ -38,7 +38,7 @@ return {
 		lazy = true,
 		priority = 1000,
 		-- config = function()
-		--    vim.cmd.colorscheme "dracula"
+		--    vim.cmd.colorscheme("dracula")
 		-- end
 	},
 }
