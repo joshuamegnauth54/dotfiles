@@ -13,6 +13,8 @@ return {
 			"hrsh7th/cmp-nvim-lua",
 			-- Function parameter completion
 			"hrsh7th/cmp-nvim-lsp-signature-help",
+			-- dap-ui completion
+			"https://github.com/rcarriga/cmp-dap",
 			"David-Kunz/cmp-npm",
 			-- Use snippy with cmp
 			-- https://github.com/dcampos/nvim-snippy
@@ -21,6 +23,9 @@ return {
 		opts = function()
 			local cmp = require("cmp")
 			local cmp_table = {
+				enabled = function()
+					return vim.api.nvim_buf_get_option(0, "buftype") ~= "prompt" or require("cmp_dap").is_dap_buffer()
+				end,
 				snippet = {
 					expand = function(args)
 						require("snippy").expand_snippet(args.body)
@@ -60,6 +65,13 @@ return {
 				}, {
 					{ name = "cmdline" },
 				}),
+			})
+
+			-- dap-ui completion
+			cmp.setup.filetype({ "dap-repl", "dapui_watches", "dapui_hover" }, {
+				sources = {
+					{ name = "dap" },
+				},
 			})
 
 			vim.api.nvim_create_autocmd("BufRead", {
