@@ -34,11 +34,91 @@ return {
 			sign("DapBreakpointRejected", { text = "◆", texthl = "DapBreakpointRejected", linehl = "", numhl = "" })
 
 			-- Debug adapters
+
+			-- Rust and C
 			dap.adapters.lldb = {
 				type = "executable",
 				command = which("lldb-vscode"),
 				name = "lldb",
 			}
+
+			-- Go
+			dap.adapters.delve = {
+				type = "server",
+				port = "${port}",
+				executable = {
+					command = "dlv",
+					args = { "dap", "-l", "127.0.0.1:${port}" },
+				},
+			}
+
+			-- https://github.com/go-delve/delve/blob/master/Documentation/usage/dlv_dap.md
+			dap.configurations.go = {
+				{
+					type = "delve",
+					name = "Debug",
+					request = "launch",
+					program = "${file}",
+				},
+				{
+					type = "delve",
+					name = "Debug test", -- configuration for debugging test files
+					request = "launch",
+					mode = "test",
+					program = "${file}",
+				},
+				-- works with go.mod packages and sub packages
+				{
+					type = "delve",
+					name = "Debug test (go.mod)",
+					request = "launch",
+					mode = "test",
+					program = "./${relativeFileDirname}",
+				},
+			}
+
+			dap.adapters.haskell = {
+				type = "executable",
+				command = "haskell-debug-adapter",
+				args = { "--hackage-version=0.0.33.0" },
+			}
+			dap.configurations.haskell = {
+				{
+					type = "haskell",
+					request = "launch",
+					name = "Debug",
+					workspace = "${workspaceFolder}",
+					startup = "${file}",
+					stopOnEntry = true,
+					logFile = vim.fn.stdpath("data") .. "/haskell-dap.log",
+					logLevel = "WARNING",
+					ghciEnv = vim.empty_dict(),
+					ghciPrompt = "λ: ",
+					-- Adjust the prompt to the prompt you see when you invoke the stack ghci command below
+					ghciInitialPrompt = "λ: ",
+					ghciCmd = "stack ghci --test --no-load --no-build --main-is TARGET --ghci-options -fprint-evld-with-show",
+				},
+			}
+
+			-- TypeScript
+			for _, language in ipairs({ "typescript", "javascript" }) do
+				require("dap").configurations[language] = {
+					{
+						type = "pwa-node",
+						request = "launch",
+						name = "Launch file",
+						program = "${file}",
+						cwd = "${workspaceFolder}",
+					},
+					{
+						type = "pwa-node",
+						request = "attach",
+						name = "Attach",
+						processId = require("dap.utils").pick_process,
+						cwd = "${workspaceFolder}",
+					},
+				}
+			end
 		end,
 		keys = {
 			{
@@ -49,7 +129,7 @@ return {
 				desc = "Toggle breakpoint",
 			},
 			{
-				"<Leader><C-c>",
+				"<Leader>cc",
 				function()
 					require("dap").terminate()
 				end,
@@ -90,7 +170,7 @@ return {
 		dependencies = { "mfussenegger/nvim-dap" },
 		keys = {
 			{
-				"C-d",
+				"<Leader>cd",
 				function()
 					require("dapui").toggle()
 				end,
@@ -108,5 +188,22 @@ return {
 			local path = which("python")
 			require("dap-python").setup(path)
 		end,
+	},
+	-- https://github.com/mxsdev/nvim-dap-vscode-js
+	{
+		"mxsdev/nvim-dap-vscode-js",
+		ft = {
+			"javascript",
+			"javascriptreact",
+			"javascript.jsx",
+			"typescript",
+			"typescriptreact",
+			"typescript.tsx",
+		},
+		opts = {
+			-- FIXME
+			debugger_path = "",
+			adapters = { "pwa-node", "pwa-chrome", "pwa-msedge", "node-terminal", "pwa-extensionHost" },
+		},
 	},
 }

@@ -30,6 +30,8 @@ return {
 		dependencies = {
 			{ "nvim-lua/plenary.nvim" },
 			{ "nvim-tree/nvim-web-devicons" },
+			-- UI replacement for vim.ui.select
+			{ "nvim-telescope/telescope-ui-select.nvim" },
 			-- Faster fuzzy searching with native fzf
 			{
 				"nvim-telescope/telescope-fzf-native.nvim",
@@ -81,6 +83,7 @@ return {
 				"fzf",
 				"heading",
 				"notify",
+				"ui-select",
 				"undo",
 			}
 
