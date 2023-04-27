@@ -29,6 +29,10 @@ return {
 				"JoosepAlviste/nvim-ts-context-commentstring",
 				lazy = true,
 			},
+			{
+				-- Automatically complete tags for HTML, TypeScript React, et cetera
+				"windwp/nvim-ts-autotag",
+			},
 		},
 		---@type TSConfig
 		opts = {
@@ -70,6 +74,8 @@ return {
 				"java",
 				"javascript",
 				"json",
+				"json5",
+				"julia",
 				"kotlin",
 				"latex",
 				"llvm",
@@ -120,6 +126,9 @@ return {
 				-- strategy = {
 				-- require ("ts-rainbow").strategy.global,
 				-- },
+			},
+			autotag = {
+				enable = true,
 			},
 		},
 		---@param opts TSConfig

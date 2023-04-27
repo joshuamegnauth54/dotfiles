@@ -27,11 +27,17 @@ return {
 			local sign = vim.fn.sign_define
 
 			-- Key mapping
-			sign("DapBreakpoint", { text = "●", texthl = "DapBreakpoint", linehl = "", numhl = "" })
-			sign("DapBreakpointCondition", { text = "●", texthl = "DapBreakpointCondition", linehl = "", numhl = "" })
-			sign("DapStopped", { text = "", texthl = "DapStopped", linehl = "", numhl = "" })
-			sign("DapLogPoint", { text = "◆", texthl = "DapLogPoint", linehl = "", numhl = "" })
-			sign("DapBreakpointRejected", { text = "◆", texthl = "DapBreakpointRejected", linehl = "", numhl = "" })
+			sign("DapBreakpoint", { text = "●", texthl = "DapBreakpoint", linehl = "", numhl = "DapBreakpoint" })
+			sign(
+				"DapBreakpointCondition",
+				{ text = "●", texthl = "DapBreakpointCondition", linehl = "", numhl = "DapBreakpointCondition" }
+			)
+			sign("DapStopped", { text = "", texthl = "DapStopped", linehl = "", numhl = "DapStopped" })
+			sign("DapLogPoint", { text = "◆", texthl = "DapLogPoint", linehl = "", numhl = "DapLogPoint" })
+			sign(
+				"DapBreakpointRejected",
+				{ text = "◆", texthl = "DapBreakpointRejected", linehl = "", numhl = "DapBreakpointRejected" }
+			)
 
 			-- Debug adapters
 
@@ -133,6 +139,7 @@ return {
 				function()
 					require("dap").terminate()
 				end,
+				desc = "Stop debugging",
 			},
 			{
 				"<F5>",
@@ -173,8 +180,9 @@ return {
 				"<Leader>cd",
 				function()
 					require("dapui").toggle()
+					vim.cmd([[DapVirtualTextToggle]])
 				end,
-				desc = "Toggle dapui",
+				desc = "Toggle dapui and virtual text",
 			},
 		},
 	},
@@ -204,6 +212,15 @@ return {
 			-- FIXME
 			debugger_path = "",
 			adapters = { "pwa-node", "pwa-chrome", "pwa-msedge", "node-terminal", "pwa-extensionHost" },
+		},
+	},
+	-- https://github.com/theHamsta/nvim-dap-virtual-text
+	{
+		"theHamsta/nvim-dap-virtual-text",
+		cmd = { "DapVirtualTextEnable", "DapVirtualTextToggle" },
+		opts = {
+			highlight_new_as_changed = true,
+			commented = true,
 		},
 	},
 }

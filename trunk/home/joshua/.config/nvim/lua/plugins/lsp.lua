@@ -22,6 +22,15 @@ return {
 				"williamboman/mason-lspconfig.nvim",
 				config = true,
 			},
+			-- {
+			-- "glepnir/lspsaga.nvim",
+			-- config = true,
+			-- event = { "LspAttach" },
+			-- dependencies = {
+			-- { "nvim-tree/nvim-web-devicons" },
+			-- { "nvim-treesitter/nvim-treesitter" }
+			-- }
+			-- }
 		},
 		config = function()
 			-- Mappings.
@@ -71,7 +80,7 @@ return {
 			-- end
 			require("neodev")
 
-			-- Rust, C, base TypeScript, and Deno are managed by other plugins below
+			-- Rust, C, base TypeScript, Deno, and Go are managed by other plugins below
 			-- CSS, HTML, and JSON are set up below for snippet support
 			local lspconfig = require("lspconfig")
 			local default_lsps = {
@@ -102,7 +111,7 @@ return {
 				-- https://github.com/svenstaro/glsl-language-server
 				"glslls",
 				-- https://github.com/golang/tools/tree/master/gopls
-				"gopls",
+				-- "gopls",
 				-- https://github.com/microsoft/vscode-gradle
 				"gradle_ls",
 				-- https://github.com/graphql/graphiql/tree/main/packages/graphql-language-service-cli
@@ -111,6 +120,8 @@ return {
 				"hls",
 				-- https://github.com/fwcd/kotlin-language-server
 				"kotlin_language_server",
+				-- https://github.com/artempyanykh/marksman
+				"marksman",
 				-- https://github.com/llvm/llvm-project
 				"mlir_lsp_server",
 				"mlir_pdll_lsp_server",
@@ -133,6 +144,8 @@ return {
 				-- Tailwind CSS
 				-- https://github.com/tailwindlabs/tailwindcss-intellisense
 				"tailwindcss",
+				-- https://github.com/nvarner/typst-lsp
+				"typst_lsp",
 				-- Vue
 				-- https://github.com/vuejs/vetur/tree/master/server
 				"vuels",
@@ -161,7 +174,8 @@ return {
 			-- https://github.com/hrsh7th/vscode-langservers-extracted
 			-- CSS, HTML, and JSON require a snippet engine
 			--Enable (broadcasting) snippet capability for completion
-			local html_cap = vim.lsp.protocol.make_client_capabilities()
+			-- local html_cap = vim.lsp.protocol.make_client_capabilities()
+			local html_cap = vim.deepcopy(capabilities)
 			html_cap.textDocument.completion.completionItem.snippetSupport = true
 
 			lspconfig["html"].setup({
@@ -188,7 +202,9 @@ return {
 				capabilities = capabilities,
 				settings = {
 					ltex = {
-						language = "en_US",
+						-- ltex is spammy without this
+						checkFrequency = "save",
+						language = "en-US",
 						ltex_ls = {
 							path = "/usr/bin/ltex-ls",
 						},
@@ -248,6 +264,7 @@ return {
 					vim.keymap.set("n", "<Leader>a", rt.code_action_group.code_action_group, { buffer = bufnr })
 				end,
 				settings = {
+					capabilities = require("cmp_nvim_lsp").default_capabilities(),
 					["rust-analyzer"] = {
 						cargo = {
 							features = "all",
@@ -337,19 +354,32 @@ return {
 		},
 		opts = {
 			server = {
+				capabilities = require("cmp_nvim_lsp").default_capabilities(),
+				-- https://github.com/denoland/vscode_deno/blob/main/package.json
 				settings = {
 					deno = {
 						inlayHints = {
+							enumMemberValues = {
+								enabled = true,
+							},
+							functionLikeReturnTypes = {
+								enabled = true,
+							},
 							parameterNames = {
 								enabled = "all",
 							},
 							parameterTypes = {
 								enabled = true,
 							},
+							propertyDeclarationTypes = {
+								enabled = true,
+							},
 							variableTypes = {
 								enabled = true,
 							},
-							functionLikeReturnTypes = {
+						},
+						suggest = {
+							completeFunctionCalls = {
 								enabled = true,
 							},
 						},
@@ -382,6 +412,35 @@ return {
 					"nvim-dap-ui",
 				},
 				types = true,
+			},
+		},
+	},
+	-- https://github.com/ray-x/go.nvim
+	{
+		"ray-x/go.nvim",
+		dependencies = { "neovim/nvim-lspconfig", "nvim-treesitter/nvim-treesitter" },
+		ft = { "go", "gomod", "gowork", "gotmpl" },
+		opts = {
+			trouble = true,
+			lsp_config = {
+				capabilities = require("cmp_nvim_lsp").default_capabilities(),
+				settings = {
+					gopls = {
+						-- TODO Periodically check of this was removed
+						experimentalPostfixCompletions = true,
+						analyses = {
+							nilness = true,
+							shadow = true,
+							unusedparams = true,
+							unusedwrite = true,
+							unusedvariables = true,
+						},
+						staticcheck = true,
+					},
+				},
+				init_options = {
+					usePlaceholders = true,
+				},
 			},
 		},
 	},

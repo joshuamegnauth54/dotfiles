@@ -21,10 +21,14 @@ return {
 		config = true,
 	},
 
-	-- Show tagged outline of source code (i.e. structs and functions)
+	-- Show symbols/tagged outline of source code (i.e. structs and functions)
 	{
-		"preservim/tagbar",
-		cmd = "TagbarToggle",
+		"simrat39/symbols-outline.nvim",
+		config = true,
+		cmd = "SymbolsOutline",
+		keys = {
+			{ "t", "<cmd>SymbolsOutline<cr>", desc = "Toggle symbols outline" },
+		},
 	},
 	-- Indentation guidelines
 	{
@@ -102,11 +106,11 @@ return {
 	{
 		"windwp/nvim-autopairs",
 		opts = {
+			check_ts = true,
 			enable_check_bracket_line = false,
 			-- Ignore alphanumeric and .
 			ignored_next_char = "[%w%.]",
 		},
-		config = true,
 	},
 	-- Highlight color strings as the color themselves
 	{

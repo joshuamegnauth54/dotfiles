@@ -68,6 +68,12 @@ set.number = true
 set.signcolumn = "yes"
 
 g.markdown_fenced_languages = {
+	"css",
+	"html",
+	"javascript",
+	"js=javascript",
+	"rust",
+	"sql",
 	"ts=typescript",
 }
 
@@ -105,7 +111,7 @@ set.secure = true
 set.cmdheight = 0
 
 -- Disable certain messages so prevent hit-enter prompts (useful in conjunction with the above)
-set.shortmess:append("scI")
+set.shortmess:append("scIW")
 
 -- Automatically check if file was modified
 set.autoread = true
@@ -173,30 +179,48 @@ set.cursorline = true
 
 -- Set up autocomplete defaults for nvim-cmp
 set.completeopt = { "menuone", "noselect", "noinsert" }
--- Reduce update tic time from 4000 to 750 to decrease perceived latency
-vim.api.nvim_set_option("updatetime", 750)
+-- Reduce update tic time from 4000 to 250 to decrease perceived latency
+vim.api.nvim_set_option("updatetime", 250)
 
 -- Diagnostics
 vim.fn.sign_define("DiagnosticSignInfo", {
+	numhl = "DiagnosticSignInfo",
 	texthl = "DiagnosticSignInfo",
 	text = "",
 })
 
 vim.fn.sign_define("DiagnosticSignHint", {
+	numhl = "DiagnosticSignHint",
 	texthl = "DiagnosticSignHint",
 	text = "",
 })
 
 vim.fn.sign_define("DiagnosticSignWarn", {
+	numhl = "DiagnosticSignWarn",
 	texthl = "DiagnosticSignWarn",
 	text = "",
 })
 
 vim.fn.sign_define("DiagnosticSignError", {
+	numhl = "DiagnosticSignError",
 	texthl = "DiagnosticSignError",
 	text = "󰋔",
 })
 
 -- Virtual text doesn't work as nicely as I'd want it to, so I'll use floating windows instead
 vim.diagnostic.config({ virtual_text = false })
-vim.cmd([[autocmd CursorHold * lua vim.diagnostic.open_float(nil, { focusable = false })]])
+-- vim.cmd([[autocmd CursorHold * lua vim.diagnostic.open_float(nil, { focusable = false })]])
+vim.api.nvim_create_autocmd({ "CursorHold" }, {
+	callback = function()
+		vim.diagnostic.open_float(nil, { focusable = false })
+	end,
+	desc = "Open diagonstic floating window on cursor hold",
+})
+
+-- Highlight yanked text
+vim.api.nvim_create_autocmd({ "TextYankPost" }, {
+	callback = function()
+		vim.highlight.on_yank()
+	end,
+	desc = "Highlight text on yank",
+})

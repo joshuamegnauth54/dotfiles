@@ -16,6 +16,3 @@ map("n", "<leader>bb", "<cmd>e #<cr>", { desc = "Switch buffer" })
 -- Extensions. Might fold into Lazy's configs
 -- Toggle nvim-tree in normal mode
 map("n", "`", "<cmd>NvimTreeToggle<cr>", {})
-
--- Toggle tagbar
-map("n", "t", "<cmd>TagbarToggle<cr>", {})

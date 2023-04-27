@@ -19,6 +19,10 @@ return {
 			-- Use snippy with cmp
 			-- https://github.com/dcampos/nvim-snippy
 			"dcampos/cmp-snippy",
+			-- Add VS Code style pictograms
+			"onsails/lspkind.nvim",
+			-- Use more Treesitter nodes
+			"ray-x/cmp-treesitter",
 		},
 		opts = function()
 			local cmp = require("cmp")
@@ -40,13 +44,18 @@ return {
 				}),
 				sources = cmp.config.sources({
 					{ name = "nvim_lsp" },
-					{ name = "snippy", keyword_length = 2 },
 					{ name = "nvim_lsp_signature_help" },
 					{ name = "nvim_lua", keyword_length = 2 },
+					{ name = "snippy", keyword_length = 2 },
+					{ name = "treesitter", keyword_length = 2 },
 					{ name = "buffer" },
+					{ name = "omni", keyword_length = 2 },
 					{ name = "path" },
 					{ name = "npm", keyword_length = 4 },
 				}),
+				formatting = {
+					format = require("lspkind").cmp_format({}),
+				},
 			}
 
 			-- Use buffer source for `/` and `?` (if you enabled `native_menu`, this won't work anymore).
@@ -73,6 +82,10 @@ return {
 					{ name = "dap" },
 				},
 			})
+
+			-- Autopairs
+			local cmp_autopairs = require("nvim-autopairs.completion.cmp")
+			cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
 
 			vim.api.nvim_create_autocmd("BufRead", {
 				group = vim.api.nvim_create_augroup("CmpSourceCargo", { clear = true }),

@@ -55,7 +55,6 @@ return {
 		event = "VeryLazy",
 		config = function()
 			require("notify").setup({
-
 				render = "simple",
 				stages = "static",
 				timeout = 2500,
