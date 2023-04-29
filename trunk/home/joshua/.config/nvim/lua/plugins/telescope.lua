@@ -7,6 +7,13 @@ local function telescope_keys(builtin, opts)
 	end
 end
 
+local function telescope_trouble()
+	-- I'm not sure why this needs to be loaded
+	require("telescope.actions")
+	local trouble = require("trouble.providers.telescope")
+	trouble.open_with_trouble()
+end
+
 -- Stolen from the lazy.nvim example config
 local symbols = {
 	symbols = {
