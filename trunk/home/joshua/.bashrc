@@ -39,6 +39,7 @@ alias bat='bat --theme Dracula'
 alias delta='delta --syntax-theme Dracula'
 alias exa='exa --icons --group-directories-first'
 alias procs='procs --theme dark'
+alias erd="erd -IH"
 
 # Alias if I have this stuff installed
 if [[ -f /usr/bin/bat ]]
@@ -60,6 +61,11 @@ fi
 if [[ -f /usr/bin/dust ]]
 then
 	alias du="dust"
+fi
+
+if [[ -f /usr/bin/erd ]]
+then
+    alias tree="erd"
 fi
 
 # Options

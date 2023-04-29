@@ -428,12 +428,24 @@ return {
 					gopls = {
 						-- TODO Periodically check of this was removed
 						experimentalPostfixCompletions = true,
+						semanticTokens = true,
 						analyses = {
 							nilness = true,
 							shadow = true,
 							unusedparams = true,
 							unusedwrite = true,
 							unusedvariables = true,
+						},
+						-- Inlay hints
+						-- TODO Check if this was deprecated
+						hints = {
+							assignableVariableTypes = true,
+							compositeLiteralFields = true,
+							compositeLiteralTypes = true,
+							constantValues = true,
+							functionTypeParameters = true,
+							parameterNames = true,
+							rangeVariableTypes = true,
 						},
 						staticcheck = true,
 					},
