@@ -4,11 +4,11 @@ local equinox = "org.eclipse.equinox.launcher.jar"
 
 -- From nvim-jdtls repository
 local project_name = vim.fn.fnamemodify(vim.fn.getcwd(), ":p:h:t")
-local workspace_dir = "~/Repos/Java/" .. project_name
+local workspace_dir = vim.fn.expand("~/Repos/Java/") .. project_name
 
 -- Equinox launcher
-local grep_equinox = io.popen("rg -g '*equinox.launcher_*.jar' --files " .. jdtls_path .. "plugins")
-local equinox_path = jdtls_plugins .. "org.eclipse.equinox.launcher.jar"
+local grep_equinox = io.popen("rg -g '*equinox.launcher_*.jar' --files " .. jdtls_plugins)
+local equinox_path = jdtls_plugins .. equinox
 if grep_equinox then
 	local result = grep_equinox:read("*a")
 	if result and result ~= "" then
@@ -35,7 +35,6 @@ local config = {
 		"java.base/java.util=ALL-UNNAMED",
 		"--add-opens",
 		"java.base/java.lang=ALL-UNNAMED",
-
 		"-jar",
 		equinox_path,
 		"-configuration",
@@ -46,12 +45,14 @@ local config = {
 	root_dir = require("jdtls.setup").find_root({ ".git", "mvnw", "gradlew" }),
 	-- https://github.com/eclipse/eclipse.jdt.ls/wiki/Running-the-JAVA-LS-server-from-the-command-line#initialize-request
 	settings = {
-		java = {},
+		java = {
+			signatureHelp = { enabled = true },
+		},
 	},
 	init_options = {
 		bundles = {},
 	},
-	on_attach = function(client, bufnr)
+	on_attach = function()
 		require("jdtls").setup_dap({ hotcodereplace = "auto" })
 	end,
 }

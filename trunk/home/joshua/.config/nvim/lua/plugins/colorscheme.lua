@@ -17,6 +17,7 @@ return {
 						enabled = true,
 					},
 					illuminate = true,
+					lsp_saga = true,
 					lsp_trouble = true,
 					markdown = true,
 					mason = true,

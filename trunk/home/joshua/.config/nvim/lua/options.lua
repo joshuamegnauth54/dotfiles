@@ -210,12 +210,12 @@ vim.fn.sign_define("DiagnosticSignError", {
 -- Virtual text doesn't work as nicely as I'd want it to, so I'll use floating windows instead
 vim.diagnostic.config({ virtual_text = false })
 -- vim.cmd([[autocmd CursorHold * lua vim.diagnostic.open_float(nil, { focusable = false })]])
-vim.api.nvim_create_autocmd({ "CursorHold" }, {
-	callback = function()
-		vim.diagnostic.open_float(nil, { focusable = false })
-	end,
-	desc = "Open diagonstic floating window on cursor hold",
-})
+-- vim.api.nvim_create_autocmd({ "CursorHold" }, {
+-- 	callback = function()
+-- 		vim.diagnostic.open_float(nil, { focusable = false })
+-- 	end,
+-- 	desc = "Open diagonstic floating window on cursor hold",
+-- })
 
 -- Highlight yanked text
 vim.api.nvim_create_autocmd({ "TextYankPost" }, {

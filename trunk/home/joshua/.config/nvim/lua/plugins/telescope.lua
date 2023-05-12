@@ -64,10 +64,21 @@ return {
 			},
 			{ "<leader>sp", telescope_keys("spell_suggest"), desc = "Spelling" },
 			{ "<leader>/", telescope_keys("current_buffer_fuzzy_find"), desc = "Buffer fuzzy find" },
-
 			-- Telescope extension keys
-			-- DAP telescope
-			-- map('n', )
+			{
+				"<leader>df",
+				function()
+					require("telescope").extensions.dap.list_breakpoints({})
+				end,
+				desc = "List DAP breakpoints",
+			},
+			{
+				"<leader>ds",
+				function()
+					require("telescope").extensions.dap.variables({})
+				end,
+				desc = "List DAP variables",
+			},
 		},
 		cmd = "Telescope",
 		config = function()

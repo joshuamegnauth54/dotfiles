@@ -22,14 +22,15 @@ return {
 	},
 
 	-- Show symbols/tagged outline of source code (i.e. structs and functions)
-	{
-		"simrat39/symbols-outline.nvim",
-		config = true,
-		cmd = "SymbolsOutline",
-		keys = {
-			{ "t", "<cmd>SymbolsOutline<cr>", desc = "Toggle symbols outline" },
-		},
-	},
+	-- NOTE: Replaced by lspsaga for now to reduce plugins.
+	-- {
+	-- 	"simrat39/symbols-outline.nvim",
+	-- 	config = true,
+	-- 	cmd = "SymbolsOutline",
+	-- 	keys = {
+	-- 		{ "t", "<cmd>SymbolsOutline<cr>", desc = "Toggle symbols outline" },
+	-- 	},
+	-- },
 	-- Indentation guidelines
 	{
 		"lukas-reineke/indent-blankline.nvim",
@@ -116,6 +117,12 @@ return {
 	{
 		"NvChad/nvim-colorizer.lua",
 		event = { "BufReadPost", "BufNewFile" },
+		opts = {
+			filetypes = {
+				"*",
+				css = { css = true, tailwind = true },
+			},
+		},
 	},
 
 	{
