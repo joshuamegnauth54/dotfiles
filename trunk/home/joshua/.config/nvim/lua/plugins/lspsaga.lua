@@ -24,7 +24,7 @@ return {
 				"z",
 				"<cmd>Lspsaga show_line_diagnostics ++unfocus<cr>",
 				desc = "Show line diagnostics",
-				mode = { "n", "v", "i" },
+				mode = { "n", "v" },
 			},
 			{ "[e", "<cmd>Lspsaga diagonostic_jump_prev<cr>", desc = "Jump to previous diagnostic" },
 			{ "]e", "<cmd>Lspsaga diagonostic_jump_next<cr>", desc = "Jump to next diagnostic" },

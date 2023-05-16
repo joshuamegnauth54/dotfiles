@@ -177,6 +177,9 @@ set.laststatus = 3
 -- Highlight cursor line so I don't get lost
 set.cursorline = true
 
+-- Disable LSP logging unless I need it
+vim.lsp.set_log_level("OFF")
+
 -- Set up autocomplete defaults for nvim-cmp
 set.completeopt = { "menuone", "noselect", "noinsert" }
 -- Reduce update tic time from 4000 to 250 to decrease perceived latency

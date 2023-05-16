@@ -7,6 +7,14 @@ local function telescope_keys(builtin, opts)
 	end
 end
 
+local function telescope_ext(ext, func, opts)
+	func = func or ext
+	opts = opts or {}
+	return function()
+		require("telescope").extensions[ext][func](opts)
+	end
+end
+
 local function telescope_trouble()
 	-- I'm not sure why this needs to be loaded
 	require("telescope.actions")
@@ -64,21 +72,6 @@ return {
 			},
 			{ "<leader>sp", telescope_keys("spell_suggest"), desc = "Spelling" },
 			{ "<leader>/", telescope_keys("current_buffer_fuzzy_find"), desc = "Buffer fuzzy find" },
-			-- Telescope extension keys
-			{
-				"<leader>df",
-				function()
-					require("telescope").extensions.dap.list_breakpoints({})
-				end,
-				desc = "List DAP breakpoints",
-			},
-			{
-				"<leader>ds",
-				function()
-					require("telescope").extensions.dap.variables({})
-				end,
-				desc = "List DAP variables",
-			},
 		},
 		cmd = "Telescope",
 		config = function()
@@ -115,7 +108,7 @@ return {
 	{
 		"nvim-telescope/telescope-symbols.nvim",
 		-- cmd = "Telescope",
-		keys = { { "<leader>fe", "<cmd>Telescope symbols<cr>" } },
+		keys = { { "<leader>fe", telescope_keys("symbols"), desc = "List symbols (emoji)" } },
 		dependencies = { "nvim-telescope/telescope.nvim" },
 		-- I'm not sure why the plugin doesn't do this itself
 		build = "git clone https://github.com/nvim-telescope/telescope-symbols.nvim /tmp/lazy/telescope-symbols && cp -r /tmp/lazy/telescope-symbols/data ~/.config/nvim",
@@ -126,8 +119,20 @@ return {
 		-- cmd = "Telescope",
 		keys = {
 			-- Search through tabs
-			{ "<leader>ft", "<cmd>Telescope telescope-tabs list_tabs<cr>" },
-			{ "<leader>ftb", "<cmd>Telescope telescope-tabs go_to_previous<cr>" },
+			{
+				"<leader>ft",
+				function()
+					require("telescope-tabs").list_tabs()
+				end,
+				desc = "List tabs",
+			},
+			{
+				"<leader>ftt",
+				function()
+					require("telescope-tabs").go_to_previous()
+				end,
+				desc = "Go to previous tab",
+			},
 		},
 		dependencies = { "nvim-telescope/telescope.nvim" },
 	},
@@ -137,23 +142,33 @@ return {
 		-- cmd = "Telescope",
 		keys = {
 			-- Search through headings; o for octothorpe
-			{ "<leader>fo", "<cmd>Telescope heading<cr>" },
+			{ "<leader>fo", telescope_ext("heading"), desc = "Search through document headings" },
 		},
 		dependencies = { "nvim-telescope/telescope.nvim" },
 	},
 	-- View buffer undo tree
 	{
 		"debugloop/telescope-undo.nvim",
-		-- cmd = "Telescope",
-		keys = {
-			{ "<leader>fu", "<cmd>Telescope undo<cr>" },
-		},
 		dependencies = { "nvim-telescope/telescope.nvim" },
+		keys = {
+			{ "<leader>fu", telescope_ext("undo"), desc = "View undo tree" },
+		},
 	},
 	-- DAP integration for telescope
 	{
 		"nvim-telescope/telescope-dap.nvim",
-		cmd = "Telescope",
+		keys = {
+			{
+				"<leader>df",
+				telescope_ext("dap", "list_breakpoints"),
+				desc = "List DAP breakpoints",
+			},
+			{
+				"<leader>ds",
+				telescope_ext("dap", "variables"),
+				desc = "List DAP variables",
+			},
+		},
 		dependencies = { "mfussenegger/nvim-dap", "nvim-telescope/telescope.nvim" },
 	},
 }
