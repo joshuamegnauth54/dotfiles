@@ -56,7 +56,7 @@ return {
 					end, opts)
 					vim.keymap.set("n", "<space>D", vim.lsp.buf.type_definition, opts)
 					-- Rename symbols across workspace
-					vim.keymap.set("n", "<F2>", vim.lsp.buf.rename, opts)
+					-- vim.keymap.set("n", "<F2>", vim.lsp.buf.rename, opts)
 					-- vim.keymap.set({ "n", "v" }, "<space>ca", vim.lsp.buf.code_action, opts)
 					vim.keymap.set("n", "gr", vim.lsp.buf.references, opts)
 					vim.keymap.set("n", "<leader>f", function()
@@ -84,6 +84,8 @@ return {
 				"awk_ls",
 				-- https://github.com/mads-hartmann/bash-language-server
 				"bashls",
+				-- https://github.com/bufbuild/buf-language-server
+				"bufls",
 				-- https://github.com/regen100/cmake-language-server
 				"cmake",
 				-- https://github.com/razzmatazz/csharp-language-server
@@ -111,7 +113,8 @@ return {
 				-- https://github.com/haskell/haskell-language-server
 				"hls",
 				-- https://github.com/fwcd/kotlin-language-server
-				"kotlin_language_server",
+				-- NOTE: Using ktlint via null-ls
+				-- "kotlin_language_server",
 				-- https://github.com/artempyanykh/marksman
 				"marksman",
 				-- https://github.com/llvm/llvm-project
@@ -129,7 +132,8 @@ return {
 				"ruff_lsp",
 				-- https://github.com/joe-re/sql-language-server
 				-- Has per project configs
-				"sqlls",
+				-- NOTE: Using sqlfluff via null-ls
+				-- "sqlls",
 				-- Svelte language server
 				-- https://github.com/sveltejs/language-tools/tree/master/packages/language-server,
 				"svelte",

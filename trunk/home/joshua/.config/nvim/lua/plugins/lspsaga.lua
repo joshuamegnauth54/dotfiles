@@ -16,7 +16,7 @@ return {
 			{ "gh", "<cmd>Lspsaga lsp_finder<cr>", desc = "Find symbol's definition" },
 			{ "<leader>ca", "<cmd>Lspsaga code_action<cr>", desc = "Code action", mode = { "n", "v" } },
 			-- { "<leader>gr", "<cmd>Lspsaga rename<cr>", desc = "Rename symbol (file)" },
-			-- { "<leader>gr", "<cmd>Lspsaga rename ++project<cr>", desc = "Rename symbol (workspace)" },
+			{ "<F2>", "<cmd>Lspsaga rename ++project<cr>", desc = "Rename symbol (workspace)" },
 			{ "gp", "<cmd>Lspsaga peek_definition<cr>", desc = "Peek definition" },
 			{ "gd", "<cmd>Lspsaga goto_definition<cr>", desc = "Go to definition" },
 			{ "gt", "<cmd>Lspsaga peek_type_definition<cr>", desc = "Peek type definition" },
@@ -49,9 +49,9 @@ return {
 				virtual_text = false,
 			},
 			hover = {
-				-- Disable opening documentation links in a browser, even by accident
+				-- Open documentation in a private tab
 				-- open_link = "",
-				-- open_browser = "",
+				open_browser = "!firefox -private ",
 			},
 			rename = {
 				quit = quit_default,
@@ -64,6 +64,11 @@ return {
 			callhierarchy = {
 				keys = {
 					quit = quit_keys,
+				},
+			},
+			diagnostic = {
+				keys = {
+					quit = quit_default,
 				},
 			},
 			symbol_in_winbar = {
