@@ -72,7 +72,7 @@ return {
 			-- end
 			require("neodev")
 
-			-- Rust, C, base TypeScript, Deno, and Go are managed by other plugins below
+			-- Rust, C, Haskell, base TypeScript, Deno, and Go are managed by other plugins below
 			-- CSS, HTML, and JSON are set up below for snippet support
 			local lspconfig = require("lspconfig")
 			local default_lsps = {
@@ -111,7 +111,7 @@ return {
 				-- https://github.com/graphql/graphiql/tree/main/packages/graphql-language-service-cli
 				"graphql",
 				-- https://github.com/haskell/haskell-language-server
-				"hls",
+				-- "hls",
 				-- https://github.com/fwcd/kotlin-language-server
 				-- NOTE: Using ktlint via null-ls
 				-- "kotlin_language_server",
@@ -218,6 +218,19 @@ return {
 				capabilities = capabilities,
 				settings = {
 					Lua = {
+						color = {
+							mode = "SemanticEnhanced",
+						},
+						-- Using stylua instead
+						format = {
+							enable = false,
+						},
+						hint = {
+							enable = true,
+							paramType = true,
+							paramName = "All",
+							setType = true,
+						},
 						telemetry = {
 							enable = false,
 						},
@@ -410,6 +423,20 @@ return {
 					"neotest",
 				},
 				types = true,
+			},
+		},
+	},
+	-- https://github.com/mrcjkb/haskell-tools.nvim
+	{
+		"mrcjkb/haskell-tools.nvim",
+		dependencies = {
+			"nvim-lua/plenary.nvim",
+			"nvim-telescope/telescope.nvim",
+		},
+		ft = { "haskell" },
+		opts = {
+			hls = {
+				capabilities = require("cmp_nvim_lsp").default_capabilities(),
 			},
 		},
 	},

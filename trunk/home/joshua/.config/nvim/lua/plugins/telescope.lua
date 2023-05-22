@@ -93,6 +93,7 @@ return {
 				"dap",
 				"fzf",
 				"heading",
+				"noice",
 				"notify",
 				"ui-select",
 				"undo",

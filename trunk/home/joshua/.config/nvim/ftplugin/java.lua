@@ -22,6 +22,7 @@ end
 
 local config = {
 	-- cmd = { "/usr/bin/jdtls" },
+    capabilities = require("cmp_nvim_lsp").default_capabilities(),
 	cmd = {
 		"java",
 		"-Declipse.application=org.eclipse.jdt.ls.core.id1",
@@ -47,6 +48,14 @@ local config = {
 	settings = {
 		java = {
 			signatureHelp = { enabled = true },
+			format = {
+				enabled = true,
+				comments = { enabled = true },
+				settings = {
+					url = "https://raw.githubusercontent.com/google/styleguide/gh-pages/eclipse-java-google-style.xml",
+					profile = "GoogleStyle",
+				},
+			},
 		},
 	},
 	init_options = {

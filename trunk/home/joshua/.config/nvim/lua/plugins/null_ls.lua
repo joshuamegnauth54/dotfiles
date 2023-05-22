@@ -22,7 +22,7 @@ return {
 					null_ls.builtins.diagnostics.sqlfluff,
 					-- Formatters
 					null_ls.builtins.formatting.asmfmt,
-					null_ls.builtins.formatting.beautybash,
+					null_ls.builtins.formatting.beautysh,
 					-- null_ls.builtins.formatting.black,
 					null_ls.builtins.formatting.isort,
 					null_ls.builtins.formatting.just,
