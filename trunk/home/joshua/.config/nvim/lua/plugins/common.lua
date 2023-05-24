@@ -18,7 +18,12 @@ return {
 	{
 		"nvim-lualine/lualine.nvim",
 		dependencies = { "nvim-tree/nvim-web-devicons" },
-		config = true,
+		opts = {
+			options = {
+				theme = "catppuccin",
+				globalstatus = true,
+			},
+		},
 	},
 
 	-- Show symbols/tagged outline of source code (i.e. structs and functions)
