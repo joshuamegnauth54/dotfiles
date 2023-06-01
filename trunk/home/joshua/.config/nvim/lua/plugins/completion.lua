@@ -11,8 +11,10 @@ return {
 			"hrsh7th/cmp-path",
 			"hrsh7th/cmp-cmdline",
 			"hrsh7th/cmp-nvim-lua",
+			"hrsh7th/cmp-omni",
 			-- Function parameter completion
-			"hrsh7th/cmp-nvim-lsp-signature-help",
+			-- NOTE: Using lspsaga instead for this now
+			-- "hrsh7th/cmp-nvim-lsp-signature-help",
 			-- dap-ui completion
 			"https://github.com/rcarriga/cmp-dap",
 			"David-Kunz/cmp-npm",
@@ -44,7 +46,7 @@ return {
 				}),
 				sources = cmp.config.sources({
 					{ name = "nvim_lsp" },
-					{ name = "nvim_lsp_signature_help" },
+					-- { name = "nvim_lsp_signature_help" },
 					{ name = "nvim_lua", keyword_length = 2 },
 					{ name = "snippy", keyword_length = 2 },
 					{ name = "treesitter", keyword_length = 2 },

@@ -105,7 +105,8 @@ return {
 				-- https://github.com/svenstaro/glsl-language-server
 				"glslls",
 				-- https://github.com/golang/tools/tree/master/gopls
-				-- "gopls",
+				-- NOTE: go.nvim doesn't seem to work unless I load gopls here
+				"gopls",
 				-- https://github.com/microsoft/vscode-gradle
 				"gradle_ls",
 				-- https://github.com/graphql/graphiql/tree/main/packages/graphql-language-service-cli
@@ -443,10 +444,14 @@ return {
 	-- https://github.com/ray-x/go.nvim
 	{
 		"ray-x/go.nvim",
-		dependencies = { "neovim/nvim-lspconfig", "nvim-treesitter/nvim-treesitter" },
+		dependencies = {
+			"neovim/nvim-lspconfig",
+			"nvim-treesitter/nvim-treesitter",
+			-- Plugin commands raise errors without this
+			"ray-x/guihua.lua",
+		},
 		ft = { "go", "gomod", "gowork", "gotmpl" },
 		opts = {
-			trouble = true,
 			lsp_config = {
 				capabilities = require("cmp_nvim_lsp").default_capabilities(),
 				settings = {
@@ -479,6 +484,10 @@ return {
 					usePlaceholders = true,
 				},
 			},
+			trouble = true,
+			-- Would be nice if this just used the snippet directory
+			-- instead of demanding LuaSnip
+			-- luasnip = true,
 		},
 	},
 }

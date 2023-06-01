@@ -6,7 +6,7 @@ import:
 window:
   decorations: none
   startup_mode: Fullscreen
-  decorations_theme_variant: dark
+  decorations_theme_variant: Dark
 
 font:
   normal:
