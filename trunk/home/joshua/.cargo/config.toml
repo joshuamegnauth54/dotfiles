@@ -1,0 +1,4 @@
+# Global cargo config
+
+[net]
+git-fetch-with-cli = true
