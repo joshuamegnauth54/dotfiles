@@ -1,4 +1,7 @@
-c = get_config()
+from traitlets.config.loader import Config
+from traitlets.config import get_config
+
+c: Config = get_config()
 
 # Dracula theme
 c.TerminalInteractiveShell.highlighting_style = "dracula"
@@ -8,9 +11,14 @@ c.TerminalInteractiveShell.true_color = True
 c.InteractiveShell.colors = "linux"
 c.TerminalInteractiveShell.colors = "linux"
 
-# Pretty docstrings
-c.InteractiveShell.sphinxify_docstring = True
-c.TerminalInteractiveShell.sphinxify_docstring = True
+# Pretty docstrings. Requires docrepr
+try:
+    import docrepr
+
+    c.InteractiveShell.sphinxify_docstring = True
+    c.TerminalInteractiveShell.sphinxify_docstring = True
+except ImportError:
+    pass
 
 # Reformat code using black
 c.TerminalInteractiveShell.autoformatter = "black"
