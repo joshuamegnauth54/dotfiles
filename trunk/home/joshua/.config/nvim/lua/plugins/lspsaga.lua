@@ -28,10 +28,10 @@ return {
 			},
 			{ "[e", "<cmd>Lspsaga diagonostic_jump_prev<cr>", desc = "Jump to previous diagnostic" },
 			{ "]e", "<cmd>Lspsaga diagonostic_jump_next<cr>", desc = "Jump to next diagnostic" },
-			{ "t", "<cmd>Lspsaga outline<cr>", desc = "Symbols outline" },
+			{ "<leader>t", "<cmd>Lspsaga outline<cr>", desc = "Symbols outline" },
 			{ "K", "<cmd>Lspsaga hover_doc ++quiet<cr>", desc = "Show documentation" },
-			{ "ci", "<cmd>Lspsaga incoming_calls<cr>", desc = "Incoming calls" },
-			{ "co", "<cmd>Lspsaga outgoing_calls<cr>", desc = "Outgoing calls" },
+			{ "<F3>", "<cmd>Lspsaga incoming_calls<cr>", desc = "Incoming calls" },
+			{ "<F4>", "<cmd>Lspsaga outgoing_calls<cr>", desc = "Outgoing calls" },
 		},
 		opts = {
 			ui = {

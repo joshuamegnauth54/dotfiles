@@ -23,15 +23,20 @@ return {
 				config = true,
 			},
 		},
-		config = function()
+		opts = {
+			inlay_hints = {
+				enabled = true,
+			},
+		},
+		config = function(lsp_opts)
 			-- Mappings.
 			-- Copied from the lspconfig repo with minor edits
 			-- NOTE: Commented out mappings are handled by lspsaga.
-			local opts = { noremap = true, silent = true }
-			vim.keymap.set("n", "<space>e", vim.diagnostic.open_float, opts)
+			local key_opts = { noremap = true, silent = true }
+			vim.keymap.set("n", "<space>e", vim.diagnostic.open_float, key_opts)
 			-- vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, opts)
 			-- vim.keymap.set("n", "]d", vim.diagnostic.goto_next, opts)
-			vim.keymap.set("n", "<space>q", vim.diagnostic.setloclist, opts)
+			vim.keymap.set("n", "<space>q", vim.diagnostic.setloclist, key_opts)
 
 			-- Use an autocmd for LspAttach to bind keys after an LSP attaches
 			-- to the current buffer
@@ -44,7 +49,7 @@ return {
 					-- Buffer local mappings.
 					-- See `:help vim.lsp.*` for documentation on any of the below functions
 					local opts = { buffer = ev.buf }
-					vim.keymap.set("n", "gD", vim.lsp.buf.declaration, opts)
+					-- vim.keymap.set("n", "gD", vim.lsp.buf.declaration, opts)
 					-- vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
 					-- vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
 					vim.keymap.set("n", "gi", vim.lsp.buf.implementation, opts)
@@ -310,7 +315,7 @@ return {
 			},
 		},
 		-- lazy = true,
-		-- event = "BufRead *.rs",
+		event = "BufRead Cargo.toml",
 		ft = { "rust" },
 	},
 	-- Better cargo.toml integration
@@ -318,6 +323,11 @@ return {
 		"saecki/crates.nvim",
 		dependencies = { "nvim-lua/plenary.nvim" },
 		config = true,
+		opts = {
+			null_ls = {
+				enabled = true,
+			},
+		},
 		-- lazy = true,
 		event = "BufRead Cargo.toml",
 		keys = {
