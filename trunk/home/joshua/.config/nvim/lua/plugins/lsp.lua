@@ -23,12 +23,7 @@ return {
 				config = true,
 			},
 		},
-		opts = {
-			inlay_hints = {
-				enabled = true,
-			},
-		},
-		config = function(lsp_opts)
+		config = function()
 			-- Mappings.
 			-- Copied from the lspconfig repo with minor edits
 			-- NOTE: Commented out mappings are handled by lspsaga.
@@ -80,6 +75,11 @@ return {
 			-- Rust, C, Haskell, base TypeScript, Deno, and Go are managed by other plugins below
 			-- CSS, HTML, and JSON are set up below for snippet support
 			local lspconfig = require("lspconfig")
+
+			lspconfig["inlay_hints"] = {
+				enabled = true,
+			}
+
 			local default_lsps = {
 				-- https://github.com/angular/vscode-ng-language-service
 				"angularls",
@@ -89,6 +89,8 @@ return {
 				"awk_ls",
 				-- https://github.com/mads-hartmann/bash-language-server
 				"bashls",
+				-- https://github.com/facebook/buck2
+				"buck2",
 				-- https://github.com/bufbuild/buf-language-server
 				"bufls",
 				-- https://github.com/regen100/cmake-language-server
@@ -129,7 +131,7 @@ return {
 				-- I'm using this in conjunction with ruff.
 				-- Pyright = type checker
 				-- https://github.com/microsoft/pyright
-				"pyright",
+				-- "pyright",
 				-- Convenient and fast tools for TypeScript including an LSP
 				-- https://github.com/rome/tools
 				"rome",
@@ -157,6 +159,9 @@ return {
 				-- YAML
 				-- https://github.com/redhat-developer/yaml-language-server
 				"yamlls",
+				-- Zig
+				-- https://github.com/zigtools/zls
+				"zls",
 			}
 
 			-- Variables to pass to LSP configs
@@ -199,6 +204,17 @@ return {
 					},
 				},
 			})
+
+			-- Pyright
+			lspconfig["pyright"].setup({
+				capabilities = capabilities,
+				python = {
+					analysis = {
+						typeCheckingMode = "strict",
+					},
+				},
+			})
+
 			-- LanguageTool support for LaTeX, Markdown, and others
 			lspconfig["ltex"].setup({
 				capabilities = capabilities,
@@ -444,7 +460,7 @@ return {
 			"nvim-lua/plenary.nvim",
 			"nvim-telescope/telescope.nvim",
 		},
-		ft = { "haskell" },
+		ft = { "haskell", "lhaskell", "cabal", "cabalproject" },
 		opts = {
 			hls = {
 				capabilities = require("cmp_nvim_lsp").default_capabilities(),
