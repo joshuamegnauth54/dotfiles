@@ -138,6 +138,8 @@ return {
 				-- https://github.com/charliermarsh/ruff-lsp
 				-- Python
 				"ruff_lsp",
+				-- https://github.com/slint-ui/slint
+				"slint_lsp",
 				-- https://github.com/joe-re/sql-language-server
 				-- Has per project configs
 				-- NOTE: Using sqlfluff via null-ls
