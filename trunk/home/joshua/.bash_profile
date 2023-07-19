@@ -56,5 +56,11 @@ export PYTHONSAFEPATH
 # Use system libraries for Android emulator
 export ANDROID_EMULATOR_USE_SYSTEM_LIBS=1
 
+# Use gcr-ssh-agent if it's enabled
+if [[ -S $XDG_RUNTIME_DIR/gcr/ssh ]]
+then
+	export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/gcr/ssh"
+fi
+
 # Execute .bashrc last
 [[ -f ~/.bashrc ]] && . ~/.bashrc

@@ -1,6 +1,6 @@
 [user]
 	name = Josh Megnauth
-	email = {CHANGE}
+	email = replace@josh.com
 	editor = nvim
 [core]
 	editor = nvim
@@ -14,9 +14,11 @@
 [merge]
 	conflictstyle = diff3
 [delta]
-	syntax-theme = Dracula
+	syntax-theme = Catpuccin-mocha
 	light = false
 	line-numbers = true
 	# N and n to move between diff sections
 	navigate = true
 	side-by-side = true
+[init]
+	defaultBranch = main
