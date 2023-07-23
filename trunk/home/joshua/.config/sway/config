@@ -1,0 +1,290 @@
+# Sway sway sway sway swag
+
+# Import color scheme to expose colors
+include catppuccin-mocha
+
+# Mod1 is alt; useful for VMs
+set $mod Mod4
+
+# Movement
+set $left h
+set $down j
+set $up k
+set $right l
+
+# Terminal and yofi
+set $term alacritty
+set $browser firefox
+set $menu yofi -d apps | xargs swaymsg exec --
+
+#
+# Aesthetics
+#
+    ## Colors                title     bg    text   indicator  border
+    client.focused           $pink     $base $text  $rosewater $pink
+    client.focused_inactive  $mauve    $base $text  $rosewater $mauve
+    client.unfocused         $mauve    $base $text  $rosewater $mauve
+    client.urgent            $peach    $base $peach $overlay0  $peach
+    client.placeholder       $overlay0 $base $text  $overlay0  $overlay0
+    client.background        $base   
+
+    ## Wallpaper
+    output * bg ~/Pictures/Wallpapers/current fill
+
+    ## Adaptive sync
+    # output * adaptive_sync on
+
+    set $font "NotoSans Nerd Font"
+
+    font pango: $font 16px
+
+    ## GTK theme
+    set $gnome-schema org.gnome.desktop.interface
+    exec_always {
+        gsettings set $gnome-schema gtk-theme "Catppuccin-Mocha-Standard-Sapphire-dark-xhdpi"
+        gsettings set $gnome-schema cursor-theme "Catppuccin-Mocha-Blue-Cursors"
+        gsettings set $gnome-schema icon-theme "Papirus-Dark"
+        gsettings set $gnome-schema font-name $font
+    }
+    seat seat0 xcursor_theme Catppuccin-Mocha-Blue-Cursors 32
+
+    ## Borders
+    # default_border pixel 0
+    default_border none
+    default_floating_border normal
+    smart_borders on
+
+# Idle actions
+exec swayidle -w \
+         timeout 600 'swaylock -f -c 000000' \
+         timeout 900 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' \
+         before-sleep 'swaylock -f -c 000000'
+
+#
+# Window overrides:
+#
+    for_window [window_type="dialog"] floating enable
+    for_window [window_role="dialog"] floating enable
+    for_window [window_role = "pop-up"] floating enable
+    for_window [window_role = "bubble"] floating enable
+    for_window [window_role = "task_dialog"] floating enable
+    for_window [window_type = "menu"] floating enable
+    for_window [app_id = "floating"] floating enable
+    for_window [app_id = "floating_update"] floating enable, resize set width 1000px height 600px
+    for_window [class = "(?i)pinentry"] floating enable
+    for_window [title = "Administrator privileges required"] floating enable
+
+    # Firefox
+    for_window [title = "About Mozilla Firefox"] floating enable
+    for_window [window_role = "About"] floating enable
+    for_window [app_id="firefox" title="Library"] floating enable, border pixel 1, sticky enable
+    for_window [title = "Firefox [-—] Sharing Indicator"] kill
+    for_window [app_id="firefox" title="^Picture-in-Picture$"] floating enable, border none, sticky enable
+
+    # Steam
+    set $steam "^[sS]team$"
+    for_window [class=$steam title="^Friends List$"] floating enable
+    for_window [class=$steam title="Steam - News"] floating enable
+    for_window [class=$steam title=".* - Chat"] floating enable
+    for_window [class=$steam title="^Settings$"] floating enable
+    for_window [class=$steam title=".* - event started"] floating enable
+    for_window [class=$steam title=".* CD key"] floating enable
+    for_window [class=$steam title="^Steam - Self Updater$"] floating enable
+    for_window [class=$steam title="^Screenshot Uploader$"] floating enable
+    for_window [class=$steam title="^Steam Guard - Computer Authorization Required$"] floating enable
+    for_window [title="^Steam Keyboard$"] floating enable
+
+    # Programs
+    for_window [app_id="mpv"] floating enable
+    for_window [app_id="vlc"] floating enable
+    for_window [app_id="sxiv"] floating enable
+
+### Key bindings
+#
+# Basics:
+#
+    # Start a terminal
+    # bindsym $mod+Return exec $term
+
+    # Kill focused window
+    bindsym $mod+Shift+q kill
+
+    # Start wofi
+    bindsym $mod+d exec $menu
+
+    # Drag floating windows by holding down $mod and left mouse button.
+    # Resize them with right mouse button + $mod.
+    # Despite the name, also works for non-floating windows.
+    # Change normal to inverse to use left mouse button for resizing and right
+    # mouse button for dragging.
+    floating_modifier $mod normal
+
+    # Reload the configuration file
+    bindsym $mod+Shift+c reload
+
+    # Exit sway (logs you out of your Wayland session)
+    bindsym $mod+Shift+e exec swaynag -t warning -m 'Close Sway and Wayland?' -B 'Yes' 'swaymsg exit'
+#
+# Moving around:
+#
+    # Move your focus around
+    bindsym $mod+$left focus left
+    bindsym $mod+$down focus down
+    bindsym $mod+$up focus up
+    bindsym $mod+$right focus right
+    # Or use $mod+[up|down|left|right]
+    bindsym $mod+Left focus left
+    bindsym $mod+Down focus down
+    bindsym $mod+Up focus up
+    bindsym $mod+Right focus right
+
+    # Move the focused window with the same, but add Shift
+    bindsym $mod+Shift+$left move left
+    bindsym $mod+Shift+$down move down
+    bindsym $mod+Shift+$up move up
+    bindsym $mod+Shift+$right move right
+    # Ditto, with arrow keys
+    bindsym $mod+Shift+Left move left
+    bindsym $mod+Shift+Down move down
+    bindsym $mod+Shift+Up move up
+    bindsym $mod+Shift+Right move right
+#
+# Workspaces:
+#
+    # Switch to workspace
+    bindsym $mod+1 workspace number 1
+    bindsym $mod+2 workspace number 2
+    bindsym $mod+3 workspace number 3
+    bindsym $mod+4 workspace number 4
+    bindsym $mod+5 workspace number 5
+    bindsym $mod+6 workspace number 6
+    bindsym $mod+7 workspace number 7
+    bindsym $mod+8 workspace number 8
+    bindsym $mod+9 workspace number 9
+    bindsym $mod+0 workspace number 10
+    # Move focused container to workspace
+    bindsym $mod+Shift+1 move container to workspace number 1
+    bindsym $mod+Shift+2 move container to workspace number 2
+    bindsym $mod+Shift+3 move container to workspace number 3
+    bindsym $mod+Shift+4 move container to workspace number 4
+    bindsym $mod+Shift+5 move container to workspace number 5
+    bindsym $mod+Shift+6 move container to workspace number 6
+    bindsym $mod+Shift+7 move container to workspace number 7
+    bindsym $mod+Shift+8 move container to workspace number 8
+    bindsym $mod+Shift+9 move container to workspace number 9
+    bindsym $mod+Shift+0 move container to workspace number 10
+    # Note: workspaces can have any name you want, not just numbers.
+    # We just use 1-10 as the default.
+#
+# Layout stuff:
+#
+    # You can "split" the current object of your focus with
+    # $mod+b or $mod+v, for horizontal and vertical splits
+    # respectively.
+    bindsym $mod+b splith
+    bindsym $mod+v splitv
+
+    # Switch the current container between different layout styles
+    bindsym $mod+s layout stacking
+    bindsym $mod+w layout tabbed
+    bindsym $mod+e layout toggle split
+
+    # Make the current focus fullscreen
+    bindsym $mod+f fullscreen
+
+    # Toggle the current focus between tiling and floating mode
+    bindsym $mod+Shift+space floating toggle
+
+    # Swap focus between the tiling area and the floating area
+    bindsym $mod+space focus mode_toggle
+
+    # Move focus to the parent container
+    bindsym $mod+a focus parent
+#
+# Scratchpad:
+#
+    # Sway has a "scratchpad", which is a bag of holding for windows.
+    # You can send windows there and get them back later.
+
+    # Move the currently focused window to the scratchpad
+    bindsym $mod+Shift+minus move scratchpad
+
+    # Show the next scratchpad window or hide the focused scratchpad window.
+    # If there are multiple scratchpad windows, this command cycles through them.
+    bindsym $mod+minus scratchpad show
+#
+# Special keys:
+#
+    bindsym XF86AudioRaiseVolume exec wpctl set-volume -l 1.5 @DEFAULT_AUDIO_SINK@ 1%+
+    bindsym XF86AudioLowerVolume exec wpctl set-volume -l 1.5 @DEFAULT_AUDIO_SINK@ 1%-
+    bindsym XF86AudioMute exec wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
+    bindsym XF86AudioMicMute exec wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle
+    bindsym XF86MonBrightnessDown exec brightnessctl set 5%-
+    bindsym XF86MonBrightnessUp exec brightnessctl set 5%+
+    bindsym XF86AudioPlay exec playerctl play-pause
+    bindsym XF86AudioNext exec playerctl next
+    bindsym XF86AudioPrev exec playerctl previous
+    bindsym XF86Search exec $menu
+
+#
+# Screenshots:
+#
+    bindsym Print exec grim - | wl-copy
+    bindsym Control+Print grim -g "$(slurp)" - | wl-copy
+
+#
+# Resizing containers:
+#
+mode "resize" {
+    # left will shrink the containers width
+    # right will grow the containers width
+    # up will shrink the containers height
+    # down will grow the containers height
+    bindsym $left resize shrink width 10px
+    bindsym $down resize grow height 10px
+    bindsym $up resize shrink height 10px
+    bindsym $right resize grow width 10px
+
+    # Ditto, with arrow keys
+    bindsym Left resize shrink width 10px
+    bindsym Down resize grow height 10px
+    bindsym Up resize shrink height 10px
+    bindsym Right resize grow width 10px
+
+    # Return to default mode
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+bindsym $mod+r mode "resize"
+
+#
+# Autostart:
+#
+    # Let dbus/GTK+ know which Wayland display to use
+    exec --no-startup-id dbus-update-activation-environment --all
+    # Start a secrets daemon
+    exec gnome-keyring-daemon --start --components=secrets
+    # Preload mako
+    exec mako
+
+#
+# Status Bar:
+#
+# Read `man 5 sway-bar` for more information about this section.
+bar {
+    position top
+
+    # When the status_command prints a new line to stdout, swaybar updates.
+    # The default just shows the current date and time.
+    status_command while date +'%Y-%m-%d %I:%M:%S %p'; do sleep 1; done
+
+    colors {
+        statusline #ffffff
+        background #323232
+        inactive_workspace #32323200 #32323200 #5c5c5c
+    }
+}
+
+
+# Contains useful exports and blah blah
+include /etc/sway/config.d/*

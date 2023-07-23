@@ -128,6 +128,8 @@ return {
 				-- https://github.com/llvm/llvm-project
 				"mlir_lsp_server",
 				"mlir_pdll_lsp_server",
+				-- https://github.com/Freed-Wu/pkgbuild-language-server
+				"pkgbuild_language_server",
 				-- I'm using this in conjunction with ruff.
 				-- Pyright = type checker
 				-- https://github.com/microsoft/pyright

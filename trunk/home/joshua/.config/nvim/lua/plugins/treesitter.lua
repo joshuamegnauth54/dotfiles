@@ -69,6 +69,7 @@ return {
 				"gosum",
 				"gowork",
 				"graphql",
+                "groovy",
 				"haskell",
 				"haskell_persistent",
 				-- "help",
@@ -113,6 +114,7 @@ return {
 				"sql",
 				"starlark",
 				"svelte",
+                "systemtap",
 				"toml",
 				"tsx",
 				"typescript",
@@ -122,6 +124,7 @@ return {
 				"wgsl",
 				"wgsl_bevy",
 				"yaml",
+                "yuck",
 				"zig",
 			},
 			incremental_selection = {

@@ -18,7 +18,8 @@ export CARGO_NAME=Joshua
 
 # SDL
 export SDL_AUDIODRIVER="pipewire"
-export SDL_VIDEODRIVER="wayland"
+# Prefer Wayland but allow x11 for broken programs
+export SDL_VIDEODRIVER="wayland,x11"
 
 # Java
 # Fix GUI
@@ -31,6 +32,7 @@ export WLR_RENDERER=vulkan
 # export PYCHARM_JDK=`java-config -O`
 export KITTY_ENABLE_WAYLAND=1
 export MOZ_ENABLE_WAYLAND=1
+export XDG_SESSION_TYPE=wayland
 
 # double entries in the shell history
 export HISTCONTROL="erasedups:ignoreboth"
@@ -47,7 +49,7 @@ export QT_QPA_PLATFORM=wayland
 export CLUTTER_BACKEND=wayland
 
 # SciPy
-export SCIPY_PIL_IMAGE_VIEWER=nomacs
+export SCIPY_PIL_IMAGE_VIEWER=nsxiv
 export USE_SYMENGINE=1
 
 # Don't append CWD to the import path
@@ -55,12 +57,6 @@ export PYTHONSAFEPATH
 
 # Use system libraries for Android emulator
 export ANDROID_EMULATOR_USE_SYSTEM_LIBS=1
-
-# Use gcr-ssh-agent if it's enabled
-if [[ -S $XDG_RUNTIME_DIR/gcr/ssh ]]
-then
-	export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/gcr/ssh"
-fi
 
 # Execute .bashrc last
 [[ -f ~/.bashrc ]] && . ~/.bashrc
