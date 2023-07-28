@@ -44,14 +44,16 @@ set $menu yofi -d apps | xargs swaymsg exec --
         gsettings set $gnome-schema gtk-theme "Catppuccin-Mocha-Standard-Sapphire-dark-xhdpi"
         gsettings set $gnome-schema cursor-theme "Catppuccin-Mocha-Blue-Cursors"
         gsettings set $gnome-schema icon-theme "Papirus-Dark"
+        gsettings set $gnome-schema color-scheme prefer-dark
         gsettings set $gnome-schema font-name $font
     }
     seat seat0 xcursor_theme Catppuccin-Mocha-Blue-Cursors 32
 
     ## Borders
-    # default_border pixel 0
     default_border none
-    default_floating_border normal
+    # titlebar_padding 1
+    # titlebar_border_thickness 0
+    # default_floating_border normal
     smart_borders on
 
 # Idle actions
@@ -97,7 +99,8 @@ exec swayidle -w \
     # Programs
     for_window [app_id="mpv"] floating enable
     for_window [app_id="vlc"] floating enable
-    for_window [app_id="sxiv"] floating enable
+    for_window [class="[nN]sxiv"] floating enable move scratchpad
+    for_window [app_id="sniffnet"] floating enable
 
 ### Key bindings
 #
@@ -109,7 +112,7 @@ exec swayidle -w \
     # Kill focused window
     bindsym $mod+Shift+q kill
 
-    # Start wofi
+    # Start yofi
     bindsym $mod+d exec $menu
 
     # Drag floating windows by holding down $mod and left mouse button.
@@ -175,6 +178,10 @@ exec swayidle -w \
     bindsym $mod+Shift+0 move container to workspace number 10
     # Note: workspaces can have any name you want, not just numbers.
     # We just use 1-10 as the default.
+
+    # Switch workspaces with ctrl + right or left
+    bindsym $mod+control+Right workspace next
+    bindsym $mod+control+Left workspace prev
 #
 # Layout stuff:
 #
@@ -230,7 +237,7 @@ exec swayidle -w \
 # Screenshots:
 #
     bindsym Print exec grim - | wl-copy
-    bindsym Control+Print grim -g "$(slurp)" - | wl-copy
+    bindsym Ctrl+Print exec slurp | grim -g - - | wl-copy
 
 #
 # Resizing containers:
@@ -261,7 +268,7 @@ bindsym $mod+r mode "resize"
 # Autostart:
 #
     # Let dbus/GTK+ know which Wayland display to use
-    exec --no-startup-id dbus-update-activation-environment --all
+    exec dbus-update-activation-environment --all
     # Start a secrets daemon
     exec gnome-keyring-daemon --start --components=secrets
     # Preload mako
@@ -276,12 +283,14 @@ bar {
 
     # When the status_command prints a new line to stdout, swaybar updates.
     # The default just shows the current date and time.
-    status_command while date +'%Y-%m-%d %I:%M:%S %p'; do sleep 1; done
+    status_command while date +'%A, %B %d %H:%M'; do sleep 1; done
 
     colors {
-        statusline #ffffff
-        background #323232
-        inactive_workspace #32323200 #32323200 #5c5c5c
+        statusline $text
+        background $mantle
+        focused_workspace $mantle $mantle $sky
+        inactive_workspace $mantle $mantle $pink
+        urgent_workspace $red $mantle $red
     }
 }
 
