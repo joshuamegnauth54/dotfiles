@@ -3,6 +3,7 @@
 max-history=25
 default-timeout=5000
 ignore-timeout=1
+font=Fira Mono Medium 14
 
 # Colors (Catppuccin mocha)
 background-color=#1e1e2e

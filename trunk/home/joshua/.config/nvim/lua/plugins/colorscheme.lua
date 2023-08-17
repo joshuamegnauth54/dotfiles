@@ -31,11 +31,12 @@ return {
 					nvimtree = true,
 					semantic_tokens = true,
 					symbols_outline = true,
+					rainbow_delimiters = true,
 					telescope = true,
 					treesitter = true,
 					treesitter_context = true,
 					-- ts_rainbow = true,
-					ts_rainbow2 = true,
+					-- ts_rainbow2 = true,
 				},
 			})
 			vim.cmd.colorscheme("catppuccin")

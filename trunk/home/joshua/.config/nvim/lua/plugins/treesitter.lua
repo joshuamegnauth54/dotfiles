@@ -18,12 +18,6 @@ return {
 				"nvim-treesitter/nvim-treesitter-textobjects",
 			},
 			{
-				-- Highlight matching brackets
-				-- NOTE: Periodically check this plugin because it's always deprecated for some reason
-				"HiPhish/nvim-ts-rainbow2",
-				-- lazy = true,
-			},
-			{
 				-- Context aware commenting using nvim's commentString buffer and treesitter
 				-- `gcc`
 				"JoosepAlviste/nvim-ts-context-commentstring",
@@ -69,7 +63,7 @@ return {
 				"gosum",
 				"gowork",
 				"graphql",
-                "groovy",
+				"groovy",
 				"haskell",
 				"haskell_persistent",
 				-- "help",
@@ -114,7 +108,7 @@ return {
 				"sql",
 				"starlark",
 				"svelte",
-                "systemtap",
+				"systemtap",
 				"toml",
 				"tsx",
 				"typescript",
@@ -124,7 +118,7 @@ return {
 				"wgsl",
 				"wgsl_bevy",
 				"yaml",
-                "yuck",
+				"yuck",
 				"zig",
 			},
 			incremental_selection = {
@@ -197,17 +191,6 @@ return {
 						},
 					},
 				},
-			},
-			-- nvim-ts-rainbow2
-			rainbow = {
-				enable = true,
-				query = {
-					"rainbow-parens",
-					html = "rainbow-tags",
-				},
-				-- strategy = {
-				-- require ("ts-rainbow").strategy.global,
-				-- },
 			},
 			autotag = {
 				enable = true,

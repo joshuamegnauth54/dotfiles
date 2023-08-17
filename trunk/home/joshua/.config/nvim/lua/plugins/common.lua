@@ -25,7 +25,6 @@ return {
 			},
 		},
 	},
-
 	-- Show symbols/tagged outline of source code (i.e. structs and functions)
 	-- NOTE: Replaced by lspsaga for now to reduce plugins.
 	-- {
@@ -142,5 +141,11 @@ return {
 		config = function(_, opts)
 			require("mini.comment").setup(opts)
 		end,
+	},
+	-- Highlight matching brackets
+	-- NOTE: Periodically check this plugin because it's always deprecated for some reason
+	{
+		"HiPhish/rainbow-delimiters.nvim",
+		-- lazy = true,
 	},
 }

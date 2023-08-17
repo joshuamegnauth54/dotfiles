@@ -3,6 +3,9 @@
 # Import color scheme to expose colors
 include catppuccin-mocha
 
+# Contains useful exports and blah blah
+include /etc/sway/config.d/*
+
 # Mod1 is alt; useful for VMs
 set $mod Mod4
 
@@ -283,7 +286,7 @@ bar {
 
     # When the status_command prints a new line to stdout, swaybar updates.
     # The default just shows the current date and time.
-    status_command while date +'%A, %B %d %H:%M'; do sleep 1; done
+    status_command while date +'%A, %B %d %H:%M'; do sleep 5; done
 
     colors {
         statusline $text
@@ -295,5 +298,3 @@ bar {
 }
 
 
-# Contains useful exports and blah blah
-include /etc/sway/config.d/*
