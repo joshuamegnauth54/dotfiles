@@ -1,9 +1,14 @@
 # Options
 ## Some programs are really loquacious
 max-history=25
-default-timeout=5000
+default-timeout=8000
 ignore-timeout=1
-font=Fira Mono Medium 14
+font=Fira Mono Medium 15
+icons=1
+
+# Sizes
+width=450
+height=250
 
 # Colors (Catppuccin mocha)
 background-color=#1e1e2e
