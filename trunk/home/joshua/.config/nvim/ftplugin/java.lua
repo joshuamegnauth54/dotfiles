@@ -1,28 +1,16 @@
 local jdtls_path = "/usr/share/java/jdtls/"
 local jdtls_plugins = jdtls_path .. "plugins/"
-local equinox = "org.eclipse.equinox.launcher.jar"
 
 -- From nvim-jdtls repository
 local project_name = vim.fn.fnamemodify(vim.fn.getcwd(), ":p:h:t")
-local workspace_dir = vim.fn.expand("~/Repos/Java/") .. project_name
+local workspace_dir = vim.fn.expand("~/.cache/Eclipse/") .. project_name
 
 -- Equinox launcher
-local grep_equinox = io.popen("rg -g '*equinox.launcher_*.jar' --files " .. jdtls_plugins)
-local equinox_path = jdtls_plugins .. equinox
-if grep_equinox then
-	local result = grep_equinox:read("*a")
-	if result and result ~= "" then
-		equinox_path = result
-	else
-		vim.notify("[nvim-jtls setup]: Unable to find: " .. equinox, vim.log.levels.WARN)
-	end
-else
-	vim.notify("[nvim-jdtls setup]: Is ripgrep (`rg`) installed?", vim.log.levels.WARN)
-end
+local equinox_path = vim.fn.glob(jdtls_plugins .. "org.eclipse.equinox.launcher_*.jar")
 
 local config = {
 	-- cmd = { "/usr/bin/jdtls" },
-    capabilities = require("cmp_nvim_lsp").default_capabilities(),
+	capabilities = require("cmp_nvim_lsp").default_capabilities(),
 	cmd = {
 		"java",
 		"-Declipse.application=org.eclipse.jdt.ls.core.id1",
@@ -30,7 +18,7 @@ local config = {
 		"-Declipse.product=org.eclipse.jdt.ls.core.product",
 		"-Dlog.protocol=true",
 		"-Dlog.level=ALL",
-		"-Xmx1g",
+		"-Xmx4g",
 		"--add-modules=ALL-SYSTEM",
 		"--add-opens",
 		"java.base/java.util=ALL-UNNAMED",
@@ -54,6 +42,16 @@ local config = {
 				settings = {
 					url = "https://raw.githubusercontent.com/google/styleguide/gh-pages/eclipse-java-google-style.xml",
 					profile = "GoogleStyle",
+				},
+			},
+			codeGeneration = {
+				useBlocks = true,
+			},
+			contentProvider = { preferred = "procyon-decompiler" },
+			sources = {
+				organizeImports = {
+					starThreshold = 9999,
+					staticStarThreshold = 9999,
 				},
 			},
 		},

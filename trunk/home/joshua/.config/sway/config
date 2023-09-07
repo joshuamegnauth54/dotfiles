@@ -99,6 +99,9 @@ exec swayidle -w \
     for_window [class=$steam title="^Steam Guard - Computer Authorization Required$"] floating enable
     for_window [title="^Steam Keyboard$"] floating enable
 
+    # Gamescope compositor
+    for_window [app_id="gamescope"] border none, fullscreen
+
     # Programs
     for_window [app_id="mpv"] floating enable
     for_window [app_id="vlc"] floating enable
@@ -185,6 +188,10 @@ exec swayidle -w \
     # Switch workspaces with ctrl + right or left
     bindsym $mod+control+Right workspace next
     bindsym $mod+control+Left workspace prev
+
+    # Alt-tab...sort of
+    bindsym $mod+Tab workspace back_and_forth
+
 #
 # Layout stuff:
 #

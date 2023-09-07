@@ -471,6 +471,23 @@ return {
 			},
 		},
 	},
+	-- https://github.com/pmizio/typescript-tools.nvim
+	{
+		"pmizio/typescript-tools.nvim",
+		dependencies = {
+			"nvim-lua/plenary.nvim",
+			"neovim/nvim-lspconfig",
+		},
+		ft = { "javascript", "javascriptreact", "javascript.jsx", "typescript", "typescriptreact", "typescript.tsx" },
+		opts = {
+			settings = {
+				tsserver_file_preferences = {
+					includeInlayParameterNameHints = "all",
+					includeCompletionsForModuleExports = true,
+				},
+			},
+		},
+	},
 	-- https://github.com/ray-x/go.nvim
 	{
 		"ray-x/go.nvim",
