@@ -89,6 +89,10 @@ return {
 				"awk_ls",
 				-- https://github.com/mads-hartmann/bash-language-server
 				"bashls",
+				-- Convenient and fast tools for TypeScript including an LSP
+                -- (Rome fork)
+                -- https://github.com/biomejs/biome
+				"biome",
 				-- https://github.com/facebook/buck2
 				"buck2",
 				-- https://github.com/bufbuild/buf-language-server
@@ -134,9 +138,6 @@ return {
 				-- Pyright = type checker
 				-- https://github.com/microsoft/pyright
 				-- "pyright",
-				-- Convenient and fast tools for TypeScript including an LSP
-				-- https://github.com/rome/tools
-				"rome",
 				-- https://github.com/charliermarsh/ruff-lsp
 				-- Python
 				"ruff_lsp",
