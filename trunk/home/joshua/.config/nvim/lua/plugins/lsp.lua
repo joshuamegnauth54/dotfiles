@@ -60,7 +60,14 @@ return {
 					-- vim.keymap.set({ "n", "v" }, "<space>ca", vim.lsp.buf.code_action, opts)
 					vim.keymap.set("n", "gr", vim.lsp.buf.references, opts)
 					vim.keymap.set("n", "<leader>f", function()
-						vim.lsp.buf.format({ async = true })
+						-- WARNING: https://github.com/mhartington/formatter.nvim/issues/260
+						-- Hopefully this is fixed
+						local formatter_ft = require("formatter.config").values.filetype
+						if formatter_ft[vim.bo.filetype] ~= nil then
+							vim.cmd.Format()
+						else
+							vim.lsp.buf.format({ async = true })
+						end
 					end, opts)
 				end,
 			})
@@ -90,8 +97,8 @@ return {
 				-- https://github.com/mads-hartmann/bash-language-server
 				"bashls",
 				-- Convenient and fast tools for TypeScript including an LSP
-                -- (Rome fork)
-                -- https://github.com/biomejs/biome
+				-- (Rome fork)
+				-- https://github.com/biomejs/biome
 				"biome",
 				-- https://github.com/facebook/buck2
 				"buck2",

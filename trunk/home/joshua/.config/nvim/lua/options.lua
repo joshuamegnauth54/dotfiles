@@ -173,7 +173,7 @@ set.pumheight = 10
 
 -- Single status line for all neovim windows
 set.laststatus = 3
-vim.api.nvim_set_hl(0, "WinSeparator", { bg = "None", default = True })
+vim.api.nvim_set_hl(0, "WinSeparator", { bg = "None", default = true })
 
 -- Highlight cursor line so I don't get lost
 set.cursorline = true
