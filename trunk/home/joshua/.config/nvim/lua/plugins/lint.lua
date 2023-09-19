@@ -11,13 +11,8 @@ return {
 	{
 		"mfussenegger/nvim-lint",
 		lazy = true,
-		opts = {
-			linters = {
-				-- dotenv_linter = {
-				--     cmd = "dotenv-linter",
-				-- }
-			},
-			linters_by_ft = {
+		config = function()
+			require("lint").linters_by_ft = {
 				c = { "cppcheck", "flawfinder" },
 				cmake = { "cmakelint" },
 				cpp = { "cppcheck", "clazy", "flawfinder" },
@@ -29,7 +24,11 @@ return {
 				sh = { "shellcheck" }, --, "dotenv_linter"},
 				sql = { "sqlfluff" },
 				yaml = { "actionlint", "cfn_lint", "cfn_nag" },
-			},
-		},
+			}
+
+			-- require("lint").linters = {
+			-- 	dotenv_linter = {},
+			-- }
+		end,
 	},
 }
