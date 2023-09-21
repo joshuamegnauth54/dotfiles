@@ -217,6 +217,16 @@ return {
 				},
 			})
 
+			-- https://clangd.llvm.org/installation.html
+			-- NOTE: clangd-extensions' instructions say to set up clangd here too
+			lspconfig["clangd"].setup({
+				capabilities = capabilities,
+				on_attach = function()
+					require("clangd_extensions.inlay_hints").setup_autocmd()
+					require("clangd_extensions.inlay_hints").set_inlay_hints()
+				end,
+			})
+
 			-- Pyright
 			lspconfig["pyright"].setup({
 				capabilities = capabilities,
