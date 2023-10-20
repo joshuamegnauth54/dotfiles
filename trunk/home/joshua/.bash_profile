@@ -1,10 +1,11 @@
 # Environmental variables
 # Add Cargo and local, non-root NPM to PATH
 export NPM_PACKAGES="${HOME}/.cache/npm/npm-packages"
-export PATH="$PATH:${HOME}/.cargo/bin:${NPM_PACKAGES}/bin"
+export PATH="$PATH:${HOME}/.cargo/bin:${NPM_PACKAGES}/bin:${HOME}/.dotnet/tools"
 export MANPATH="${MANPATH-$(manpath)}:${NPM_PACKAGES}/share/man"
 export GOPATH="${HOME}/Repos/Golang"
 export GOMODCACHE="${HOME}/.cache/go"
+export DOTNET_ROOT="/opt/dotnet"
 
 # Editors, pager, et cetera
 export EDITOR="nvim"
@@ -57,6 +58,9 @@ export PYTHONSAFEPATH
 
 # Use system libraries for Android emulator
 export ANDROID_EMULATOR_USE_SYSTEM_LIBS=1
+
+# Disable C# telemetry
+export DOTNET_CLI_TELEMETRY_OPTOUT=1
 
 # Execute .bashrc last
 [[ -f ~/.bashrc ]] && . ~/.bashrc

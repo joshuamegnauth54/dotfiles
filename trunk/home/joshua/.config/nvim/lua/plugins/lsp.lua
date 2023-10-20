@@ -106,8 +106,9 @@ return {
 				"bufls",
 				-- https://github.com/regen100/cmake-language-server
 				"cmake",
+				-- NOTE: Using omnisharp now
 				-- https://github.com/razzmatazz/csharp-language-server
-				"csharp_ls",
+				-- "csharp_ls",
 				-- https://github.com/antonk52/cssmodules-language-server
 				"cssmodules_ls",
 				-- https://github.com/microsoft/compose-language-service
@@ -132,15 +133,15 @@ return {
 				-- https://github.com/haskell/haskell-language-server
 				-- "hls",
 				-- https://github.com/fwcd/kotlin-language-server
-				-- NOTE: Using ktlint via null-ls
+				-- NOTE: Using ktlint via nvim-lint
 				-- "kotlin_language_server",
 				-- https://github.com/artempyanykh/marksman
 				"marksman",
 				-- https://github.com/llvm/llvm-project
 				"mlir_lsp_server",
 				"mlir_pdll_lsp_server",
-                -- https://github.com/neomutt/mutt-language-server
-                "mutt_ls",
+				-- https://github.com/neomutt/mutt-language-server
+				"mutt_ls",
 				-- https://github.com/Freed-Wu/pkgbuild-language-server
 				"pkgbuild_language_server",
 				-- I'm using this in conjunction with ruff.
@@ -154,7 +155,7 @@ return {
 				"slint_lsp",
 				-- https://github.com/joe-re/sql-language-server
 				-- Has per project configs
-				-- NOTE: Using sqlfluff via null-ls
+				-- NOTE: Using sqlfluff via nvim-lint
 				-- "sqlls",
 				-- Svelte language server
 				-- https://github.com/sveltejs/language-tools/tree/master/packages/language-server,
@@ -295,6 +296,17 @@ return {
 						},
 					},
 				},
+			})
+
+			-- https://github.com/omnisharp/omnisharp-roslyn
+			local pid = vim.fn.getpid()
+			lspconfig["omnisharp"].setup({
+				capabilities = capabilities,
+				cmd = { "omnisharp", "--languageserver", "--hostPID", tostring(pid) },
+				handlers = { ["textDocument/definition"] = require("omnisharp_extended").handler },
+				enable_editorconfig_support = true,
+				enable_roslyn_analyzers = true,
+				enable_import_completion = true,
 			})
 		end,
 	},
@@ -556,5 +568,11 @@ return {
 			-- instead of demanding LuaSnip
 			-- luasnip = true,
 		},
+	},
+	-- https://github.com/Hoffs/omnisharp-extended-lsp.nvim
+	{
+		"Hoffs/omnisharp-extended-lsp.nvim",
+		dependencies = { "neovim/nvim-lspconfig" },
+		ft = { "cs", "vb" },
 	},
 }

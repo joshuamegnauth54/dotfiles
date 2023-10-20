@@ -5,13 +5,12 @@
 # that can't tolerate any output.  So make sure this doesn't display
 # anything or bad things will happen !
 
-
 # Test for an interactive shell.  There is no need to set anything
 # past this point for scp and rcp, and it's important to refrain from
 # outputting anything in those cases.
-if [[ $- != *i* ]] ; then
-	# Shell is non-interactive.  Be done now!
-	return
+if [[ $- != *i* ]]; then
+    # Shell is non-interactive.  Be done now!
+    return
 fi
 
 # Put your fun stuff here.
@@ -42,29 +41,24 @@ alias procs='procs --theme dark'
 alias erd="erd -IH"
 
 # Alias if I have this stuff installed
-if [[ -f /usr/bin/bat ]]
-then
-	alias cat='bat'
+if [[ -f /usr/bin/bat ]]; then
+    alias cat='bat'
 fi
 
-if [[ -f /usr/bin/exa ]]
-then
-	alias ls='exa'
-	alias ll='exa -la'
+if [[ -f /usr/bin/exa ]]; then
+    alias ls='exa'
+    alias ll='exa -la'
 fi
 
-if [[ -f /usr/bin/nvim ]]
-then
-	alias vim='nvim'
+if [[ -f /usr/bin/nvim ]]; then
+    alias vim='nvim'
 fi
 
-if [[ -f /usr/bin/dust ]]
-then
-	alias du="dust"
+if [[ -f /usr/bin/dust ]]; then
+    alias du="dust"
 fi
 
-if [[ -f /usr/bin/erd ]]
-then
+if [[ -f /usr/bin/erd ]]; then
     alias tree="erd"
 fi
 
@@ -89,6 +83,20 @@ bind "set mark-symlinked-directories on"
 
 # Set completions that aren't automatically set
 complete -cf doas
+
+# Dotnet
+# https://learn.microsoft.com/en-us/dotnet/core/tools/enable-tab-autocomplete
+
+function _dotnet_bash_complete() {
+    local cur="${COMP_WORDS[COMP_CWORD]}" IFS=$'\n' # On Windows you may need to use use IFS=$'\r\n'
+    local candidates
+
+    read -d '' -ra candidates < <(dotnet complete --position "${COMP_POINT}" "${COMP_LINE}" 2>/dev/null)
+
+    read -d '' -ra COMPREPLY < <(compgen -W "${candidates[*]:-}" -- "$cur")
+}
+
+complete -f -F _dotnet_bash_complete dotnet
 
 # Just so I don't forget:
 set -o vi
