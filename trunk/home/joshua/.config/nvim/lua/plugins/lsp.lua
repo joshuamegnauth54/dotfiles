@@ -497,11 +497,9 @@ return {
 			"nvim-telescope/telescope.nvim",
 		},
 		ft = { "haskell", "lhaskell", "cabal", "cabalproject" },
-		opts = {
-			hls = {
-				capabilities = require("cmp_nvim_lsp").default_capabilities(),
-			},
-		},
+		config = function()
+			require("telescope").load_extension("ht")
+		end,
 	},
 	-- https://github.com/pmizio/typescript-tools.nvim
 	{
