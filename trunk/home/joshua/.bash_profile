@@ -15,7 +15,7 @@ export BROWSER="firefox"
 
 # Rustlang
 export RUST_BACKTRACE=1
-export CARGO_NAME=Joshua
+export CARGO_NAME="Joshua"
 
 # SDL
 export SDL_AUDIODRIVER="pipewire"
@@ -27,7 +27,7 @@ export SDL_VIDEODRIVER="wayland,x11"
 export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=on -Dswing.aatext=true -Dswing.defaultlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel -Dswing.crossplatformlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel'
 
 # wlroots
-export WLR_RENDERER=vulkan
+export WLR_RENDERER="vulkan"
 
 # Program specific
 # export PYCHARM_JDK=`java-config -O`
@@ -44,13 +44,13 @@ export PROMPT_DIRTRIM=2
 # Qt environmental variables
 export QT_AUTO_SCREEN_SCALE_FACTOR=1
 export QT_QPA_PLATFORMTHEME="wayland;xcb"
-export QT_QPA_PLATFORM=wayland
+export QT_QPA_PLATFORM="wayland"
 
 # Clutter
-export CLUTTER_BACKEND=wayland
+export CLUTTER_BACKEND="wayland"
 
 # SciPy
-export SCIPY_PIL_IMAGE_VIEWER=nsxiv
+export SCIPY_PIL_IMAGE_VIEWER="nsxiv"
 export USE_SYMENGINE=1
 
 # Don't append CWD to the import path
@@ -61,6 +61,9 @@ export ANDROID_EMULATOR_USE_SYSTEM_LIBS=1
 
 # Disable C# telemetry
 export DOTNET_CLI_TELEMETRY_OPTOUT=1
+
+# Root-less Docker
+export DOCKER_HOST="unix://${XDG_RUNTIME_DIR}/docker.sock"
 
 # Execute .bashrc last
 [[ -f ~/.bashrc ]] && . ~/.bashrc
