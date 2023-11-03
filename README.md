@@ -1,6 +1,6 @@
 # Josh's dot files
 
-I don't intend for my dot files to be usable for the general public. However, you may find some use of them in configuring your own system. Software is a series of esoteria, arcane knowledge that must be found on pull requests, ancient mailing lists, the hearsay of internet strangers...sometimes you need a little help.
+I don't intend for my dot files to be usable for the public. However, you may find some use of them in configuring your own system. Software is a series of esoteria, arcane knowledge that must be found on pull requests, ancient mailing lists, the hearsay of internet strangers...sometimes you need a little help.
 
 # Organization
 
@@ -16,8 +16,8 @@ Certain files may be outright incorrect or deprecated. I intend to remove those 
 
 My home directory configs are my personal choices so, like everything else, you must appraise them prior to copying. For color schemes, I have a mix of [Catppuccin](https://catppuccin.com) and [Dracula](https://draculatheme.com/). Everything is Catppuccin where possible, but I have stray Draculas where setting Catppuccin is too annoying (IPython). My Bash and Fish profiles are centered around Wayland and Pipewire. 
 
-Color schemes are either links to cloned repos or installed via a package manager.
+Color schemes are either soft links to cloned repos or installed via a package manager.
 
 ## neovim
 
-My main editor is [neovim](https://neovim.io/) which I've configured in Lua.
+My main editor is [neovim](https://neovim.io/) which I've configured in Lua. My setup is somewhat minimalist. I primarily rely on L.S.P. for everything coupled with extensions to improve ergonomics.

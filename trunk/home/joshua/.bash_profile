@@ -44,7 +44,7 @@ export PROMPT_DIRTRIM=2
 # Qt environmental variables
 export QT_AUTO_SCREEN_SCALE_FACTOR=1
 export QT_QPA_PLATFORMTHEME="wayland;xcb"
-export QT_QPA_PLATFORM="wayland"
+export QT_QPA_PLATFORM="wayland;xcb"
 
 # Clutter
 export CLUTTER_BACKEND="wayland"
