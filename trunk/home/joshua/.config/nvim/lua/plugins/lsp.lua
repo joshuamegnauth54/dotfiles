@@ -142,6 +142,8 @@ return {
 				"mlir_pdll_lsp_server",
 				-- https://github.com/neomutt/mutt-language-server
 				"mutt_ls",
+				-- https://github.com/nushell/nushell
+				"nu",
 				-- https://github.com/Freed-Wu/pkgbuild-language-server
 				"pkgbuild_language_server",
 				-- I'm using this in conjunction with ruff.
