@@ -90,6 +90,8 @@ return {
 			local default_lsps = {
 				-- https://github.com/angular/vscode-ng-language-service
 				"angularls",
+				-- https://github.com/ansible/ansible-language-server
+				"ansiblels",
 				-- https://github.com/bergercookie/asm-lsp
 				"asm_lsp",
 				-- https://github.com/Beaglefoot/awk-language-server/
