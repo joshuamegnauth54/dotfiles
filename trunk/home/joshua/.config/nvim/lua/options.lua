@@ -228,3 +228,6 @@ vim.api.nvim_create_autocmd({ "TextYankPost" }, {
 	end,
 	desc = "Highlight text on yank",
 })
+
+-- Plugin options
+g.skip_ts_context_commentstring_module = true

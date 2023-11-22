@@ -94,6 +94,8 @@ return {
 				"ansiblels",
 				-- https://github.com/bergercookie/asm-lsp
 				"asm_lsp",
+				-- https://github.com/Freed-Wu/autotools-language-server
+				"autotools_ls",
 				-- https://github.com/Beaglefoot/awk-language-server/
 				"awk_ls",
 				-- https://github.com/mads-hartmann/bash-language-server

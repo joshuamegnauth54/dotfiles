@@ -135,9 +135,9 @@ return {
 	{
 		"echasnovski/mini.comment",
 		opts = {
-			hooks = {
-				pre = function()
-					require("ts_context_commentstring.internal").update_commentstring({})
+			options = {
+				custom_commentstring = function()
+					return require("ts_context_commentstring").calculate_commentstring()
 				end,
 			},
 		},
@@ -150,5 +150,12 @@ return {
 	{
 		"HiPhish/rainbow-delimiters.nvim",
 		-- lazy = true,
+	},
+	-- Surround motions for Neovim
+	-- Allows replacing surrounding brackets or HTML tags easily
+	{
+		"kylechui/nvim-surround",
+		event = "VeryLazy",
+		config = true,
 	},
 }

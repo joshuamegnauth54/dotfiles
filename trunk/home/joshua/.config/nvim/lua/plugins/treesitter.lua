@@ -21,6 +21,9 @@ return {
 				-- Context aware commenting using nvim's commentString buffer and treesitter
 				-- `gcc`
 				"JoosepAlviste/nvim-ts-context-commentstring",
+				opts = {
+					enable_autocmd = false,
+				},
 				lazy = true,
 			},
 			{
@@ -32,7 +35,6 @@ return {
 		opts = {
 			highlight = { enable = true },
 			indent = { enable = true },
-			context_commentstring = { enable = true, enable_autocmd = false },
 			ensure_installed = {
 				"awk",
 				"bash",
@@ -84,6 +86,7 @@ return {
 				"kotlin",
 				"kdl",
 				"latex",
+				"linkerscript",
 				"llvm",
 				"lua",
 				"luadoc",
