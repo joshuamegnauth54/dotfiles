@@ -1,68 +1,42 @@
--- https://github.com/mhartington/formatter.nvim/
+-- https://github.com/stevearc/conform.nvim
 
 return {
-	{
-		"mhartington/formatter.nvim",
-		config = function()
-			local formatter = require("formatter")
-
-			formatter.setup({
-				logging = false,
-				-- NOTE: File types that aren't listed here are handled by an LSP
-				filetype = {
-					fish = {
-						require("formatter.filetypes.fish").fishindent,
-					},
-					-- NOTE: graphql-lsp doesn't support formatting
-					graphql = {
-						require("formatter.filetypes.graphql").prettierd,
-					},
-					kotlin = {
-						require("formatter.filetypes.kotlin").ktlint,
-					},
-					-- NOTE: ltex doesn't support formatting
-					latex = {
-						require("formatter.filetypes.latex").latexindent,
-					},
-					lua = {
-						require("formatter.filetypes.lua").stylua,
-					},
-					python = {
-						require("formatter.filetypes.python").isort,
-                        require("formatter.filetypes.python").black
-					},
-					sh = {
-						require("formatter.filetypes.sh").shfmt,
-						function()
-							return {
-								exe = "shellharden",
-								args = {
-									"--transform",
-								},
-								stdin = true,
-							}
-						end,
-					},
-					sql = {
-						function()
-							return {
-								exe = "sqlfluff",
-								args = {
-									"fix",
-									"--disable-progress-bar",
-									"-f",
-									"-n",
-									"-",
-								},
-								stdin = true,
-							}
-						end,
-					},
-					toml = {
-						require("formatter.filetypes.toml").taplo,
-					},
-				},
-			})
-		end,
+	"stevearc/conform.nvim",
+	cmd = { "ConformInfo" },
+	keys = {
+		{
+			"<leader>f",
+			function()
+				require("conform").format({ async = true, lsp_fallback = true })
+			end,
+			mode = "",
+			desc = "Format buffer (LSP and conform)",
+		},
 	},
+	opts = {
+		-- NOTE: File types that aren't listed here are handled by an LSP
+		-- Some file types are listed twice (in lsp.lua and here) because I
+		-- want to make use of injected formatting
+		formatters_by_ft = {
+			bib = { "bibtex-tidy" },
+			fish = { "fish_indent" },
+			-- NOTE: graphql-lsp doesn't support formatting
+			graphql = { "prettierd" },
+			just = { "just" },
+			kotlin = { "ktlint", "injected" },
+			-- NOTE: ltex doesn't support formatting
+			latex = { "latexindex", "injected" },
+			lua = { "stylua" },
+			markdown = { "markdownlint-cli2", "injected" },
+			python = { "usort", "ruff_format", "injected" },
+			-- rust = { "rustfmt", "injected" },
+			sh = { "shellharden", "shfmt" },
+			sql = { "sqlfluff" },
+			toml = { "taplo" },
+			typst = { "typstfmt", "injected" },
+		},
+	},
+	init = function()
+		vim.o.formatexpr = "v:lua.require'conform'.formatexpr()"
+	end,
 }

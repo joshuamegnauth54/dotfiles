@@ -59,16 +59,17 @@ return {
 					-- vim.keymap.set("n", "<F2>", vim.lsp.buf.rename, opts)
 					-- vim.keymap.set({ "n", "v" }, "<space>ca", vim.lsp.buf.code_action, opts)
 					vim.keymap.set("n", "gr", vim.lsp.buf.references, opts)
-					vim.keymap.set("n", "<leader>f", function()
-						-- WARNING: https://github.com/mhartington/formatter.nvim/issues/260
-						-- Hopefully this is fixed
-						local formatter_ft = require("formatter.config").values.filetype
-						if formatter_ft[vim.bo.filetype] ~= nil then
-							vim.cmd.Format()
-						else
-							vim.lsp.buf.format({ async = true })
-						end
-					end, opts)
+					-- NOTE: Deferring to conform.nvim which automagically uses LSP formatting
+					-- vim.keymap.set("n", "<leader>f", function()
+					-- 	-- WARNING: https://github.com/mhartington/formatter.nvim/issues/260
+					-- 	-- Hopefully this is fixed
+					-- 	local formatter_ft = require("formatter.config").values.filetype
+					-- 	if formatter_ft[vim.bo.filetype] ~= nil then
+					-- 		vim.cmd.Format()
+					-- 	else
+					-- 		vim.lsp.buf.format({ async = true })
+					-- 	end
+					-- end, opts)
 				end,
 			})
 
@@ -139,8 +140,9 @@ return {
 				-- https://github.com/fwcd/kotlin-language-server
 				-- NOTE: Using ktlint via nvim-lint
 				-- "kotlin_language_server",
+				-- NOTE: Using markdownlint
 				-- https://github.com/artempyanykh/marksman
-				"marksman",
+				-- "marksman",
 				-- https://github.com/llvm/llvm-project
 				"mlir_lsp_server",
 				"mlir_pdll_lsp_server",

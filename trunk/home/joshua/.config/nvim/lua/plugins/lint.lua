@@ -17,18 +17,15 @@ return {
 				cmake = { "cmakelint" },
 				cpp = { "clazy", "clangtidy", "cppcheck", "flawfinder" },
 				dockerfile = { "hadolint" },
+				fish = { "fish" },
 				json = { "cfn_lint", "cfn_nag" },
 				kotlin = { "ktlint" },
 				python = { "bandit" },
 				rst = { "rstcheck" },
-				sh = { "shellcheck" }, --, "dotenv_linter"},
+				sh = { "shellcheck", "dotenv_linter" }, --, "dotenv_linter"},
 				sql = { "sqlfluff" },
 				yaml = { "actionlint", "cfn_lint", "cfn_nag" },
 			}
-
-			-- require("lint").linters = {
-			-- 	dotenv_linter = {},
-			-- }
 		end,
 	},
 }
