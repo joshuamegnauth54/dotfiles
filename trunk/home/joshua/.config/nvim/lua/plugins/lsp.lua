@@ -169,6 +169,9 @@ return {
 				-- Tailwind CSS
 				-- https://github.com/tailwindlabs/tailwindcss-intellisense
 				"tailwindcss",
+				-- Typos LSP
+				-- https://github.com/crate-ci/typos
+				"typos_lsp",
 				-- https://github.com/nvarner/typst-lsp
 				"typst_lsp",
 				-- Vue
@@ -516,6 +519,11 @@ return {
 		},
 		ft = { "javascript", "javascriptreact", "javascript.jsx", "typescript", "typescriptreact", "typescript.tsx" },
 		opts = {
+			on_attach = function(client)
+				-- Disable TypeScript LSP's formatting in favor of Biome.
+				client.server_capabilities.documentFormattingProvider = false
+				client.server_capabilities.documentRangeFormattingProvider = false
+			end,
 			settings = {
 				tsserver_file_preferences = {
 					includeInlayParameterNameHints = "all",
@@ -578,5 +586,11 @@ return {
 		"Hoffs/omnisharp-extended-lsp.nvim",
 		dependencies = { "neovim/nvim-lspconfig" },
 		ft = { "cs", "vb" },
+	},
+	-- https://github.com/kaarmu/typst.vim
+	{
+		"kaarmu/typst.vim",
+		dependencies = { "neovim/nvim-lspconfig" },
+		ft = { "typst" },
 	},
 }
