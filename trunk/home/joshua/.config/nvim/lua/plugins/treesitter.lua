@@ -119,6 +119,7 @@ return {
 				"ssh_config",
 				"starlark",
 				"strace",
+				"styled",
 				"svelte",
 				"systemtap",
 				"textproto",

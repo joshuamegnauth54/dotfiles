@@ -18,6 +18,7 @@ return {
 		-- Some file types are listed twice (in lsp.lua and here) because I
 		-- want to make use of injected formatting
 		formatters_by_ft = {
+			asm = { "asmfmt" },
 			bib = { "bibtex-tidy" },
 			fish = { "fish_indent" },
 			-- NOTE: graphql-lsp doesn't support formatting
