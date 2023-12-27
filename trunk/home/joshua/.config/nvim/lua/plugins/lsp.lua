@@ -126,6 +126,8 @@ return {
 				-- https://github.com/influxdata/flux-lsp
 				-- Influx's query language
 				"flux_lsp",
+				-- https://github.com/godotengine/godot
+				"gdscript",
 				-- https://github.com/svenstaro/glsl-language-server
 				"glslls",
 				-- https://github.com/golang/tools/tree/master/gopls
