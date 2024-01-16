@@ -65,5 +65,8 @@ export DOTNET_CLI_TELEMETRY_OPTOUT=1
 # Root-less Docker
 export DOCKER_HOST="unix://${XDG_RUNTIME_DIR}/docker.sock"
 
+# Prefer system libraries for Steam
+export STEAM_RUNTIME_PREFER_HOST_LIBRARIES=1
+
 # Execute .bashrc last
 [[ -f ~/.bashrc ]] && . ~/.bashrc
