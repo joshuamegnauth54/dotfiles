@@ -109,6 +109,8 @@ return {
 				"buck2",
 				-- https://github.com/bufbuild/buf-language-server
 				"bufls",
+				-- https://bzl.io/
+				"bzl",
 				-- https://github.com/regen100/cmake-language-server
 				"cmake",
 				-- NOTE: Using omnisharp now
