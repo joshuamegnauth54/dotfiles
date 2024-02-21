@@ -141,6 +141,8 @@ return {
 				"graphql",
 				-- https://github.com/haskell/haskell-language-server
 				-- "hls",
+                -- https://github.com/ThePrimeagen/htmx-lsp
+                "htmx",
 				-- https://github.com/fwcd/kotlin-language-server
 				-- NOTE: Using ktlint via nvim-lint
 				-- "kotlin_language_server",

@@ -1,18 +1,26 @@
 [user]
 	name = Josh Megnauth
-	email = replace@josh.com
+	email = josh@replaceme.com
 	editor = nvim
+	signingKey = BLORP
 [core]
 	editor = nvim
 	pager = delta
 [commit]
 	gpgSign = true
+    verbose = true
+[branch]
+    sort = -committerdate
 [interactive]
 	diffFilter = delta --color-only
 [diff]
+    algorithm = histogram
 	colorMoved = default
+    submodule = log
+[fetch]
+    fsckobjects = true
 [merge]
-	conflictstyle = diff3
+	conflictstyle = zdiff3
 [delta]
 	syntax-theme = Catpuccin-mocha
 	light = false
@@ -22,3 +30,15 @@
 	side-by-side = true
 [init]
 	defaultBranch = main
+[rebase]
+    autosquash = true
+[receive]
+    fsckObjects = true
+[status]
+    submoduleSummary = true
+[submodule]
+    recurse = true
+[transfer]
+    fsckobjects = true
+[url "git@github.com:"]
+    insteadOf = "https://github.com/"
