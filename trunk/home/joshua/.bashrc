@@ -14,7 +14,8 @@ if [[ $- != *i* ]]; then
 fi
 
 # Put your fun stuff here.
-export PS1="\[$(tput bold)\]\[\033[38;5;81m\]\u\[$(tput sgr0)\]@\[$(tput sgr0)\]\[$(tput bold)\]\[\033[38;5;206m\]\h\[$(tput sgr0)\]:\[$(tput sgr0)\]\[\033[38;5;6m\][\w]\[$(tput sgr0)\]: \[$(tput sgr0)\]"
+PS1="\[$(tput bold)\]\[\033[38;5;81m\]\u\[$(tput sgr0)\]@\[$(tput sgr0)\]\[$(tput bold)\]\[\033[38;5;206m\]\h\[$(tput sgr0)\]:\[$(tput sgr0)\]\[\033[38;5;6m\][\w]\[$(tput sgr0)\]: \[$(tput sgr0)\]"
+export PS1
 
 # do not overwrite files when redirecting output by default.
 set -o noclobber
@@ -34,7 +35,7 @@ alias diff='diff --color=auto'
 alias less='less --mouse'
 alias grep='grep --color=auto'
 alias ip='ip --color=auto'
-alias bat='bat --theme Catpuccin-mocha'
+alias bat='bat --theme Catppuccin-mocha'
 alias delta='delta --syntax-theme Catppuccin-mocha'
 alias exa='exa --icons --group-directories-first'
 alias procs='procs --theme dark'

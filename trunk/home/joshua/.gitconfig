@@ -22,7 +22,7 @@
 [merge]
 	conflictstyle = zdiff3
 [delta]
-	syntax-theme = Catpuccin-mocha
+	syntax-theme = Catppuccin-mocha
 	light = false
 	line-numbers = true
 	# N and n to move between diff sections
