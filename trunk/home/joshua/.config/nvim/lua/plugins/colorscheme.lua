@@ -12,6 +12,7 @@ return {
 						enabled = true,
 						enable_ui = true,
 					},
+					dap_ui = true,
 					gitsigns = true,
 					indent_blankline = {
 						enabled = true,
@@ -24,6 +25,9 @@ return {
 					mini = true,
 					native_lsp = {
 						enabled = true,
+						inlay_hints = {
+							background = true,
+						},
 					},
 					neotest = true,
 					noice = true,
@@ -32,11 +36,11 @@ return {
 					semantic_tokens = true,
 					symbols_outline = true,
 					rainbow_delimiters = true,
-					telescope = true,
+					telescope = {
+						enabled = true,
+					},
 					treesitter = true,
 					treesitter_context = true,
-					-- ts_rainbow = true,
-					-- ts_rainbow2 = true,
 				},
 			})
 			vim.cmd.colorscheme("catppuccin")

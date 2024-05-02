@@ -29,7 +29,7 @@ return {
 			latex = { "latexindex", "injected" },
 			lua = { "stylua" },
 			markdown = { "markdownlint-cli2", "injected" },
-			python = { "usort", "ruff_format", "injected" },
+			python = { "usort", "injected" },
 			-- rust = { "rustfmt", "injected" },
 			sh = { "shellharden", "shfmt" },
 			sql = { "sqlfluff" },

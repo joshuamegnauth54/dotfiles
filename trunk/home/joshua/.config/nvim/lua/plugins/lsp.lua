@@ -141,8 +141,8 @@ return {
 				"graphql",
 				-- https://github.com/haskell/haskell-language-server
 				-- "hls",
-                -- https://github.com/ThePrimeagen/htmx-lsp
-                "htmx",
+				-- https://github.com/ThePrimeagen/htmx-lsp
+				"htmx",
 				-- https://github.com/fwcd/kotlin-language-server
 				-- NOTE: Using ktlint via nvim-lint
 				-- "kotlin_language_server",
@@ -158,13 +158,6 @@ return {
 				"nushell",
 				-- https://github.com/Freed-Wu/pkgbuild-language-server
 				"pkgbuild_language_server",
-				-- I'm using this in conjunction with ruff.
-				-- Pyright = type checker
-				-- https://github.com/microsoft/pyright
-				-- "pyright",
-				-- https://github.com/charliermarsh/ruff-lsp
-				-- Python
-				"ruff_lsp",
 				-- https://github.com/slint-ui/slint
 				"slint_lsp",
 				-- https://github.com/joe-re/sql-language-server
@@ -247,14 +240,34 @@ return {
 				end,
 			})
 
-			-- Pyright
+			-- I'm using this in conjunction with ruff.
+			-- Pyright = type checker
+			-- https://github.com/microsoft/pyright
 			lspconfig["pyright"].setup({
 				capabilities = capabilities,
+				settings = {
+					pyright = {
+						-- Use Ruff for import sorting
+						disableOrganizeImports = true,
+					},
+				},
 				python = {
 					analysis = {
+						-- Use Ruff for linting
+						ignore = { "*" },
 						typeCheckingMode = "strict",
 					},
 				},
+			})
+
+			-- https://github.com/charliermarsh/ruff-lsp
+			-- Python
+			lspconfig["ruff_lsp"].setup({
+				on_attach = function(client, _)
+					if client.name == "ruff_lsp" then
+						client.server_capabilities.hoverProvider = false
+					end
+				end,
 			})
 
 			-- LanguageTool support for LaTeX, Markdown, and others
@@ -550,6 +563,9 @@ return {
 			"ray-x/guihua.lua",
 		},
 		ft = { "go", "gomod", "gowork", "gotmpl" },
+		config = function()
+			require("go").setup({})
+		end,
 		opts = {
 			lsp_config = {
 				capabilities = require("cmp_nvim_lsp").default_capabilities(),
