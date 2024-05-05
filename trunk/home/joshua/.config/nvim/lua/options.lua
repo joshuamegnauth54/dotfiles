@@ -141,10 +141,11 @@ set.splitbelow = true
 -- Write temporary files and back ups to temp_dir
 local temp_dir = "/tmp/nvim/" .. os.getenv("USER") or os.getenv("USERNAME") or "unknown"
 set.backup = true
+set.writebackup = true
 set.undofile = true
-set.backupdir = temp_dir .. "/backup"
-set.directory = temp_dir
-set.undodir = temp_dir .. "/undo"
+set.backupdir = { temp_dir .. "/backup" }
+set.directory = { temp_dir }
+set.undodir = { temp_dir .. "/undo" }
 
 -- Use ripgrep for grep
 set.grepprg = "rg --vimgrep"
