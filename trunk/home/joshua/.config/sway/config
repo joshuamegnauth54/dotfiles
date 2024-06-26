@@ -44,13 +44,13 @@ set $menu yofi -d apps | xargs swaymsg exec --
     ## GTK theme
     set $gnome-schema org.gnome.desktop.interface
     exec_always {
-        gsettings set $gnome-schema gtk-theme "Catppuccin-Mocha-Standard-Sapphire-dark"
-        gsettings set $gnome-schema cursor-theme "Catppuccin-Mocha-Blue-Cursors"
+        gsettings set $gnome-schema gtk-theme "catppuccin-mocha-blue-standard+default"
+        gsettings set $gnome-schema cursor-theme "catppuccin-mocha-blue-cursors"
         gsettings set $gnome-schema icon-theme "Papirus-Dark"
         gsettings set $gnome-schema color-scheme prefer-dark
         gsettings set $gnome-schema font-name $font
     }
-    seat seat0 xcursor_theme Catppuccin-Mocha-Blue-Cursors 32
+    seat seat0 xcursor_theme catppuccin-mocha-blue-cursors 32
 
     ## Borders
     default_border none
@@ -107,13 +107,15 @@ exec swayidle -w \
     for_window [app_id="vlc"] floating enable
     for_window [class="[nN]sxiv"] floating enable move scratchpad
     for_window [app_id="^[Ss]niffnet$"] floating enable
+    for_window [class="Signal"] move workspace "3"
+    for_window [class="Element"] move workspace "9"
 
 ### Key bindings
 #
 # Basics:
 #
     # Start a terminal
-    # bindsym $mod+Return exec $term
+    bindsym $mod+Return exec $term
 
     # Kill focused window
     bindsym $mod+Shift+q kill
