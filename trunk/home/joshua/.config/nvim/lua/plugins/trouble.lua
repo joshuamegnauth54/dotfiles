@@ -7,12 +7,9 @@ return {
 	},
 	cmd = {
 		"Trouble",
-		"TroubleToggle",
-		"TroubleClose",
-		"TroubleRefresh",
 	},
 	keys = {
-		{ "<leader>xx", "<cmd>TroubleToggle<cr>", desc = "Toggle Trouble (workspace)" },
-		{ "<leader>xd", "<cmd>TroubleToggle document_diagnostics<cr>", desc = "Toggle Trouble (document)" },
+		{ "<leader>xx", "<cmd>Trouble diagnostics toggle<cr>", desc = "Toggle Trouble (workspace)" },
+		{ "<leader>xd", "<cmd>Trouble diagnostics toggle filter.buf=0<cr>", desc = "Toggle Trouble (document)" },
 	},
 }

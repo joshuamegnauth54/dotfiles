@@ -158,6 +158,8 @@ return {
 				"nushell",
 				-- https://github.com/Freed-Wu/pkgbuild-language-server
 				"pkgbuild_language_server",
+				-- https://github.com/charliermarsh/ruff
+				"ruff",
 				-- https://github.com/slint-ui/slint
 				"slint_lsp",
 				-- https://github.com/joe-re/sql-language-server
@@ -260,15 +262,16 @@ return {
 				},
 			})
 
-			-- https://github.com/charliermarsh/ruff-lsp
+			-- https://github.com/charliermarsh/ruff
+			-- `ruff-lsp` has been replaced by ruff itself
 			-- Python
-			lspconfig["ruff_lsp"].setup({
-				on_attach = function(client, _)
-					if client.name == "ruff_lsp" then
-						client.server_capabilities.hoverProvider = false
-					end
-				end,
-			})
+			-- lspconfig["ruff"].setup({
+			-- 	on_attach = function(client, _)
+			-- 		if client.name == "ruff" then
+			-- 			client.server_capabilities.hoverProvider = false
+			-- 		end
+			-- 	end,
+			-- })
 
 			-- LanguageTool support for LaTeX, Markdown, and others
 			lspconfig["ltex"].setup({
