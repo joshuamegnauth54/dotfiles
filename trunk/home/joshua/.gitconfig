@@ -1,8 +1,8 @@
 [user]
 	name = Josh Megnauth
-	email = josh@replaceme.com
+	email = josh@fake.com
 	editor = nvim
-	signingKey = BLORP
+	signingKey = 1234F00D
 [core]
 	editor = nvim
 	pager = delta
@@ -22,7 +22,7 @@
 [merge]
 	conflictstyle = zdiff3
 [delta]
-	syntax-theme = Catppuccin-mocha
+	features = catppuccin-mocha
 	light = false
 	line-numbers = true
 	# N and n to move between diff sections
@@ -40,5 +40,7 @@
     recurse = true
 [transfer]
     fsckobjects = true
-[url "git@github.com:"]
-    insteadOf = "https://github.com/"
+; [url "git@github.com:"]
+;     insteadOf = "https://github.com/"
+[include]
+    path = "~/Repos/Others/delta/catppuccin.gitconfig"
