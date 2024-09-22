@@ -409,8 +409,13 @@ return {
 		dependencies = { "nvim-lua/plenary.nvim" },
 		config = true,
 		opts = {
+			completion = {
+				cmp = {
+					enabled = true,
+				},
+			},
 			null_ls = {
-				enabled = true,
+				enabled = false,
 			},
 		},
 		-- lazy = true,
