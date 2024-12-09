@@ -107,8 +107,8 @@ return {
 				"biome",
 				-- https://github.com/facebook/buck2
 				"buck2",
-				-- https://github.com/bufbuild/buf-language-server
-				"bufls",
+				-- https://github.com/bufbuild/buf/
+				"buf_ls",
 				-- https://bzl.io/
 				"bzl",
 				-- https://github.com/regen100/cmake-language-server
@@ -172,11 +172,11 @@ return {
 				-- Tailwind CSS
 				-- https://github.com/tailwindlabs/tailwindcss-intellisense
 				"tailwindcss",
+				-- https://github.com/Myriad-Dreamin/tinymist
+				"tinymist",
 				-- Typos LSP
 				-- https://github.com/crate-ci/typos
 				"typos_lsp",
-				-- https://github.com/nvarner/typst-lsp
-				"typst_lsp",
 				-- Vue
 				-- https://github.com/vuejs/vetur/tree/master/server
 				"vuels",
