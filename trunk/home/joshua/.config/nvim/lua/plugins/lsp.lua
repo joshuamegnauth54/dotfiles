@@ -345,30 +345,42 @@ return {
 	},
 	-- More pleasant Rust experience
 	{
-		"simrat39/rust-tools.nvim",
-		dependencies = {
-			"neovim/nvim-lspconfig",
-			"nvim-lua/plenary.nvim",
-		},
+		"mrcjkb/rustaceanvim",
 		opts = {
 			tools = {
-				inlay_hints = {
-					highlight = "Special",
-				},
+				-- inlay_hints = {
+				-- 	highlight = "Special",
+				-- },
 			},
 			server = {
 				on_attach = function(_, bufnr)
-					local rt = require("rust-tools")
 					-- Hover actions
-					vim.keymap.set("n", "<C-space>", rt.hover_actions.hover_actions, { buffer = bufnr })
-					-- Code action groups
-					vim.keymap.set("n", "<Leader>a", rt.code_action_group.code_action_group, { buffer = bufnr })
+					vim.keymap.set("n", "<C-space>", function()
+						vim.cmd.RustLsp({ "hover", "actions" })
+					end, { buffer = bufnr })
+					-- Open docs.rs for item
+					vim.keymap.set("n", "<Leader>a", function()
+						vim.cmd.RustLsp({ "openDocs" })
+					end, { buffer = bufnr })
 				end,
-				settings = {
+				default_settings = {
 					capabilities = require("cmp_nvim_lsp").default_capabilities(),
 					["rust-analyzer"] = {
 						cargo = {
+							allTargets = true,
+							allFeatures = true,
 							features = "all",
+							loadOutDirsFromCheck = true,
+							buildScripts = {
+								enable = true,
+							},
+						},
+						checkOnSave = true,
+						diagnostics = {
+							enable = true,
+							styleLints = {
+								enable = true,
+							},
 						},
 						check = {
 							-- Check all targets and tests
@@ -399,6 +411,9 @@ return {
 				},
 			},
 		},
+		config = function(_, opts)
+			vim.g.rustaceanvim = vim.tbl_extend("keep", vim.g.rustaceanvim or {}, opts or {})
+		end,
 		-- lazy = true,
 		event = "BufRead Cargo.toml",
 		ft = { "rust" },
@@ -410,12 +425,15 @@ return {
 		config = true,
 		opts = {
 			completion = {
-				cmp = {
+				crates = {
 					enabled = true,
 				},
 			},
-			null_ls = {
-				enabled = false,
+			lsp = {
+				enabled = true,
+				actions = true,
+				completion = true,
+				hover = true,
 			},
 		},
 		-- lazy = true,

@@ -67,11 +67,13 @@ set.number = true
 -- This should always be enabled or else the sign column would move when toggled
 set.signcolumn = "yes"
 
+-- This is possibly obsolete
 g.markdown_fenced_languages = {
 	"css",
 	"html",
 	"javascript",
 	"js=javascript",
+    "json=javascript",
 	"rust",
 	"sql",
 	"ts=typescript",
