@@ -62,8 +62,9 @@ export ANDROID_EMULATOR_USE_SYSTEM_LIBS=1
 # Disable C# telemetry
 export DOTNET_CLI_TELEMETRY_OPTOUT=1
 
-# Root-less Docker
-export DOCKER_HOST="unix://${XDG_RUNTIME_DIR}/docker.sock"
+# Root-less Docker (or using Podman as Docker)
+# export DOCKER_HOST="unix://${XDG_RUNTIME_DIR}/docker.sock"
+export DOCKER_HOST="unix://${XDG_RUNTIME_DIR}/podman/podman.sock"
 
 # Prefer system libraries for Steam
 export STEAM_RUNTIME_PREFER_HOST_LIBRARIES=1
