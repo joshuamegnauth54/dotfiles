@@ -3,6 +3,8 @@
 	email = josh@fake.com
 	editor = nvim
 	signingKey = 1234F00D
+[include]
+    path = "~/Repos/Others/delta/catppuccin.gitconfig"
 [core]
 	editor = nvim
 	pager = delta
@@ -42,5 +44,8 @@
     fsckobjects = true
 ; [url "git@github.com:"]
 ;     insteadOf = "https://github.com/"
-[include]
-    path = "~/Repos/Others/delta/catppuccin.gitconfig"
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true

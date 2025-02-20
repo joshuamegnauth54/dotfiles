@@ -73,7 +73,7 @@ g.markdown_fenced_languages = {
 	"html",
 	"javascript",
 	"js=javascript",
-    "json=javascript",
+	"json=javascript",
 	"rust",
 	"sql",
 	"ts=typescript",
@@ -215,7 +215,8 @@ vim.fn.sign_define("DiagnosticSignError", {
 })
 
 -- Virtual text doesn't work as nicely as I'd want it to, so I'll use floating windows instead
-vim.diagnostic.config({ virtual_text = false })
+-- severity_sort: https://github.com/nvimdev/lspsaga.nvim/issues/1520
+vim.diagnostic.config({ virtual_text = false, severity_sort = true })
 -- vim.cmd([[autocmd CursorHold * lua vim.diagnostic.open_float(nil, { focusable = false })]])
 -- vim.api.nvim_create_autocmd({ "CursorHold" }, {
 -- 	callback = function()

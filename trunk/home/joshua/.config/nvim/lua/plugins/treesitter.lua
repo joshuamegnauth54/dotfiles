@@ -96,6 +96,8 @@ return {
 				"ini",
 				"java",
 				"javascript",
+                "jinja",
+                "jinja_inline",
 				"jq",
 				"jsdoc",
 				"json",
