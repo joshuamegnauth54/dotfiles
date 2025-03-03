@@ -13,19 +13,28 @@
     verbose = true
 [branch]
     sort = -committerdate
+[column]
+    ui = auto
+[tag]
+    sort = version:refname
 [interactive]
 	diffFilter = delta --color-only
 [diff]
     algorithm = histogram
-	colorMoved = default
+	colorMoved = plain
+    mnemonicPrefix = true
+    renames = true
     submodule = log
 [fetch]
+    all = true
     fsckobjects = true
+    prune = true
+    pruneTags = true
 [merge]
 	conflictstyle = zdiff3
 [delta]
-	features = catppuccin-mocha
-	light = false
+	features = Catppuccin Mocha
+	dark = true
 	line-numbers = true
 	# N and n to move between diff sections
 	navigate = true
@@ -34,6 +43,7 @@
 	defaultBranch = main
 [rebase]
     autosquash = true
+    updateRefs = true
 [receive]
     fsckObjects = true
 [status]
