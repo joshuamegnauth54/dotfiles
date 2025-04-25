@@ -8,16 +8,17 @@ return {
 			require("catppuccin").setup({
 				integrations = {
 					cmp = true,
-					dap = {
-						enabled = true,
-						enable_ui = true,
-					},
+					dap = true,
 					dap_ui = true,
+                    fzf = true,
 					gitsigns = true,
 					indent_blankline = {
 						enabled = true,
 					},
-					illuminate = true,
+					illuminate = {
+                        enabled = true,
+                        lsp = true,
+                    },
 					lsp_saga = true,
 					lsp_trouble = true,
 					markdown = true,
@@ -32,6 +33,7 @@ return {
 					neotest = true,
 					noice = true,
 					notify = true,
+                    nvim_surround = true,
 					nvimtree = true,
 					semantic_tokens = true,
 					symbols_outline = true,

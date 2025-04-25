@@ -133,7 +133,7 @@ set.hlsearch = true
 -- Next: ]s
 -- Prev: [s
 -- Suggestions: z=
-set.spelllang = { "en_us" }
+set.spelllang = "en_us"
 set.spell = true
 
 -- Splits don't shift current buffer
@@ -141,13 +141,13 @@ set.splitright = true
 set.splitbelow = true
 
 -- Write temporary files and back ups to temp_dir
-local temp_dir = "/tmp/nvim/" .. os.getenv("USER") or os.getenv("USERNAME") or "unknown"
+local temp_dir = "/tmp/nvim/" .. os.getenv("USER") or os.getenv("USERNAME") or "unknown-" .. math.random()
 set.backup = true
 set.writebackup = true
 set.undofile = true
-set.backupdir = { temp_dir .. "/backup" }
-set.directory = { temp_dir }
-set.undodir = { temp_dir .. "/undo" }
+set.backupdir = temp_dir .. "/backup"
+set.directory = temp_dir
+set.undodir = temp_dir .. "/undo"
 
 -- Use ripgrep for grep
 set.grepprg = "rg --vimgrep"
@@ -190,39 +190,33 @@ set.completeopt = { "menuone", "noselect", "noinsert" }
 vim.api.nvim_set_option("updatetime", 250)
 
 -- Diagnostics
-vim.fn.sign_define("DiagnosticSignInfo", {
-	numhl = "DiagnosticSignInfo",
-	texthl = "DiagnosticSignInfo",
-	text = "",
-})
-
-vim.fn.sign_define("DiagnosticSignHint", {
-	numhl = "DiagnosticSignHint",
-	texthl = "DiagnosticSignHint",
-	text = "",
-})
-
-vim.fn.sign_define("DiagnosticSignWarn", {
-	numhl = "DiagnosticSignWarn",
-	texthl = "DiagnosticSignWarn",
-	text = "",
-})
-
-vim.fn.sign_define("DiagnosticSignError", {
-	numhl = "DiagnosticSignError",
-	texthl = "DiagnosticSignError",
-	text = "󰋔",
-})
 
 -- Virtual text doesn't work as nicely as I'd want it to, so I'll use floating windows instead
 -- severity_sort: https://github.com/nvimdev/lspsaga.nvim/issues/1520
-vim.diagnostic.config({ virtual_text = false, severity_sort = true })
+vim.diagnostic.config({
+	virtual_text = false,
+	severity_sort = true,
+	signs = {
+		text = {
+			[vim.diagnostic.severity.INFO] = "",
+			[vim.diagnostic.severity.HINT] = "",
+			[vim.diagnostic.severity.WARN] = "",
+			[vim.diagnostic.severity.ERROR] = "󰋔",
+		},
+		numhl = {
+			[vim.diagnostic.severity.INFO] = "DiagnosticSignInfo",
+			[vim.diagnostic.severity.HINT] = "DiagnosticSignHint",
+			[vim.diagnostic.severity.WARN] = "DiagnosticSignWarn",
+			[vim.diagnostic.severity.ERROR] = "DiagnosticSignError",
+		},
+	},
+})
 -- vim.cmd([[autocmd CursorHold * lua vim.diagnostic.open_float(nil, { focusable = false })]])
 -- vim.api.nvim_create_autocmd({ "CursorHold" }, {
 -- 	callback = function()
 -- 		vim.diagnostic.open_float(nil, { focusable = false })
 -- 	end,
--- 	desc = "Open diagonstic floating window on cursor hold",
+-- 	desc = "Open diagnostic floating window on cursor hold",
 -- })
 
 -- Highlight yanked text
