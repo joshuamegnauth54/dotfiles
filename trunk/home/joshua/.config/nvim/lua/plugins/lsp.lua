@@ -425,6 +425,9 @@ return {
 		config = true,
 		opts = {
 			completion = {
+				cmp = {
+					enabled = true,
+				},
 				crates = {
 					enabled = true,
 				},
@@ -458,13 +461,6 @@ return {
 			"neovim/nvim-lspconfig",
 		},
 		ft = { "c", "cpp", "objc", "objcpp", "cuda", "proto" },
-		opts = {
-			extensions = {
-				inlay_hints = {
-					highlight = "Special",
-				},
-			},
-		},
 	},
 	-- Better Deno
 	-- This may cause problems if tsserver is enabled too

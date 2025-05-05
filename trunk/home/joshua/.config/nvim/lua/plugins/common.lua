@@ -118,7 +118,7 @@ return {
 		event = "InsertEnter",
 		opts = {
 			check_ts = true,
-			enable_check_bracket_line = false,
+			enable_check_bracket_line = true,
 			-- Ignore alphanumeric and .
 			ignored_next_char = "[%w%.]",
 		},
