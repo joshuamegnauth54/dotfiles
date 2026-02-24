@@ -11,18 +11,6 @@ return {
 	{
 		"neovim/nvim-lspconfig",
 		event = { "BufReadPre", "BufNewFile" },
-		dependencies = {
-			-- Mason is a package manager for LSPs, DAPs, linters, and formatters
-			-- https://github.com/williamboman/mason.nvim
-			{
-				"williamboman/mason.nvim",
-				config = true,
-			},
-			{
-				"williamboman/mason-lspconfig.nvim",
-				config = true,
-			},
-		},
 		config = function()
 			-- Mappings.
 			-- Copied from the lspconfig repo with minor edits
@@ -73,21 +61,10 @@ return {
 				end,
 			})
 
-			-- neodev must be loaded before lspconfig, but I only want it for Lua
-			-- TODO: Actually get this to werk
-			-- if vim.bo.filetype == "lua" then
-			-- require("neodev")
-			-- end
-			require("neodev")
+			vim.lsp.inlay_hint.enable(true)
 
 			-- Rust, C, Haskell, base TypeScript, Deno, and Go are managed by other plugins below
 			-- CSS, HTML, and JSON are set up below for snippet support
-			local lspconfig = require("lspconfig")
-
-			lspconfig["inlay_hints"] = {
-				enabled = true,
-			}
-
 			local default_lsps = {
 				-- https://github.com/angular/vscode-ng-language-service
 				"angularls",
@@ -102,7 +79,6 @@ return {
 				-- https://github.com/mads-hartmann/bash-language-server
 				"bashls",
 				-- Convenient and fast tools for TypeScript including an LSP
-				-- (Rome fork)
 				-- https://github.com/biomejs/biome
 				"biome",
 				-- https://github.com/facebook/buck2
@@ -113,9 +89,7 @@ return {
 				"bzl",
 				-- https://github.com/regen100/cmake-language-server
 				"cmake",
-				-- NOTE: Using omnisharp now
-				-- https://github.com/razzmatazz/csharp-language-server
-				-- "csharp_ls",
+				"cssls",
 				-- https://github.com/antonk52/cssmodules-language-server
 				"cssmodules_ls",
 				-- https://github.com/microsoft/compose-language-service
@@ -141,6 +115,7 @@ return {
 				"graphql",
 				-- https://github.com/haskell/haskell-language-server
 				-- "hls",
+				"html",
 				-- https://github.com/ThePrimeagen/htmx-lsp
 				"htmx",
 				-- https://github.com/fwcd/kotlin-language-server
@@ -169,11 +144,13 @@ return {
 				-- Svelte language server
 				-- https://github.com/sveltejs/language-tools/tree/master/packages/language-server,
 				"svelte",
+				"taplo",
 				-- Tailwind CSS
 				-- https://github.com/tailwindlabs/tailwindcss-intellisense
 				"tailwindcss",
 				-- https://github.com/Myriad-Dreamin/tinymist
 				"tinymist",
+				"ty",
 				-- Typos LSP
 				-- https://github.com/crate-ci/typos
 				"typos_lsp",
@@ -195,9 +172,11 @@ return {
 			-- https://github.com/neovim/nvim-lspconfig/wiki/Snippets
 			local lsp_flags = {}
 			local capabilities = require("cmp_nvim_lsp").default_capabilities()
+			capabilities.textDocument.completion.completionItem.snippetSupport = true
 
 			for _, lsp in pairs(default_lsps) do
-				lspconfig[lsp].setup({
+				vim.lsp.enable(lsp)
+				vim.lsp.config(lsp, {
 					capabilities = capabilities,
 					flags = lsp_flags,
 				})
@@ -208,21 +187,10 @@ return {
 			-- https://github.com/hrsh7th/vscode-langservers-extracted
 			-- CSS, HTML, and JSON require a snippet engine
 			--Enable (broadcasting) snippet capability for completion
-			-- local html_cap = vim.lsp.protocol.make_client_capabilities()
-			local html_cap = vim.deepcopy(capabilities)
-			html_cap.textDocument.completion.completionItem.snippetSupport = true
 
-			lspconfig["html"].setup({
-				capabilities = html_cap,
-			})
-
-			-- Snippet support for CSS completion
-			lspconfig["cssls"].setup({
-				capabilities = html_cap,
-			})
-
-			lspconfig["jsonls"].setup({
-				capabilities = html_cap,
+			vim.lsp.enable("jsonls")
+			vim.lsp.config("jsonls", {
+				capabilities = capabilities,
 				settings = {
 					json = {
 						-- Use schemastore (see below)
@@ -234,7 +202,8 @@ return {
 
 			-- https://clangd.llvm.org/installation.html
 			-- NOTE: clangd-extensions' instructions say to set up clangd here too
-			lspconfig["clangd"].setup({
+			vim.lsp.enable("clangd")
+			vim.lsp.config("clangd", {
 				capabilities = capabilities,
 				on_attach = function()
 					require("clangd_extensions.inlay_hints").setup_autocmd()
@@ -242,59 +211,9 @@ return {
 				end,
 			})
 
-			-- I'm using this in conjunction with ruff.
-			-- Pyright = type checker
-			-- https://github.com/microsoft/pyright
-			lspconfig["pyright"].setup({
-				capabilities = capabilities,
-				settings = {
-					pyright = {
-						-- Use Ruff for import sorting
-						disableOrganizeImports = true,
-					},
-				},
-				python = {
-					analysis = {
-						-- Use Ruff for linting
-						ignore = { "*" },
-						typeCheckingMode = "strict",
-					},
-				},
-			})
-
-			-- https://github.com/charliermarsh/ruff
-			-- `ruff-lsp` has been replaced by ruff itself
-			-- Python
-			-- lspconfig["ruff"].setup({
-			-- 	on_attach = function(client, _)
-			-- 		if client.name == "ruff" then
-			-- 			client.server_capabilities.hoverProvider = false
-			-- 		end
-			-- 	end,
-			-- })
-
-			-- LanguageTool support for LaTeX, Markdown, and others
-			lspconfig["ltex"].setup({
-				capabilities = capabilities,
-				settings = {
-					ltex = {
-						-- ltex is spammy without this
-						checkFrequency = "save",
-						language = "en-US",
-						ltex_ls = {
-							path = "/usr/bin/ltex-ls",
-						},
-						java = {
-							path = "/usr/bin/java",
-							maximumHeapSize = 1024,
-						},
-						sentenceCacheSize = 4096,
-					},
-				},
-			})
-
 			-- Lua
-			lspconfig["lua_ls"].setup({
+			vim.lsp.enable("lua_ls")
+			vim.lsp.config("lua_ls", {
 				capabilities = capabilities,
 				settings = {
 					Lua = {
@@ -320,7 +239,8 @@ return {
 
 			-- LaTeX
 			-- https://github.com/latex-lsp/texlab
-			lspconfig["texlab"].setup({
+			vim.lsp.enable("texlab")
+			vim.lsp.config("texlab", {
 				capabilities = capabilities,
 				settings = {
 					texlab = {
@@ -329,17 +249,6 @@ return {
 						},
 					},
 				},
-			})
-
-			-- https://github.com/omnisharp/omnisharp-roslyn
-			local pid = vim.fn.getpid()
-			lspconfig["omnisharp"].setup({
-				capabilities = capabilities,
-				cmd = { "omnisharp", "--languageserver", "--hostPID", tostring(pid) },
-				handlers = { ["textDocument/definition"] = require("omnisharp_extended").handler },
-				enable_editorconfig_support = true,
-				enable_roslyn_analyzers = true,
-				enable_import_completion = true,
 			})
 		end,
 	},
@@ -442,7 +351,6 @@ return {
 		-- lazy = true,
 		event = "BufRead Cargo.toml",
 		keys = {
-
 			{ "<leader>cv", crates_keys("show_versions_popup") },
 			{ "<leader>cf", crates_keys("show_features_popup") },
 			{ "<leader>cd", crates_keys("show_dependencies_popup") },
@@ -528,18 +436,9 @@ return {
 	},
 	-- Tools for neovim plugin development
 	{
-		"folke/neodev.nvim",
+		"folke/lazydev.nvim",
 		dependencies = { "neovim/nvim-lspconfig" },
 		ft = { "lua" },
-		opts = {
-			library = {
-				plugins = {
-					"nvim-dap-ui",
-					"neotest",
-				},
-				types = true,
-			},
-		},
 	},
 	-- https://github.com/mrcjkb/haskell-tools.nvim
 	{
@@ -626,17 +525,5 @@ return {
 			-- instead of demanding LuaSnip
 			-- luasnip = true,
 		},
-	},
-	-- https://github.com/Hoffs/omnisharp-extended-lsp.nvim
-	{
-		"Hoffs/omnisharp-extended-lsp.nvim",
-		dependencies = { "neovim/nvim-lspconfig" },
-		ft = { "cs", "vb" },
-	},
-	-- https://github.com/kaarmu/typst.vim
-	{
-		"kaarmu/typst.vim",
-		dependencies = { "neovim/nvim-lspconfig" },
-		ft = { "typst" },
 	},
 }
