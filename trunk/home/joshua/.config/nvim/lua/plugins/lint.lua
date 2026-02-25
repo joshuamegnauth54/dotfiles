@@ -22,7 +22,7 @@ return {
 				kotlin = { "ktlint" },
 				python = { "bandit" },
 				rst = { "rstcheck" },
-				sh = { "shellcheck", "dotenv_linter" }, --, "dotenv_linter"},
+				sh = { "shellcheck", "dotenv_linter" },
 				sql = { "sqlfluff" },
 				yaml = { "actionlint", "cfn_lint", "cfn_nag" },
 			}

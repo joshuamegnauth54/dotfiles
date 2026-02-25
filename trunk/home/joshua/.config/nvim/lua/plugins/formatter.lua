@@ -34,7 +34,6 @@ return {
 			sh = { "shellharden", "shfmt" },
 			sql = { "sqlfluff" },
 			toml = { "taplo" },
-			typst = { "typstfmt", "injected" },
 		},
 	},
 	init = function()

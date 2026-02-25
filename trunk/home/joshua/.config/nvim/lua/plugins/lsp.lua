@@ -61,7 +61,8 @@ return {
 				end,
 			})
 
-			vim.lsp.inlay_hint.enable(true)
+			-- XXX: This is way too ugly and annoying to set up properly.
+			-- vim.lsp.inlay_hint.enable(true)
 
 			-- Rust, C, Haskell, base TypeScript, Deno, and Go are managed by other plugins below
 			-- CSS, HTML, and JSON are set up below for snippet support
@@ -74,31 +75,23 @@ return {
 				"asm_lsp",
 				-- https://github.com/Freed-Wu/autotools-language-server
 				"autotools_ls",
-				-- https://github.com/Beaglefoot/awk-language-server/
-				"awk_ls",
 				-- https://github.com/mads-hartmann/bash-language-server
 				"bashls",
 				-- Convenient and fast tools for TypeScript including an LSP
 				-- https://github.com/biomejs/biome
 				"biome",
 				-- https://github.com/facebook/buck2
-				"buck2",
-				-- https://github.com/bufbuild/buf/
 				"buf_ls",
 				-- https://bzl.io/
 				"bzl",
 				-- https://github.com/regen100/cmake-language-server
 				"cmake",
 				"cssls",
-				-- https://github.com/antonk52/cssmodules-language-server
-				"cssmodules_ls",
+				"denols",
 				-- https://github.com/microsoft/compose-language-service
 				"docker_compose_language_service",
 				-- https://github.com/rcjsuen/dockerfile-language-server-nodejs
 				"dockerls",
-				-- https://github.com/nikeee/dot-language-server
-				-- Graphviz
-				"dotls",
 				-- https://github.com/influxdata/flux-lsp
 				-- Influx's query language
 				"flux_lsp",
@@ -118,6 +111,7 @@ return {
 				"html",
 				-- https://github.com/ThePrimeagen/htmx-lsp
 				"htmx",
+				"just",
 				-- https://github.com/fwcd/kotlin-language-server
 				-- NOTE: Using ktlint via nvim-lint
 				-- "kotlin_language_server",
@@ -149,7 +143,7 @@ return {
 				-- https://github.com/tailwindlabs/tailwindcss-intellisense
 				"tailwindcss",
 				-- https://github.com/Myriad-Dreamin/tinymist
-				"tinymist",
+				-- "tinymist",
 				"ty",
 				-- Typos LSP
 				-- https://github.com/crate-ci/typos
@@ -188,6 +182,18 @@ return {
 			-- CSS, HTML, and JSON require a snippet engine
 			--Enable (broadcasting) snippet capability for completion
 
+			-- https://clangd.llvm.org/installation.html
+			-- NOTE: clangd-extensions' instructions say to set up clangd here too
+			vim.lsp.enable("clangd")
+			vim.lsp.config("clangd", {
+				capabilities = capabilities,
+				on_attach = function()
+					require("clangd_extensions.inlay_hints").setup_autocmd()
+					require("clangd_extensions.inlay_hints").set_inlay_hints()
+				end,
+			})
+
+			-- JSON
 			vim.lsp.enable("jsonls")
 			vim.lsp.config("jsonls", {
 				capabilities = capabilities,
@@ -200,15 +206,18 @@ return {
 				},
 			})
 
-			-- https://clangd.llvm.org/installation.html
-			-- NOTE: clangd-extensions' instructions say to set up clangd here too
-			vim.lsp.enable("clangd")
-			vim.lsp.config("clangd", {
+			-- LaTeX
+			-- https://github.com/latex-lsp/texlab
+			vim.lsp.enable("texlab")
+			vim.lsp.config("texlab", {
 				capabilities = capabilities,
-				on_attach = function()
-					require("clangd_extensions.inlay_hints").setup_autocmd()
-					require("clangd_extensions.inlay_hints").set_inlay_hints()
-				end,
+				settings = {
+					texlab = {
+						chktex = {
+							onEdit = true,
+						},
+					},
+				},
 			})
 
 			-- Lua
@@ -237,17 +246,11 @@ return {
 				},
 			})
 
-			-- LaTeX
-			-- https://github.com/latex-lsp/texlab
-			vim.lsp.enable("texlab")
-			vim.lsp.config("texlab", {
-				capabilities = capabilities,
+			-- Typst
+			vim.lsp.enable("tinymist")
+			vim.lsp.config("tinymist", {
 				settings = {
-					texlab = {
-						chktex = {
-							onEdit = true,
-						},
-					},
+					formatterMode = "typstyle",
 				},
 			})
 		end,
@@ -370,57 +373,6 @@ return {
 		},
 		ft = { "c", "cpp", "objc", "objcpp", "cuda", "proto" },
 	},
-	-- Better Deno
-	-- This may cause problems if tsserver is enabled too
-	-- I think I can use deno for everything though
-	-- Default root pattern: deno.json, deno.jsonc
-	{
-		"sigmasd/deno-nvim",
-		dependencies = { "neovim/nvim-lspconfig" },
-		ft = {
-			"javascript",
-			"javascriptreact",
-			"javascript.jsx",
-			"typescript",
-			"typescriptreact",
-			"typescript.tsx",
-		},
-		opts = {
-			server = {
-				capabilities = require("cmp_nvim_lsp").default_capabilities(),
-				-- https://github.com/denoland/vscode_deno/blob/main/package.json
-				settings = {
-					deno = {
-						inlayHints = {
-							enumMemberValues = {
-								enabled = true,
-							},
-							functionLikeReturnTypes = {
-								enabled = true,
-							},
-							parameterNames = {
-								enabled = "all",
-							},
-							parameterTypes = {
-								enabled = true,
-							},
-							propertyDeclarationTypes = {
-								enabled = true,
-							},
-							variableTypes = {
-								enabled = true,
-							},
-						},
-						suggest = {
-							completeFunctionCalls = {
-								enabled = true,
-							},
-						},
-					},
-				},
-			},
-		},
-	},
 	-- https://schemastore.org/ support
 	{
 		"b0o/SchemaStore.nvim",
@@ -437,7 +389,6 @@ return {
 	-- Tools for neovim plugin development
 	{
 		"folke/lazydev.nvim",
-		dependencies = { "neovim/nvim-lspconfig" },
 		ft = { "lua" },
 	},
 	-- https://github.com/mrcjkb/haskell-tools.nvim
@@ -451,79 +402,5 @@ return {
 		config = function()
 			require("telescope").load_extension("ht")
 		end,
-	},
-	-- https://github.com/pmizio/typescript-tools.nvim
-	{
-		"pmizio/typescript-tools.nvim",
-		dependencies = {
-			"nvim-lua/plenary.nvim",
-			"neovim/nvim-lspconfig",
-		},
-		ft = { "javascript", "javascriptreact", "javascript.jsx", "typescript", "typescriptreact", "typescript.tsx" },
-		opts = {
-			on_attach = function(client)
-				-- Disable TypeScript LSP's formatting in favor of Biome.
-				client.server_capabilities.documentFormattingProvider = false
-				client.server_capabilities.documentRangeFormattingProvider = false
-			end,
-			settings = {
-				tsserver_file_preferences = {
-					includeInlayParameterNameHints = "all",
-					includeCompletionsForModuleExports = true,
-				},
-			},
-		},
-	},
-	-- https://github.com/ray-x/go.nvim
-	{
-		"ray-x/go.nvim",
-		dependencies = {
-			"neovim/nvim-lspconfig",
-			"nvim-treesitter/nvim-treesitter",
-			-- Plugin commands raise errors without this
-			"ray-x/guihua.lua",
-		},
-		ft = { "go", "gomod", "gowork", "gotmpl" },
-		config = function()
-			require("go").setup({})
-		end,
-		opts = {
-			lsp_config = {
-				capabilities = require("cmp_nvim_lsp").default_capabilities(),
-				settings = {
-					gopls = {
-						-- TODO Periodically check of this was removed
-						experimentalPostfixCompletions = true,
-						semanticTokens = true,
-						analyses = {
-							nilness = true,
-							shadow = true,
-							unusedparams = true,
-							unusedwrite = true,
-							unusedvariables = true,
-						},
-						-- Inlay hints
-						-- TODO Check if this was deprecated
-						hints = {
-							assignableVariableTypes = true,
-							compositeLiteralFields = true,
-							compositeLiteralTypes = true,
-							constantValues = true,
-							functionTypeParameters = true,
-							parameterNames = true,
-							rangeVariableTypes = true,
-						},
-						staticcheck = true,
-					},
-				},
-				init_options = {
-					usePlaceholders = true,
-				},
-			},
-			trouble = true,
-			-- Would be nice if this just used the snippet directory
-			-- instead of demanding LuaSnip
-			-- luasnip = true,
-		},
 	},
 }
