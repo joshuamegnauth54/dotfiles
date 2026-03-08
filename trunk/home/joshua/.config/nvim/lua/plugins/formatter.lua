@@ -2,6 +2,7 @@
 
 return {
 	"stevearc/conform.nvim",
+    event = { "BufWritePre" },
 	cmd = { "ConformInfo" },
 	keys = {
 		{
@@ -21,6 +22,7 @@ return {
 			asm = { "asmfmt" },
 			bib = { "bibtex-tidy" },
 			fish = { "fish_indent" },
+            go = { "goimports", "gofmt" },
 			-- NOTE: graphql-lsp doesn't support formatting
 			graphql = { "prettierd" },
 			just = { "just" },

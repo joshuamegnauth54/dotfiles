@@ -127,6 +127,8 @@ return {
 				"nushell",
 				-- https://github.com/Freed-Wu/pkgbuild-language-server
 				"pkgbuild_language_server",
+                -- https://doc.qt.io/qt-6/qtqml-tooling-qmlls.html
+                "qmlls",
 				-- https://github.com/charliermarsh/ruff
 				"ruff",
 				-- https://github.com/slint-ui/slint
@@ -150,7 +152,7 @@ return {
 				"typos_lsp",
 				-- Vue
 				-- https://github.com/vuejs/vetur/tree/master/server
-				"vuels",
+				"vue_ls",
 				-- WGSL
 				-- https://github.com/wgsl-analyzer/wgsl-analyzer
 				"wgsl_analyzer",
