@@ -1,6 +1,6 @@
 -- Neovim init
 
 require("options")
-require("plugman")
+require("filetypes")
 require("keys")
-
+require("plugman")

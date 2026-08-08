@@ -2,15 +2,13 @@
 
 return {
 	"stevearc/conform.nvim",
-    event = { "BufWritePre" },
 	cmd = { "ConformInfo" },
 	keys = {
 		{
 			"<leader>f",
 			function()
-				require("conform").format({ async = true, lsp_fallback = true })
+				require("conform").format({ async = true })
 			end,
-			mode = "",
 			desc = "Format buffer (LSP and conform)",
 		},
 	},
@@ -22,7 +20,7 @@ return {
 			asm = { "asmfmt" },
 			bib = { "bibtex-tidy" },
 			fish = { "fish_indent" },
-            go = { "goimports", "gofmt" },
+			go = { "goimports", "gofmt" },
 			-- NOTE: graphql-lsp doesn't support formatting
 			graphql = { "prettierd" },
 			just = { "just" },
@@ -36,6 +34,9 @@ return {
 			sh = { "shellharden", "shfmt" },
 			sql = { "sqlfluff" },
 			toml = { "taplo" },
+		},
+		default_format_opts = {
+			lsp_format = "fallback",
 		},
 	},
 	init = function()

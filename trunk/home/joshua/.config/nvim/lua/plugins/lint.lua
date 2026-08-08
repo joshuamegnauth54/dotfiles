@@ -1,7 +1,7 @@
 -- https://github.com/mfussenegger/nvim-lint
 
 -- Lint auto command
-vim.api.nvim_create_autocmd({ "TextChanged" }, {
+vim.api.nvim_create_autocmd({ "BufWritePost" }, {
 	callback = function()
 		require("lint").try_lint()
 	end,
@@ -10,7 +10,6 @@ vim.api.nvim_create_autocmd({ "TextChanged" }, {
 return {
 	{
 		"mfussenegger/nvim-lint",
-		lazy = true,
 		config = function()
 			require("lint").linters_by_ft = {
 				c = { "clangtidy", "cppcheck", "flawfinder" },
@@ -18,13 +17,12 @@ return {
 				cpp = { "clazy", "clangtidy", "cppcheck", "flawfinder" },
 				dockerfile = { "hadolint" },
 				fish = { "fish" },
-				json = { "cfn_lint", "cfn_nag" },
 				kotlin = { "ktlint" },
 				python = { "bandit" },
 				rst = { "rstcheck" },
 				sh = { "shellcheck", "dotenv_linter" },
 				sql = { "sqlfluff" },
-				yaml = { "actionlint", "cfn_lint", "cfn_nag" },
+				yaml = { "actionlint" },
 			}
 		end,
 	},

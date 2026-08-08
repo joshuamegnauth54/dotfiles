@@ -14,50 +14,38 @@ return {
 		config = function()
 			-- Mappings.
 			-- Copied from the lspconfig repo with minor edits
-			-- NOTE: Commented out mappings are handled by lspsaga.
-			local key_opts = { noremap = true, silent = true }
-			vim.keymap.set("n", "<space>e", vim.diagnostic.open_float, key_opts)
-			-- vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, opts)
-			-- vim.keymap.set("n", "]d", vim.diagnostic.goto_next, opts)
-			vim.keymap.set("n", "<space>q", vim.diagnostic.setloclist, key_opts)
+			-- Diagnostic
+			vim.keymap.set("n", "[e", function()
+				vim.diagnostic.goto_prev()
+			end)
+			vim.keymap.set("n", "]e", function()
+				vim.diagnostic.goto_next()
+			end)
+			vim.keymap.set("n", "z", vim.diagnostic.open_float)
+			vim.keymap.set("n", "<leader>xx", vim.diagnostic.setqflist)
 
 			-- Use an autocmd for LspAttach to bind keys after an LSP attaches
 			-- to the current buffer
 			vim.api.nvim_create_autocmd("LspAttach", {
 				group = vim.api.nvim_create_augroup("UserLspConfig", {}),
 				callback = function(ev)
-					-- Enable completion triggered by <c-x><c-o>
-					vim.bo[ev.buf].omnifunc = "v:lua.vim.lsp.omnifunc"
-
 					-- Buffer local mappings.
 					-- See `:help vim.lsp.*` for documentation on any of the below functions
 					local opts = { buffer = ev.buf }
-					-- vim.keymap.set("n", "gD", vim.lsp.buf.declaration, opts)
-					-- vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
-					-- vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
+					-- Navigation - Jump to definition, symbol locations, et cetera
+					vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
+					vim.keymap.set("n", "gD", vim.lsp.buf.declaration, opts)
 					vim.keymap.set("n", "gi", vim.lsp.buf.implementation, opts)
-					vim.keymap.set("n", "<C-k>", vim.lsp.buf.signature_help, opts)
-					vim.keymap.set("n", "<space>wa", vim.lsp.buf.add_workspace_folder, opts)
-					vim.keymap.set("n", "<space>wr", vim.lsp.buf.remove_workspace_folder, opts)
-					vim.keymap.set("n", "<space>wl", function()
-						print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
-					end, opts)
-					vim.keymap.set("n", "<space>D", vim.lsp.buf.type_definition, opts)
-					-- Rename symbols across workspace
-					-- vim.keymap.set("n", "<F2>", vim.lsp.buf.rename, opts)
-					-- vim.keymap.set({ "n", "v" }, "<space>ca", vim.lsp.buf.code_action, opts)
 					vim.keymap.set("n", "gr", vim.lsp.buf.references, opts)
-					-- NOTE: Deferring to conform.nvim which automagically uses LSP formatting
-					-- vim.keymap.set("n", "<leader>f", function()
-					-- 	-- WARNING: https://github.com/mhartington/formatter.nvim/issues/260
-					-- 	-- Hopefully this is fixed
-					-- 	local formatter_ft = require("formatter.config").values.filetype
-					-- 	if formatter_ft[vim.bo.filetype] ~= nil then
-					-- 		vim.cmd.Format()
-					-- 	else
-					-- 		vim.lsp.buf.format({ async = true })
-					-- 	end
-					-- end, opts)
+					vim.keymap.set("n", "gt", vim.lsp.buf.type_definition, opts)
+
+					-- Documentation
+					vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
+					vim.keymap.set("n", "<C-k>", vim.lsp.buf.signature_help, opts)
+
+					-- Rename symbols across workspace
+					vim.keymap.set("n", "<F2>", vim.lsp.buf.rename, opts)
+					vim.keymap.set({ "n", "v" }, "<space>ca", vim.lsp.buf.code_action, opts)
 				end,
 			})
 
@@ -84,6 +72,8 @@ return {
 				"buf_ls",
 				-- https://bzl.io/
 				"bzl",
+				-- https://clangd.llvm.org/installation.html
+				"clangd",
 				-- https://github.com/regen100/cmake-language-server
 				"cmake",
 				"cssls",
@@ -107,14 +97,15 @@ return {
 				-- https://github.com/graphql/graphiql/tree/main/packages/graphql-language-service-cli
 				"graphql",
 				-- https://github.com/haskell/haskell-language-server
-				-- "hls",
+				"hls",
 				"html",
 				-- https://github.com/ThePrimeagen/htmx-lsp
 				"htmx",
+				"jdtls",
 				"just",
 				-- https://github.com/fwcd/kotlin-language-server
 				-- NOTE: Using ktlint via nvim-lint
-				-- "kotlin_language_server",
+				"kotlin_language_server",
 				-- NOTE: Using markdownlint
 				-- https://github.com/artempyanykh/marksman
 				-- "marksman",
@@ -127,8 +118,8 @@ return {
 				"nushell",
 				-- https://github.com/Freed-Wu/pkgbuild-language-server
 				"pkgbuild_language_server",
-                -- https://doc.qt.io/qt-6/qtqml-tooling-qmlls.html
-                "qmlls",
+				-- https://doc.qt.io/qt-6/qtqml-tooling-qmlls.html
+				"qmlls",
 				-- https://github.com/charliermarsh/ruff
 				"ruff",
 				-- https://github.com/slint-ui/slint
@@ -166,16 +157,14 @@ return {
 
 			-- Variables to pass to LSP configs
 			-- https://github.com/neovim/nvim-lspconfig/wiki/Snippets
-			local lsp_flags = {}
 			local capabilities = require("cmp_nvim_lsp").default_capabilities()
 			capabilities.textDocument.completion.completionItem.snippetSupport = true
 
 			for _, lsp in pairs(default_lsps) do
-				vim.lsp.enable(lsp)
 				vim.lsp.config(lsp, {
 					capabilities = capabilities,
-					flags = lsp_flags,
 				})
+				vim.lsp.enable(lsp)
 			end
 
 			-- Special configs
@@ -183,17 +172,6 @@ return {
 			-- https://github.com/hrsh7th/vscode-langservers-extracted
 			-- CSS, HTML, and JSON require a snippet engine
 			--Enable (broadcasting) snippet capability for completion
-
-			-- https://clangd.llvm.org/installation.html
-			-- NOTE: clangd-extensions' instructions say to set up clangd here too
-			vim.lsp.enable("clangd")
-			vim.lsp.config("clangd", {
-				capabilities = capabilities,
-				on_attach = function()
-					require("clangd_extensions.inlay_hints").setup_autocmd()
-					require("clangd_extensions.inlay_hints").set_inlay_hints()
-				end,
-			})
 
 			-- JSON
 			vim.lsp.enable("jsonls")
@@ -255,6 +233,20 @@ return {
 					formatterMode = "typstyle",
 				},
 			})
+
+			-- YAML
+			vim.lsp.config("yamlls", {
+				capabilities = capabilities,
+				settings = {
+					yaml = {
+						SchemaStore = {
+							enable = false,
+							url = "",
+						},
+						schemas = require("schemastore").yaml.schemas(),
+					},
+				},
+			})
 		end,
 	},
 	-- More pleasant Rust experience
@@ -288,6 +280,9 @@ return {
 							buildScripts = {
 								enable = true,
 							},
+						},
+						procMacro = {
+							enable = true,
 						},
 						checkOnSave = true,
 						diagnostics = {
@@ -367,42 +362,15 @@ return {
 			{ "<leader>cA", crates_keys("upgrade_all_crates") },
 		},
 	},
-	-- Better clang
-	{
-		"p00f/clangd_extensions.nvim",
-		dependencies = {
-			"neovim/nvim-lspconfig",
-		},
-		ft = { "c", "cpp", "objc", "objcpp", "cuda", "proto" },
-	},
 	-- https://schemastore.org/ support
 	{
 		"b0o/SchemaStore.nvim",
 		dependencies = { "neovim/nvim-lspconfig" },
 		ft = { "json" },
 	},
-	-- Better Java support
-	-- I'm not setting up most of it though. Oh well
-	{
-		"mfussenegger/nvim-jdtls",
-		dependencies = { "neovim/nvim-lspconfig" },
-		ft = { "java" },
-	},
 	-- Tools for neovim plugin development
 	{
 		"folke/lazydev.nvim",
 		ft = { "lua" },
-	},
-	-- https://github.com/mrcjkb/haskell-tools.nvim
-	{
-		"mrcjkb/haskell-tools.nvim",
-		dependencies = {
-			"nvim-lua/plenary.nvim",
-			"nvim-telescope/telescope.nvim",
-		},
-		ft = { "haskell", "lhaskell", "cabal", "cabalproject" },
-		config = function()
-			require("telescope").load_extension("ht")
-		end,
 	},
 }

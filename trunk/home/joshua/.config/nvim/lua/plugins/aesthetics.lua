@@ -1,16 +1,10 @@
 -- Various aesthetic plugins
 return {
-	-- https://github.com/stevearc/dressing.nvim
-	{
-		"stevearc/dressing.nvim",
-		lazy = true,
-	},
 	-- https://github.com/folke/noice.nvim
 	{
 		"folke/noice.nvim",
 		dependencies = {
 			"MunifTanjim/nui.nvim",
-			"rcarriga/nvim-notify",
 		},
 		event = "VeryLazy",
 		opts = {
@@ -40,8 +34,6 @@ return {
 			},
 		},
 	},
-	-- https://github.com/MunifTanjim/nui.nvim
-	{ "MunifTanjim/nui.nvim", lazy = true },
 	-- https://github.com/folke/todo-comments.nvim
 	{
 		"folke/todo-comments.nvim",
@@ -49,25 +41,5 @@ return {
 		event = { "BufReadPost", "BufNewFile" },
 		cmd = { "TodoTrouble", "TodoTelescope" },
 		config = true,
-	},
-	-- https://github.com/rcarriga/nvim-notify
-	{
-		"rcarriga/nvim-notify",
-		event = "VeryLazy",
-		config = function()
-			require("notify").setup({
-				render = "simple",
-				stages = "static",
-				timeout = 2500,
-			})
-
-			-- Replace nvim's default notify with nvim-notify
-			vim.notify = require("notify")
-		end,
-	},
-	-- https://github.com/nvim-tree/nvim-web-devicons
-	{
-		"nvim-tree/nvim-web-devicons",
-		lazy = true,
 	},
 }

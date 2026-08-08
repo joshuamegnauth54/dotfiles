@@ -2,11 +2,6 @@
 -- In other words, packages I can't fit anywhere else
 
 return {
-	-- Useful functions that a lot of plugins depend on
-	{
-		"nvim-lua/plenary.nvim",
-		lazy = true,
-	},
 	-- File manager
 	{
 		"nvim-tree/nvim-tree.lua",
@@ -25,16 +20,6 @@ return {
 			},
 		},
 	},
-	-- Show symbols/tagged outline of source code (i.e. structs and functions)
-	-- NOTE: Replaced by lspsaga for now to reduce plugins.
-	-- {
-	-- 	"simrat39/symbols-outline.nvim",
-	-- 	config = true,
-	-- 	cmd = "SymbolsOutline",
-	-- 	keys = {
-	-- 		{ "t", "<cmd>SymbolsOutline<cr>", desc = "Toggle symbols outline" },
-	-- 	},
-	-- },
 	-- Indentation guidelines
 	{
 		"lukas-reineke/indent-blankline.nvim",
@@ -136,16 +121,7 @@ return {
 	},
 	{
 		"echasnovski/mini.comment",
-		opts = {
-			options = {
-				custom_commentstring = function()
-					return require("ts_context_commentstring").calculate_commentstring()
-				end,
-			},
-		},
-		config = function(_, opts)
-			require("mini.comment").setup(opts)
-		end,
+		config = true,
 	},
 	-- Highlight matching brackets
 	-- NOTE: Periodically check this plugin because it's always deprecated for some reason

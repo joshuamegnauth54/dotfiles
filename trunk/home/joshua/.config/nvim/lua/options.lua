@@ -55,7 +55,6 @@ g.maplocalleader = ","
 
 -- Syntax highlighting
 g.background = "dark"
-g.t_co = 256
 g.syntax = true
 set.termguicolors = true
 
@@ -66,18 +65,6 @@ set.number = true
 -- "yes" rather than a boolean is correct.
 -- This should always be enabled or else the sign column would move when toggled
 set.signcolumn = "yes"
-
--- This is possibly obsolete
-g.markdown_fenced_languages = {
-	"css",
-	"html",
-	"javascript",
-	"js=javascript",
-	"json=javascript",
-	"rust",
-	"sql",
-	"ts=typescript",
-}
 
 -- Enable mouse support (I need this for zellij)
 set.mouse = "a"
@@ -90,17 +77,10 @@ set.wrap = true
 set.linebreak = true
 
 -- Indentation
-set.autoindent = true
-set.smartindent = true
 set.expandtab = true
-set.smarttab = true
 set.tabstop = 4
 set.softtabstop = 4
 set.shiftwidth = 4
-
--- Joining lines should add one space instead of two
--- This is the default as of 6.0
--- set.nojoinspaces = true
 
 -- Allow swapping buffers if current isn't saved
 set.hidden = true
@@ -113,14 +93,14 @@ set.secure = true
 set.cmdheight = 0
 
 -- Disable certain messages so prevent hit-enter prompts (useful in conjunction with the above)
-set.shortmess:append("scIW")
+-- set.shortmess:append("scIW")
 
 -- Automatically check if file was modified
 set.autoread = true
 
 -- Use UTF-8
-set.encoding = "utf-8"
-set.fileencoding = "utf-8"
+-- set.encoding = "utf-8"
+-- set.fileencoding = "utf-8"
 set.emoji = true
 
 -- Search options
@@ -141,34 +121,29 @@ set.splitright = true
 set.splitbelow = true
 
 -- Write temporary files and back ups to temp_dir
-local temp_dir = "/tmp/nvim/" .. os.getenv("USER") or os.getenv("USERNAME") or "unknown-" .. math.random()
+local temp_dir = "/tmp/nvim/" .. (vim.env.USER or vim.env.USERNAME or "unknown-" .. math.random())
 set.backup = true
 set.writebackup = true
 set.undofile = true
-set.backupdir = temp_dir .. "/backup"
-set.directory = temp_dir
-set.undodir = temp_dir .. "/undo"
+set.backupdir = temp_dir .. "/backup//"
+set.directory = temp_dir .. "swap//"
+set.undodir = temp_dir .. "/undo//"
 
 -- Use ripgrep for grep
 set.grepprg = "rg --vimgrep"
-
--- Longer history
-set.history = 1000
 
 -- Use the system's clipboard
 set.clipboard = "unnamedplus"
 
 -- Allow moving to the next line with h, l, and arrows
-set.whichwrap = set.whichwrap + "<" + ">" + "h" + "l"
+set.whichwrap = "b,s,<,>,h,l"
 
 -- Intuitive backspaces
 set.backspace = "indent,eol,start"
 
 -- Built in neovim completion; this is useful for the command bar
-set.wildmenu = true
 set.wildignorecase = true
 set.wildmode = "longest:full,full"
-set.wildoptions = "pum"
 -- Transparency
 set.pumblend = 20
 -- Maximum number of items to show
@@ -182,7 +157,7 @@ vim.api.nvim_set_hl(0, "WinSeparator", { bg = "None", default = true })
 set.cursorline = true
 
 -- Disable LSP logging unless I need it
-vim.lsp.set_log_level("OFF")
+vim.lsp.log.set_level("OFF")
 
 -- Set up autocomplete defaults for nvim-cmp
 set.completeopt = { "menuone", "noselect", "noinsert" }
@@ -196,6 +171,7 @@ vim.api.nvim_set_option("updatetime", 250)
 vim.diagnostic.config({
 	virtual_text = false,
 	severity_sort = true,
+	underline = true,
 	signs = {
 		text = {
 			[vim.diagnostic.severity.INFO] = "",

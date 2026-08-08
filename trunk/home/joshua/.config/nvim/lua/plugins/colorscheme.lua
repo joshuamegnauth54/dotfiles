@@ -10,15 +10,15 @@ return {
 					cmp = true,
 					dap = true,
 					dap_ui = true,
-                    fzf = true,
+					fzf = true,
 					gitsigns = true,
 					indent_blankline = {
 						enabled = true,
 					},
 					illuminate = {
-                        enabled = true,
-                        lsp = true,
-                    },
+						enabled = true,
+						lsp = true,
+					},
 					lsp_saga = true,
 					lsp_trouble = true,
 					markdown = true,
@@ -33,7 +33,7 @@ return {
 					neotest = true,
 					noice = true,
 					notify = true,
-                    nvim_surround = true,
+					nvim_surround = true,
 					nvimtree = true,
 					semantic_tokens = true,
 					symbols_outline = true,
@@ -47,13 +47,5 @@ return {
 			})
 			vim.cmd.colorscheme("catppuccin")
 		end,
-	},
-	{
-		"Mofiqul/dracula.nvim",
-		lazy = true,
-		priority = 1000,
-		-- config = function()
-		--    vim.cmd.colorscheme("dracula")
-		-- end
 	},
 }
