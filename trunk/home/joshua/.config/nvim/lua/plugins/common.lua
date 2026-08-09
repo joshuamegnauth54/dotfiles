@@ -15,22 +15,21 @@ return {
 		dependencies = { "nvim-tree/nvim-web-devicons" },
 		opts = {
 			options = {
-				theme = "catppuccin",
+				theme = "catppuccin-nvim",
 				globalstatus = true,
 			},
 		},
 	},
 	-- Indentation guidelines
 	{
-		"lukas-reineke/indent-blankline.nvim",
-		main = "ibl",
+		"saghen/blink.indent",
+		event = "BufReadPre",
 		opts = {
 			scope = {
 				enabled = true,
-				injected_languages = true,
+				highlights = { "BlinkIndentBlue" },
 			},
 		},
-		event = "BufReadPre",
 	},
 	-- Show git status signs
 	{
@@ -99,14 +98,11 @@ return {
 	},
 	-- Automatically close pairs (brackets, parenthesis)
 	{
-		"windwp/nvim-autopairs",
-		event = "InsertEnter",
-		opts = {
-			check_ts = true,
-			enable_check_bracket_line = true,
-			-- Ignore alphanumeric and .
-			ignored_next_char = "[%w%.]",
+		"saghen/blink.pairs",
+		dependencies = {
+			"saghen/blink.lib",
 		},
+		event = "InsertEnter",
 	},
 	-- Highlight color strings as the color themselves
 	{
@@ -122,12 +118,6 @@ return {
 	{
 		"echasnovski/mini.comment",
 		config = true,
-	},
-	-- Highlight matching brackets
-	-- NOTE: Periodically check this plugin because it's always deprecated for some reason
-	{
-		"HiPhish/rainbow-delimiters.nvim",
-		-- lazy = true,
 	},
 	-- Surround motions for Neovim
 	-- Allows replacing surrounding brackets or HTML tags easily

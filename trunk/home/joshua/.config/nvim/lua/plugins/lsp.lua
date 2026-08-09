@@ -23,6 +23,7 @@ return {
 			end)
 			vim.keymap.set("n", "z", vim.diagnostic.open_float)
 			vim.keymap.set("n", "<leader>xx", vim.diagnostic.setqflist)
+			vim.keymap.set("n", "<leader>xc", "<cmd>cclose<cr>")
 
 			-- Use an autocmd for LspAttach to bind keys after an LSP attaches
 			-- to the current buffer
@@ -157,26 +158,17 @@ return {
 
 			-- Variables to pass to LSP configs
 			-- https://github.com/neovim/nvim-lspconfig/wiki/Snippets
-			local capabilities = require("cmp_nvim_lsp").default_capabilities()
-			capabilities.textDocument.completion.completionItem.snippetSupport = true
-
 			for _, lsp in pairs(default_lsps) do
-				vim.lsp.config(lsp, {
-					capabilities = capabilities,
-				})
+				-- vim.lsp.config(lsp, {
+				-- 	capabilities = capabilities,
+				-- })
 				vim.lsp.enable(lsp)
 			end
 
 			-- Special configs
-
-			-- https://github.com/hrsh7th/vscode-langservers-extracted
-			-- CSS, HTML, and JSON require a snippet engine
-			--Enable (broadcasting) snippet capability for completion
-
 			-- JSON
 			vim.lsp.enable("jsonls")
 			vim.lsp.config("jsonls", {
-				capabilities = capabilities,
 				settings = {
 					json = {
 						-- Use schemastore (see below)
@@ -190,7 +182,6 @@ return {
 			-- https://github.com/latex-lsp/texlab
 			vim.lsp.enable("texlab")
 			vim.lsp.config("texlab", {
-				capabilities = capabilities,
 				settings = {
 					texlab = {
 						chktex = {
@@ -203,7 +194,6 @@ return {
 			-- Lua
 			vim.lsp.enable("lua_ls")
 			vim.lsp.config("lua_ls", {
-				capabilities = capabilities,
 				settings = {
 					Lua = {
 						color = {
@@ -236,7 +226,6 @@ return {
 
 			-- YAML
 			vim.lsp.config("yamlls", {
-				capabilities = capabilities,
 				settings = {
 					yaml = {
 						SchemaStore = {
@@ -270,7 +259,6 @@ return {
 					end, { buffer = bufnr })
 				end,
 				default_settings = {
-					capabilities = require("cmp_nvim_lsp").default_capabilities(),
 					["rust-analyzer"] = {
 						cargo = {
 							allTargets = true,

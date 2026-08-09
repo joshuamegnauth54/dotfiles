@@ -7,22 +7,20 @@ return {
 		config = function()
 			require("catppuccin").setup({
 				integrations = {
-					cmp = true,
+                    blink_cmp = {
+                        style = "bordered",
+                    },
+                    blink_indent = true,
+                    blink_pairs = true,
 					dap = true,
 					dap_ui = true,
 					fzf = true,
 					gitsigns = true,
-					indent_blankline = {
-						enabled = true,
-					},
 					illuminate = {
 						enabled = true,
 						lsp = true,
 					},
-					lsp_saga = true,
-					lsp_trouble = true,
 					markdown = true,
-					mason = true,
 					mini = true,
 					native_lsp = {
 						enabled = true,
@@ -32,12 +30,10 @@ return {
 					},
 					neotest = true,
 					noice = true,
-					notify = true,
 					nvim_surround = true,
 					nvimtree = true,
 					semantic_tokens = true,
 					symbols_outline = true,
-					rainbow_delimiters = true,
 					telescope = {
 						enabled = true,
 					},
