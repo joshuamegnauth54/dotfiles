@@ -159,8 +159,8 @@ set.cursorline = true
 -- Disable LSP logging unless I need it
 vim.lsp.log.set_level("OFF")
 
--- Set up autocomplete defaults for nvim-cmp
-set.completeopt = { "menuone", "noselect", "noinsert" }
+-- Set up autocomplete defaults for blink.cmp
+-- set.completeopt = { "menuone", "noselect", "noinsert" }
 -- Reduce update tic time from 4000 to 250 to decrease perceived latency
 vim.api.nvim_set_option("updatetime", 250)
 

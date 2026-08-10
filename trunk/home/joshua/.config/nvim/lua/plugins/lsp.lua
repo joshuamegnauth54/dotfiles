@@ -91,7 +91,6 @@ return {
 				-- https://github.com/svenstaro/glsl-language-server
 				"glslls",
 				-- https://github.com/golang/tools/tree/master/gopls
-				-- NOTE: go.nvim doesn't seem to work unless I load gopls here
 				"gopls",
 				-- https://github.com/microsoft/vscode-gradle
 				"gradle_ls",
@@ -102,6 +101,7 @@ return {
 				"html",
 				-- https://github.com/ThePrimeagen/htmx-lsp
 				"htmx",
+                -- https://github.com/eclipse-jdtls/eclipse.jdt.ls
 				"jdtls",
 				"just",
 				-- https://github.com/fwcd/kotlin-language-server
@@ -159,9 +159,6 @@ return {
 			-- Variables to pass to LSP configs
 			-- https://github.com/neovim/nvim-lspconfig/wiki/Snippets
 			for _, lsp in pairs(default_lsps) do
-				-- vim.lsp.config(lsp, {
-				-- 	capabilities = capabilities,
-				-- })
 				vim.lsp.enable(lsp)
 			end
 
@@ -318,13 +315,10 @@ return {
 	-- Better cargo.toml integration
 	{
 		"saecki/crates.nvim",
-		dependencies = { "nvim-lua/plenary.nvim" },
+		event = "BufRead Cargo.toml",
 		config = true,
 		opts = {
 			completion = {
-				cmp = {
-					enabled = true,
-				},
 				crates = {
 					enabled = true,
 				},
@@ -336,8 +330,6 @@ return {
 				hover = true,
 			},
 		},
-		-- lazy = true,
-		event = "BufRead Cargo.toml",
 		keys = {
 			{ "<leader>cv", crates_keys("show_versions_popup") },
 			{ "<leader>cf", crates_keys("show_features_popup") },

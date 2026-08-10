@@ -102,6 +102,9 @@ return {
 		dependencies = {
 			"saghen/blink.lib",
 		},
+		build = function()
+			require("blink.pairs").build():pwait(60000)
+		end,
 		event = "InsertEnter",
 	},
 	-- Highlight color strings as the color themselves

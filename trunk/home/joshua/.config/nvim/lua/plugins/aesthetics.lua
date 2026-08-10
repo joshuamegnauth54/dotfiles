@@ -42,4 +42,6 @@ return {
 		cmd = { "TodoTrouble", "TodoTelescope" },
 		config = true,
 	},
+	-- https://github.com/xzbdmw/colorful-menu.nvim
+	{ "xzbdmw/colorful-menu.nvim" },
 }
