@@ -1,11 +1,5 @@
 -- Language server provider configs
 
-local function crates_keys(func_str)
-	return function()
-		require("crates")[func_str]({})
-	end
-end
-
 return {
 	-- Quick language server configs
 	{
@@ -101,7 +95,7 @@ return {
 				"html",
 				-- https://github.com/ThePrimeagen/htmx-lsp
 				"htmx",
-                -- https://github.com/eclipse-jdtls/eclipse.jdt.ls
+				-- https://github.com/eclipse-jdtls/eclipse.jdt.ls
 				"jdtls",
 				"just",
 				-- https://github.com/fwcd/kotlin-language-server
@@ -331,15 +325,24 @@ return {
 			},
 		},
 		keys = {
-			{ "<leader>cv", crates_keys("show_versions_popup") },
-			{ "<leader>cf", crates_keys("show_features_popup") },
-			{ "<leader>cd", crates_keys("show_dependencies_popup") },
-			{ "<leader>cu", crates_keys("update_crate") },
-			{ "<leader>cu", crates_keys("update_crates"), "v" },
-			{ "<leader>ca", crates_keys("update_all_crates") },
-			{ "<leader>cU", crates_keys("upgrade_crate") },
-			{ "<leader>cU", crates_keys("upgrade_crates"), "v" },
-			{ "<leader>cA", crates_keys("upgrade_all_crates") },
+			{
+				"<leader>cv",
+				function()
+					require("crates").show_versions_popup({})
+				end,
+			},
+			{
+				"<leader>cf",
+				function()
+					require("crates").show_features_popup({})
+				end,
+			},
+			{
+				"<leader>cd",
+				function()
+					require("crates").show_dependencies_popup({})
+				end,
+			},
 		},
 	},
 	-- https://schemastore.org/ support

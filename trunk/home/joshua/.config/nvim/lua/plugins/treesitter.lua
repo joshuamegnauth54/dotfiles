@@ -31,7 +31,7 @@ return {
 				"capnp",
 				"cmake",
 				"comment",
-                "cpon",
+				"cpon",
 				"cpp",
 				"css",
 				"csv",
@@ -111,9 +111,9 @@ return {
 				"pem",
 				"perl",
 				"pioasm",
-                "powershell",
+				"powershell",
 				"printf",
-                "properties",
+				"properties",
 				"proto",
 				"pymanifest",
 				"python",
@@ -128,7 +128,7 @@ return {
 				"ron",
 				"rust",
 				"rst",
-                "slang",
+				"slang",
 				"slint",
 				"sql",
 				"ssh_config",
@@ -156,163 +156,65 @@ return {
 				"yaml",
 				"zig",
 			})
-			-- Enable Treesitter highlighting for every filetype for which
-			-- a parser is available.
+
 			vim.api.nvim_create_autocmd("FileType", {
 				callback = function(ev)
 					local lang = vim.treesitter.language.get_lang(vim.bo[ev.buf].filetype)
 
-					if lang and vim.treesitter.language.add(lang) then
-						vim.treesitter.start(ev.buf, lang)
+					if not lang or not vim.treesitter.language.add(lang) then
+						return
 					end
+
+					-- Highlighting
+					vim.treesitter.start(ev.buf, lang)
+
+					-- Treesitter indentation
+					vim.bo[ev.buf].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+
+					-- Treesitter folding
+					vim.wo[0][0].foldmethod = "expr"
+					vim.wo[0][0].foldexpr = "v:lua.vim.treesitter.foldexpr()"
 				end,
 			})
 
-			-- Treesitter-based indentation.
-			vim.api.nvim_create_autocmd("FileType", {
-				callback = function(ev)
-					local lang = vim.treesitter.language.get_lang(vim.bo[ev.buf].filetype)
-
-					if lang and vim.treesitter.language.add(lang) then
-						vim.bo[ev.buf].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
-					end
-				end,
-			})
-
-			-- Treesitter-based folding.
-			vim.api.nvim_create_autocmd("FileType", {
-				callback = function(ev)
-					local lang = vim.treesitter.language.get_lang(vim.bo[ev.buf].filetype)
-
-					if lang and vim.treesitter.language.add(lang) then
-						vim.wo[0][0].foldmethod = "expr"
-						vim.wo[0][0].foldexpr = "v:lua.vim.treesitter.foldexpr()"
-					end
-				end,
-			})
-
-			-- Incremental selection.
+			-- Incremental Treesitter selection.
 			vim.keymap.set("x", "<C-Space>", function()
 				vim.treesitter.select("parent")
-			end, { desc = "Increment Treesitter selection" })
+			end, { desc = "Expand selection" })
 
 			vim.keymap.set("x", "<BS>", function()
 				vim.treesitter.select("child")
-			end, { desc = "Decrement Treesitter selection" })
+			end, { desc = "Shrink selection" })
 
 			-- Treesitter textobjects.
 			require("nvim-treesitter-textobjects").setup({
 				select = {
 					lookahead = true,
-					selection_modes = {
-						["@parameter.outer"] = "v",
-						["@function.outer"] = "V",
-						["@class.outer"] = "<C-V>",
-					},
 				},
 				move = {
 					set_jumps = true,
 				},
 			})
 
-			-- Selection textobjects.
 			local select = require("nvim-treesitter-textobjects.select")
 
 			vim.keymap.set({ "x", "o" }, "af", function()
 				select.select_textobject("@function.outer", "textobjects")
-			end, { desc = "Select outer function" })
+			end, { desc = "Select function" })
 
 			vim.keymap.set({ "x", "o" }, "if", function()
 				select.select_textobject("@function.inner", "textobjects")
-			end, { desc = "Select inner function" })
+			end, { desc = "Select function body" })
 
-			vim.keymap.set({ "x", "o" }, "ac", function()
-				select.select_textobject("@class.outer", "textobjects")
-			end, { desc = "Select outer class" })
-
-			vim.keymap.set({ "x", "o" }, "ic", function()
-				select.select_textobject("@class.inner", "textobjects")
-			end, { desc = "Select inner class" })
-
-			vim.keymap.set({ "x", "o" }, "as", function()
-				select.select_textobject("@local.scope", "locals")
-			end, { desc = "Select language scope" })
-
-			-- Swap function parameters.
-			local swap = require("nvim-treesitter-textobjects.swap")
-
-			vim.keymap.set("n", "<leader>a", function()
-				swap.swap_next("@parameter.inner")
-			end, { desc = "Swap parameter forward" })
-
-			vim.keymap.set("n", "<leader>A", function()
-				swap.swap_previous("@parameter.inner")
-			end, { desc = "Swap parameter backward" })
-
-			-- Move between functions/classes/loops/etc.
 			local move = require("nvim-treesitter-textobjects.move")
 
-			local move_opts = { "n", "x", "o" }
-
-			vim.keymap.set(move_opts, "]m", function()
+			vim.keymap.set({ "n", "x", "o" }, "]m", function()
 				move.goto_next_start("@function.outer", "textobjects")
 			end, { desc = "Next function" })
 
-			vim.keymap.set(move_opts, "[m", function()
+			vim.keymap.set({ "n", "x", "o" }, "[m", function()
 				move.goto_previous_start("@function.outer", "textobjects")
 			end, { desc = "Previous function" })
-
-			vim.keymap.set(move_opts, "]mm", function()
-				move.goto_next_end("@function.outer", "textobjects")
-			end, { desc = "End of next function" })
-
-			vim.keymap.set(move_opts, "[mm", function()
-				move.goto_previous_end("@function.outer", "textobjects")
-			end, { desc = "End of previous function" })
-
-			vim.keymap.set(move_opts, "]]", function()
-				move.goto_next_start("@class.outer", "textobjects")
-			end, { desc = "Next class" })
-
-			vim.keymap.set(move_opts, "[[", function()
-				move.goto_previous_start("@class.outer", "textobjects")
-			end, { desc = "Previous class" })
-
-			vim.keymap.set(move_opts, "][", function()
-				move.goto_next_end("@class.outer", "textobjects")
-			end, { desc = "End of next class" })
-
-			vim.keymap.set(move_opts, "[]", function()
-				move.goto_previous_end("@class.outer", "textobjects")
-			end, { desc = "End of previous class" })
-
-			vim.keymap.set(move_opts, "]o", function()
-				move.goto_next_start("@loop.*", "textobjects")
-			end, { desc = "Next loop" })
-
-			vim.keymap.set(move_opts, "]d", function()
-				move.goto_next("@conditional.outer", "textobjects")
-			end, { desc = "Next conditional" })
-
-			vim.keymap.set(move_opts, "[d", function()
-				move.goto_previous("@conditional.outer", "textobjects")
-			end, { desc = "Previous conditional" })
-
-			vim.keymap.set(move_opts, "]s", function()
-				move.goto_next_start("@local.scope", "locals")
-			end, { desc = "Next scope" })
-
-			vim.keymap.set(move_opts, "[s", function()
-				move.goto_previous_start("@local.scope", "locals")
-			end, { desc = "Previous scope" })
-
-			vim.keymap.set(move_opts, "]z", function()
-				move.goto_next_start("@fold", "folds")
-			end, { desc = "Next fold" })
-
-			vim.keymap.set(move_opts, "[z", function()
-				move.goto_previous_start("@fold", "folds")
-			end, { desc = "Previous fold" })
 		end,
 	},
 	{

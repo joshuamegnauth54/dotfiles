@@ -21,7 +21,8 @@ return {
 					auto_show = true,
 				},
 				ghost_text = {
-					enabled = true,
+                    -- Revisit later. It gets annoying when it moves text.
+					enabled = false,
 				},
 				menu = {
 					draw = {
