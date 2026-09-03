@@ -158,9 +158,9 @@ vim.api.nvim_create_autocmd("FileType", {
 		-- Treesitter indentation
 		vim.bo[ev.buf].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
 
-		-- Treesitter folding
-		vim.wo[0][0].foldmethod = "expr"
-		vim.wo[0][0].foldexpr = "v:lua.vim.treesitter.foldexpr()"
+		-- Treesitter folding (edit: I HATE THIS)
+		-- vim.wo[0][0].foldmethod = "expr"
+		-- vim.wo[0][0].foldexpr = "v:lua.vim.treesitter.foldexpr()"
 	end,
 })
 
