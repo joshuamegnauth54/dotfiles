@@ -1,0 +1,9 @@
+[selene]
+base = "lua51"
+name = "vim"
+
+# The full Neovim API is too large (and changes too often) to enumerate,
+# so `any = true` just tells selene the global exists and skips deep
+# field/method type-checking on it.
+[vim]
+any = true

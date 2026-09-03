@@ -1,0 +1,4 @@
+# https://kampfkarren.github.io/selene/usage/configuration.html
+# `vim.toml` (next to this file) declares the `vim` global so selene
+# doesn't flag every `vim.*` call as an undefined variable.
+std = "vim"

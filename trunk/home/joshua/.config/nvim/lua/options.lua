@@ -198,10 +198,7 @@ vim.diagnostic.config({
 -- Highlight yanked text
 vim.api.nvim_create_autocmd({ "TextYankPost" }, {
 	callback = function()
-		vim.highlight.on_yank()
+		vim.hl.on_yank()
 	end,
 	desc = "Highlight text on yank",
 })
-
--- Plugin options
-g.skip_ts_context_commentstring_module = true

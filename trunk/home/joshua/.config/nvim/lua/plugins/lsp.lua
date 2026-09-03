@@ -1,359 +1,243 @@
--- Language server provider configs
+-- Language server provider configs.
 
-return {
-	-- Quick language server configs
-	{
-		"neovim/nvim-lspconfig",
-		event = { "BufReadPre", "BufNewFile" },
-		config = function()
-			-- Mappings.
-			-- Copied from the lspconfig repo with minor edits
-			-- Diagnostic
-			vim.keymap.set("n", "[e", function()
-				vim.diagnostic.goto_prev()
-			end)
-			vim.keymap.set("n", "]e", function()
-				vim.diagnostic.goto_next()
-			end)
-			vim.keymap.set("n", "z", vim.diagnostic.open_float)
-			vim.keymap.set("n", "<leader>xx", vim.diagnostic.setqflist)
-			vim.keymap.set("n", "<leader>xc", "<cmd>cclose<cr>")
+-- Mappings.
+-- Copied from the lspconfig repo with minor edits.
+-- Diagnostic.
+vim.keymap.set("n", "[e", vim.diagnostic.goto_prev, { desc = "Previous diagnostic" })
+vim.keymap.set("n", "]e", vim.diagnostic.goto_next, { desc = "Next diagnostic" })
+vim.keymap.set("n", "z", vim.diagnostic.open_float, { desc = "Show diagnostic" })
+vim.keymap.set("n", "<leader>xx", vim.diagnostic.setqflist, { desc = "Send diagnostics to quickfix" })
+vim.keymap.set("n", "<leader>xc", "<cmd>cclose<cr>", { desc = "Close quickfix" })
 
-			-- Use an autocmd for LspAttach to bind keys after an LSP attaches
-			-- to the current buffer
-			vim.api.nvim_create_autocmd("LspAttach", {
-				group = vim.api.nvim_create_augroup("UserLspConfig", {}),
-				callback = function(ev)
-					-- Buffer local mappings.
-					-- See `:help vim.lsp.*` for documentation on any of the below functions
-					local opts = { buffer = ev.buf }
-					-- Navigation - Jump to definition, symbol locations, et cetera
-					vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
-					vim.keymap.set("n", "gD", vim.lsp.buf.declaration, opts)
-					vim.keymap.set("n", "gi", vim.lsp.buf.implementation, opts)
-					vim.keymap.set("n", "gr", vim.lsp.buf.references, opts)
-					vim.keymap.set("n", "gt", vim.lsp.buf.type_definition, opts)
+vim.api.nvim_create_autocmd("LspAttach", {
+	group = vim.api.nvim_create_augroup("UserLspConfig", {}),
+	callback = function(ev)
+		-- Use an autocmd for LspAttach to bind keys after an LSP attaches
+		-- to the current buffer.
+		local opts = { buffer = ev.buf }
 
-					-- Documentation
-					vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
-					vim.keymap.set("n", "<C-k>", vim.lsp.buf.signature_help, opts)
+		vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
+		vim.keymap.set("n", "gD", vim.lsp.buf.declaration, opts)
+		vim.keymap.set("n", "gi", vim.lsp.buf.implementation, opts)
+		vim.keymap.set("n", "gr", vim.lsp.buf.references, opts)
+		vim.keymap.set("n", "gt", vim.lsp.buf.type_definition, opts)
+		vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
+		vim.keymap.set("n", "<C-k>", vim.lsp.buf.signature_help, opts)
+		vim.keymap.set("n", "<F2>", vim.lsp.buf.rename, opts)
+		vim.keymap.set({ "n", "v" }, "<space>ca", vim.lsp.buf.code_action, opts)
+	end,
+})
 
-					-- Rename symbols across workspace
-					vim.keymap.set("n", "<F2>", vim.lsp.buf.rename, opts)
-					vim.keymap.set({ "n", "v" }, "<space>ca", vim.lsp.buf.code_action, opts)
-				end,
-			})
+-- Rust, C, Haskell, base TypeScript, Deno, and Go are managed elsewhere.
+local default_lsps = {
+	"angularls",
+	"ansiblels",
+	"asm_lsp",
+	"autotools_ls",
+	"bashls",
+	"biome",
+	"buf_ls",
+	"bzl",
+	"clangd",
+	"cmake",
+	"cssls",
+	"denols",
+	"docker_compose_language_service",
+	"dockerls",
+	"flux_lsp",
+	"gdscript",
+	"glslls",
+	"gopls",
+	"gradle_ls",
+	"graphql",
+	"hls",
+	"html",
+	"htmx",
+	"jdtls",
+	"just",
+	"kotlin_language_server",
+	"mlir_lsp_server",
+	"mlir_pdll_lsp_server",
+	"mutt_ls",
+	"nushell",
+	"pkgbuild_language_server",
+	"qmlls",
+	"ruff",
+	"slint_lsp",
+	"svelte",
+	"taplo",
+	"tailwindcss",
+	"ty",
+	"typos_lsp",
+	"vue_ls",
+	"wgsl_analyzer",
+	"yamlls",
+	"zls",
+}
 
-			-- XXX: This is way too ugly and annoying to set up properly.
-			-- vim.lsp.inlay_hint.enable(true)
+for _, lsp in ipairs(default_lsps) do
+	vim.lsp.enable(lsp)
+end
 
-			-- Rust, C, Haskell, base TypeScript, Deno, and Go are managed by other plugins below
-			-- CSS, HTML, and JSON are set up below for snippet support
-			local default_lsps = {
-				-- https://github.com/angular/vscode-ng-language-service
-				"angularls",
-				-- https://github.com/ansible/ansible-language-server
-				"ansiblels",
-				-- https://github.com/bergercookie/asm-lsp
-				"asm_lsp",
-				-- https://github.com/Freed-Wu/autotools-language-server
-				"autotools_ls",
-				-- https://github.com/mads-hartmann/bash-language-server
-				"bashls",
-				-- Convenient and fast tools for TypeScript including an LSP
-				-- https://github.com/biomejs/biome
-				"biome",
-				-- https://github.com/facebook/buck2
-				"buf_ls",
-				-- https://bzl.io/
-				"bzl",
-				-- https://clangd.llvm.org/installation.html
-				"clangd",
-				-- https://github.com/regen100/cmake-language-server
-				"cmake",
-				"cssls",
-				"denols",
-				-- https://github.com/microsoft/compose-language-service
-				"docker_compose_language_service",
-				-- https://github.com/rcjsuen/dockerfile-language-server-nodejs
-				"dockerls",
-				-- https://github.com/influxdata/flux-lsp
-				-- Influx's query language
-				"flux_lsp",
-				-- https://github.com/godotengine/godot
-				"gdscript",
-				-- https://github.com/svenstaro/glsl-language-server
-				"glslls",
-				-- https://github.com/golang/tools/tree/master/gopls
-				"gopls",
-				-- https://github.com/microsoft/vscode-gradle
-				"gradle_ls",
-				-- https://github.com/graphql/graphiql/tree/main/packages/graphql-language-service-cli
-				"graphql",
-				-- https://github.com/haskell/haskell-language-server
-				"hls",
-				"html",
-				-- https://github.com/ThePrimeagen/htmx-lsp
-				"htmx",
-				-- https://github.com/eclipse-jdtls/eclipse.jdt.ls
-				"jdtls",
-				"just",
-				-- https://github.com/fwcd/kotlin-language-server
-				-- NOTE: Using ktlint via nvim-lint
-				"kotlin_language_server",
-				-- NOTE: Using markdownlint
-				-- https://github.com/artempyanykh/marksman
-				-- "marksman",
-				-- https://github.com/llvm/llvm-project
-				"mlir_lsp_server",
-				"mlir_pdll_lsp_server",
-				-- https://github.com/neomutt/mutt-language-server
-				"mutt_ls",
-				-- https://github.com/nushell/nushell
-				"nushell",
-				-- https://github.com/Freed-Wu/pkgbuild-language-server
-				"pkgbuild_language_server",
-				-- https://doc.qt.io/qt-6/qtqml-tooling-qmlls.html
-				"qmlls",
-				-- https://github.com/charliermarsh/ruff
-				"ruff",
-				-- https://github.com/slint-ui/slint
-				"slint_lsp",
-				-- https://github.com/joe-re/sql-language-server
-				-- Has per project configs
-				-- NOTE: Using sqlfluff via nvim-lint
-				-- "sqlls",
-				-- Svelte language server
-				-- https://github.com/sveltejs/language-tools/tree/master/packages/language-server,
-				"svelte",
-				"taplo",
-				-- Tailwind CSS
-				-- https://github.com/tailwindlabs/tailwindcss-intellisense
-				"tailwindcss",
-				-- https://github.com/Myriad-Dreamin/tinymist
-				-- "tinymist",
-				"ty",
-				-- Typos LSP
-				-- https://github.com/crate-ci/typos
-				"typos_lsp",
-				-- Vue
-				-- https://github.com/vuejs/vetur/tree/master/server
-				"vue_ls",
-				-- WGSL
-				-- https://github.com/wgsl-analyzer/wgsl-analyzer
-				"wgsl_analyzer",
-				-- YAML
-				-- https://github.com/redhat-developer/yaml-language-server
-				"yamlls",
-				-- Zig
-				-- https://github.com/zigtools/zls
-				"zls",
-			}
+-- Special configs.
+-- JSON.
+vim.lsp.enable("jsonls")
+vim.lsp.config("jsonls", {
+	settings = {
+		json = {
+			-- Use schemastore (see below).
+			schemas = require("schemastore").json.schemas(),
+			validate = { enable = true },
+		},
+	},
+})
 
-			-- Variables to pass to LSP configs
-			-- https://github.com/neovim/nvim-lspconfig/wiki/Snippets
-			for _, lsp in pairs(default_lsps) do
-				vim.lsp.enable(lsp)
-			end
+-- LaTeX.
+-- https://github.com/latex-lsp/texlab
+vim.lsp.enable("texlab")
+vim.lsp.config("texlab", {
+	settings = {
+		texlab = {
+			chktex = {
+				onEdit = true,
+			},
+		},
+	},
+})
 
-			-- Special configs
-			-- JSON
-			vim.lsp.enable("jsonls")
-			vim.lsp.config("jsonls", {
-				settings = {
-					json = {
-						-- Use schemastore (see below)
-						schemas = require("schemastore").json.schemas(),
-						validate = { enable = true },
-					},
-				},
-			})
+-- Lua.
+vim.lsp.enable("lua_ls")
+vim.lsp.config("lua_ls", {
+	settings = {
+		Lua = {
+			color = {
+				mode = "SemanticEnhanced",
+			},
+			format = {
+				-- Using stylua instead.
+				enable = false,
+			},
+			hint = {
+				enable = true,
+				paramType = true,
+				paramName = "All",
+				setType = true,
+			},
+			telemetry = {
+				enable = false,
+			},
+		},
+	},
+})
 
-			-- LaTeX
-			-- https://github.com/latex-lsp/texlab
-			vim.lsp.enable("texlab")
-			vim.lsp.config("texlab", {
-				settings = {
-					texlab = {
-						chktex = {
-							onEdit = true,
-						},
-					},
-				},
-			})
+-- Typst.
+vim.lsp.enable("tinymist")
+vim.lsp.config("tinymist", {
+	settings = {
+		formatterMode = "typstyle",
+	},
+})
 
-			-- Lua
-			vim.lsp.enable("lua_ls")
-			vim.lsp.config("lua_ls", {
-				settings = {
-					Lua = {
-						color = {
-							mode = "SemanticEnhanced",
-						},
-						-- Using stylua instead
-						format = {
-							enable = false,
-						},
-						hint = {
-							enable = true,
-							paramType = true,
-							paramName = "All",
-							setType = true,
-						},
-						telemetry = {
-							enable = false,
-						},
-					},
-				},
-			})
+-- YAML.
+vim.lsp.config("yamlls", {
+	settings = {
+		yaml = {
+			SchemaStore = {
+				enable = false,
+				url = "",
+			},
+			schemas = require("schemastore").yaml.schemas(),
+		},
+	},
+})
 
-			-- Typst
-			vim.lsp.enable("tinymist")
-			vim.lsp.config("tinymist", {
-				settings = {
-					formatterMode = "typstyle",
-				},
-			})
-
-			-- YAML
-			vim.lsp.config("yamlls", {
-				settings = {
-					yaml = {
-						SchemaStore = {
-							enable = false,
-							url = "",
-						},
-						schemas = require("schemastore").yaml.schemas(),
-					},
-				},
-			})
+-- More pleasant Rust experience.
+vim.g.rustaceanvim = {
+	tools = {},
+	server = {
+		on_attach = function(_, bufnr)
+			vim.keymap.set("n", "<C-space>", function()
+				vim.cmd.RustLsp({ "hover", "actions" })
+			end, { buffer = bufnr, desc = "Rust hover actions" })
+			vim.keymap.set("n", "<Leader>a", function()
+				vim.cmd.RustLsp({ "openDocs" })
+			end, { buffer = bufnr, desc = "Open docs.rs" })
 		end,
-	},
-	-- More pleasant Rust experience
-	{
-		"mrcjkb/rustaceanvim",
-		opts = {
-			tools = {
-				-- inlay_hints = {
-				-- 	highlight = "Special",
-				-- },
-			},
-			server = {
-				on_attach = function(_, bufnr)
-					-- Hover actions
-					vim.keymap.set("n", "<C-space>", function()
-						vim.cmd.RustLsp({ "hover", "actions" })
-					end, { buffer = bufnr })
-					-- Open docs.rs for item
-					vim.keymap.set("n", "<Leader>a", function()
-						vim.cmd.RustLsp({ "openDocs" })
-					end, { buffer = bufnr })
-				end,
-				default_settings = {
-					["rust-analyzer"] = {
-						cargo = {
-							allTargets = true,
-							allFeatures = true,
-							features = "all",
-							loadOutDirsFromCheck = true,
-							buildScripts = {
-								enable = true,
-							},
-						},
-						procMacro = {
-							enable = true,
-						},
-						checkOnSave = true,
-						diagnostics = {
-							enable = true,
-							styleLints = {
-								enable = true,
-							},
-						},
-						check = {
-							-- Check all targets and tests
-							allTargets = true,
-							-- Use clippy instead of the default "check"
-							command = "clippy",
-							-- Check all features instead of eliding feature gated code
-							-- Without this, code that is locked behind a feature isn't checked on save which is annoying
-							-- Defaults to whatever `rust-analyzer.cargo.features` is
-							features = "all",
-						},
-						inlayHints = {
-							closureReturnTypeHints = {
-								enable = "always",
-							},
-							-- This is too noisy
-							-- expressionAdjustmentHints = {
-							-- enable = "reborrow",
-							-- },
-							lifetimeElisionHints = {
-								enable = "skip_trivial",
-							},
-						},
-						lru = {
-							capacity = 256,
-						},
+		default_settings = {
+			["rust-analyzer"] = {
+				cargo = {
+					allTargets = true,
+					features = "all",
+					buildScripts = {
+						enable = true,
 					},
 				},
-			},
-		},
-		config = function(_, opts)
-			vim.g.rustaceanvim = vim.tbl_extend("keep", vim.g.rustaceanvim or {}, opts or {})
-		end,
-		-- lazy = true,
-		event = "BufRead Cargo.toml",
-		ft = { "rust" },
-	},
-	-- Better cargo.toml integration
-	{
-		"saecki/crates.nvim",
-		event = "BufRead Cargo.toml",
-		config = true,
-		opts = {
-			completion = {
-				crates = {
-					enabled = true,
+				procMacro = {
+					enable = true,
+				},
+				checkOnSave = true,
+				diagnostics = {
+					enable = true,
+					styleLints = {
+						enable = true,
+					},
+				},
+				check = {
+					command = "clippy",
+				},
+				hover = {
+					memoryLayout = {
+						niches = true,
+					},
+				},
+				inlayHints = {
+					closureReturnTypeHints = {
+						enable = "always",
+					},
+					lifetimeElisionHints = {
+						enable = "skip_trivial",
+					},
+					closureCaptureHints = {
+						enable = true,
+					},
+					discriminantHints = {
+						enable = "fieldless",
+					},
+					implicitDrops = {
+						enable = true,
+					},
+				},
+				lru = {
+					capacity = 256,
 				},
 			},
-			lsp = {
-				enabled = true,
-				actions = true,
-				completion = true,
-				hover = true,
-			},
 		},
-		keys = {
-			{
-				"<leader>cv",
-				function()
-					require("crates").show_versions_popup({})
-				end,
-			},
-			{
-				"<leader>cf",
-				function()
-					require("crates").show_features_popup({})
-				end,
-			},
-			{
-				"<leader>cd",
-				function()
-					require("crates").show_dependencies_popup({})
-				end,
-			},
-		},
-	},
-	-- https://schemastore.org/ support
-	{
-		"b0o/SchemaStore.nvim",
-		dependencies = { "neovim/nvim-lspconfig" },
-		ft = { "json" },
-	},
-	-- Tools for neovim plugin development
-	{
-		"folke/lazydev.nvim",
-		ft = { "lua" },
 	},
 }
+
+-- Better cargo.toml integration.
+require("crates").setup({
+	completion = {
+		crates = {
+			enabled = true,
+		},
+	},
+	lsp = {
+		enabled = true,
+		actions = true,
+		completion = true,
+		hover = true,
+	},
+})
+
+-- https://schemastore.org/ support is configured above.
+-- Tools for Neovim plugin development are loaded by vim.pack.
+vim.keymap.set("n", "<leader>cv", function()
+	require("crates").show_versions_popup({})
+end, { desc = "Show crate versions" })
+vim.keymap.set("n", "<leader>cf", function()
+	require("crates").show_features_popup({})
+end, { desc = "Show crate features" })
+vim.keymap.set("n", "<leader>cd", function()
+	require("crates").show_dependencies_popup({})
+end, { desc = "Show crate dependencies" })

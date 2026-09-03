@@ -14,5 +14,7 @@ map("n", "]b", "<cmd>bnext<cr>", { desc = "Next buffer" })
 map("n", "<leader>bb", "<cmd>e #<cr>", { desc = "Switch buffer" })
 
 -- Extensions. Might fold into Lazy's configs
--- Toggle nvim-tree in normal mode
-map("n", "`", "<cmd>NvimTreeToggle<cr>", {})
+-- Open the current file's directory with Neovim's builtin dir plugin
+-- (unreleased as of Neovim 0.12; requires nightly). Netrw is disabled,
+-- so this is a no-op until the dir plugin ships in stable.
+map("n", "`", "<cmd>edit %:h<cr>", {})
